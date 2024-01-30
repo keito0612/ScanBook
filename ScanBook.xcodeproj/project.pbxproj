@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35315F792B5556F90045014B /* AddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F782B5556F90045014B /* AddModel.swift */; };
+		35315F7B2B5D181B0045014B /* ScannerServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F7A2B5D181B0045014B /* ScannerServise.swift */; };
+		35315F7E2B6142A20045014B /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F7D2B6142A20045014B /* DropDownView.swift */; };
 		3542555B2B4BC8B100559413 /* ScanBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542555A2B4BC8B100559413 /* ScanBookApp.swift */; };
 		3542555D2B4BC8B100559413 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542555C2B4BC8B100559413 /* ContentView.swift */; };
 		3542555F2B4BC8B200559413 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3542555E2B4BC8B200559413 /* Assets.xcassets */; };
@@ -16,6 +19,9 @@
 		354255722B4BC8B300559413 /* ScanBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354255712B4BC8B300559413 /* ScanBookTests.swift */; };
 		3542557C2B4BC8B300559413 /* ScanBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542557B2B4BC8B300559413 /* ScanBookUITests.swift */; };
 		3542557E2B4BC8B300559413 /* ScanBookUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542557D2B4BC8B300559413 /* ScanBookUITestsLaunchTests.swift */; };
+		3542558B2B4BDA6A00559413 /* AddPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542558A2B4BDA6A00559413 /* AddPage.swift */; };
+		3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542558E2B4BDEBB00559413 /* LibraryPage.swift */; };
+		354255912B4C0BBE00559413 /* TextFieldView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 354255902B4C0BBE00559413 /* TextFieldView .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35315F782B5556F90045014B /* AddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModel.swift; sourceTree = "<group>"; };
+		35315F7A2B5D181B0045014B /* ScannerServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerServise.swift; sourceTree = "<group>"; };
+		35315F7D2B6142A20045014B /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		354255572B4BC8B100559413 /* ScanBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScanBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3542555A2B4BC8B100559413 /* ScanBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBookApp.swift; sourceTree = "<group>"; };
 		3542555C2B4BC8B100559413 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +58,9 @@
 		354255772B4BC8B300559413 /* ScanBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScanBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3542557B2B4BC8B300559413 /* ScanBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBookUITests.swift; sourceTree = "<group>"; };
 		3542557D2B4BC8B300559413 /* ScanBookUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBookUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3542558A2B4BDA6A00559413 /* AddPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPage.swift; sourceTree = "<group>"; };
+		3542558E2B4BDEBB00559413 /* LibraryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPage.swift; sourceTree = "<group>"; };
+		354255902B4C0BBE00559413 /* TextFieldView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldView .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +88,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35315F772B5553060045014B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				35315F782B5556F90045014B /* AddModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		35315F7C2B5D18240045014B /* Servise */ = {
+			isa = PBXGroup;
+			children = (
+				35315F7A2B5D181B0045014B /* ScannerServise.swift */,
+			);
+			path = Servise;
+			sourceTree = "<group>";
+		};
 		3542554E2B4BC8B100559413 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +127,9 @@
 		354255592B4BC8B100559413 /* ScanBook */ = {
 			isa = PBXGroup;
 			children = (
+				35315F7C2B5D18240045014B /* Servise */,
+				35315F772B5553060045014B /* ViewModel */,
+				3542558C2B4BDA7400559413 /* view */,
 				3542555A2B4BC8B100559413 /* ScanBookApp.swift */,
 				3542555C2B4BC8B100559413 /* ContentView.swift */,
 				3542555E2B4BC8B200559413 /* Assets.xcassets */,
@@ -133,6 +164,25 @@
 				3542557D2B4BC8B300559413 /* ScanBookUITestsLaunchTests.swift */,
 			);
 			path = ScanBookUITests;
+			sourceTree = "<group>";
+		};
+		3542558C2B4BDA7400559413 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				3542558D2B4BDA8700559413 /* Page */,
+				354255902B4C0BBE00559413 /* TextFieldView .swift */,
+				35315F7D2B6142A20045014B /* DropDownView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		3542558D2B4BDA8700559413 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				3542558A2B4BDA6A00559413 /* AddPage.swift */,
+				3542558E2B4BDEBB00559413 /* LibraryPage.swift */,
+			);
+			path = Page;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,9 +315,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354255912B4C0BBE00559413 /* TextFieldView .swift in Sources */,
+				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
+				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,
 				354255642B4BC8B200559413 /* Persistence.swift in Sources */,
+				35315F792B5556F90045014B /* AddModel.swift in Sources */,
+				35315F7B2B5D181B0045014B /* ScannerServise.swift in Sources */,
 				354255672B4BC8B200559413 /* ScanBook.xcdatamodeld in Sources */,
 				3542555D2B4BC8B100559413 /* ContentView.swift in Sources */,
+				3542558B2B4BDA6A00559413 /* AddPage.swift in Sources */,
 				3542555B2B4BC8B100559413 /* ScanBookApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +486,7 @@
 				DEVELOPMENT_TEAM = 2GKXFJ7B26;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "本や書類をスキャンするために、カメラを使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -459,6 +516,7 @@
 				DEVELOPMENT_TEAM = 2GKXFJ7B26;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "本や書類をスキャンするために、カメラを使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

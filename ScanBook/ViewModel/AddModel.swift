@@ -25,7 +25,7 @@ class AddModel : ObservableObject{
     //タイトル
     @Published var titleText: String = ""
     @Published var titleErrorValidation:Bool = false
-    @Published var titleErrorText: String = ""
+    @Published var titleErrorText: String = "※タイトルは必須項目です。"
     //カテゴリ
     @Published var category:String = ""
     let categoryItems:[String] = ["漫画","小説","書類"];
@@ -34,7 +34,8 @@ class AddModel : ObservableObject{
     @Published var BookCovarImage:UIImage?
     @Published var categoryValidetion :Bool = false
     //撮影タイプ
-    @Published var shootingType:Int?
+    @Published var shootingType:String = ""
+    @Published var shootingTypeItems:[String] = ["文字認識","スキャン"]
     //写真
     @Published var imageArray:[UIImage] = []
     //ページ数

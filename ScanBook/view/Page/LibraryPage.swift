@@ -8,23 +8,61 @@
 import SwiftUI
 
 struct LibraryPage: View {
+    @StateObject var libraryModel :LibraryModel  = LibraryModel()
     var body: some View {
         NavigationStack{
             ZStack {
                 Color.black
                     .ignoresSafeArea()
-                VStack{
-                    Grid {
-                        GridRow {
-                            ForEach(0..<3) { _ in Color.red }
+                ScrollView {
+                    VStack{
+                        SearchBarView(searchText: $libraryModel.searchText, onSubmit: {
+                          
+                        }).padding(.vertical, 20)
+                        LazyVGrid(
+                            columns: Array(repeating: .init(.flexible()), count: 3),
+                            alignment: .center,
+                            spacing: 30
+                        ) {
+                            ForEach(0..<5) { i in
+                                Color.red }.frame(width: 120, height: 150)
                         }
-                        .frame(width: 80, height: 80)
-                    }
-                }.navigationTitle("ライブラリー")
-            }
+                    }.padding(.horizontal)
+                }
+                VStack {
+                    Spacer()
+                    FloatingActionButton(onTap: {
+                      libraryModel.isPresented.toggle()
+                    }).padding(.leading , 320)
+                }
+            }.navigationTitle("ライブラリ")
+                .toolbarBackground(Color.black,for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
+                .toolbarColorScheme(.dark)
+        }.sheet(isPresented: $libraryModel.isPresented) {
+            AddPage()
         }
     }
 }
+struct FloatingActionButton: View{
+    let onTap: () -> Void
+    var body: some View{
+        Button {
+            onTap()
+        } label: {
+            Image(systemName: "plus")
+                .font(.title.weight(.semibold))
+                .padding()
+                .background(Color.white)
+                .foregroundColor(.black)
+                .clipShape(Circle())
+                .shadow(radius: 4, x: 0, y: 4)
+            
+        }.padding()
+    }
+}
+
+
 
 
 struct LibraryPage_Previews: PreviewProvider {

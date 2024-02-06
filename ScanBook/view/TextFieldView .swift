@@ -24,16 +24,17 @@ struct TextFieldView: View {
                 .onSubmit {
                     submit()
                 }
-            TextField(hintText, text: $text)
-                .padding(10)
-                .accentColor(Color.white)
-                .foregroundColor(Color.white)
-                .overlay(
-                       RoundedRectangle(cornerRadius: 30)
-                        .stroke( errorValidation ? Color.red : Color.white, lineWidth: 3)
-                   )
-                .frame(height : 50)
-                .padding(.horizontal)
+            TextField("", text: $text, prompt: Text(hintText).foregroundColor(Color.gray.opacity(8.0)
+                                                                             ))
+            .foregroundColor(Color.white)
+            .accentColor(Color.white)
+            .padding(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 30)
+                    .stroke( errorValidation ? Color.red : Color.white, lineWidth: 3)
+            )
+            .frame(height : 50)
+            .padding(.horizontal)
             if(errorValidation){
                 Text(errorText)
                     .font(.system(size: 13))

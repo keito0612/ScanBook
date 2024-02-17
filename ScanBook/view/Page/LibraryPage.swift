@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LibraryPage: View {
+    @Environment(\.managedObjectContext)private var context
     @StateObject var libraryModel :LibraryModel  = LibraryModel()
     var body: some View {
         NavigationStack{
@@ -25,9 +26,9 @@ struct LibraryPage: View {
                             spacing: 30
                         ) {
                             ForEach(0..<5) { i in
-                                Color.red }.frame(width: 120, height: 150)
-                        }
-                    }.padding(.horizontal)
+                                Color.red }.frame(width: 110, height: 150)
+                        }.padding(.horizontal)
+                    }
                 }
                 VStack {
                     Spacer()
@@ -67,6 +68,6 @@ struct FloatingActionButton: View{
 
 struct LibraryPage_Previews: PreviewProvider {
     static var previews: some View {
-        LibraryPage()
+        LibraryPage().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

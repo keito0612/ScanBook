@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct PreviewPage: View {
+    let images : [UIImage]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Image("image")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .imageMagnificationView(contentSize: CGSize(width: 300, height: 300), aspectRatio: 1)
+        }
     }
 }
-
 struct PreviewPage_Previews: PreviewProvider {
+    static let images :[UIImage] = []
     static var previews: some View {
-        PreviewPage()
+        PreviewPage(images: images)
     }
 }

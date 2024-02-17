@@ -18,12 +18,12 @@ struct ContentView: View {
         var body: some View {
             ZStack{
                 TabView (selection: $selection){
-                    LibraryPage()
+                    LibraryPage().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
                         .tabItem {
                             Image(systemName: "books.vertical")
                             Text("ライブラリ")
                         }.tag(0)
-                      SettingPage()
+                     SettingPage()
                         .tabItem {
                             Image(systemName: "person.crop.circle")
                             Text("設定")

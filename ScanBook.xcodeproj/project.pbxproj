@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		35315F792B5556F90045014B /* AddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F782B5556F90045014B /* AddModel.swift */; };
-		35315F7B2B5D181B0045014B /* ScannerServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F7A2B5D181B0045014B /* ScannerServise.swift */; };
 		35315F7E2B6142A20045014B /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F7D2B6142A20045014B /* DropDownView.swift */; };
 		35315F802B6974810045014B /* SettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F7F2B6974810045014B /* SettingPage.swift */; };
 		35315F822B6DE1350045014B /* PreviewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F812B6DE1350045014B /* PreviewPage.swift */; };
@@ -28,6 +27,10 @@
 		3542558B2B4BDA6A00559413 /* AddPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542558A2B4BDA6A00559413 /* AddPage.swift */; };
 		3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542558E2B4BDEBB00559413 /* LibraryPage.swift */; };
 		354255912B4C0BBE00559413 /* TextFieldView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 354255902B4C0BBE00559413 /* TextFieldView .swift */; };
+		35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F1E2B79198300B21AB4 /* ScannerView.swift */; };
+		35545F212B7E449D00B21AB4 /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F202B7E449D00B21AB4 /* view.swift */; };
+		35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F222B7E44C000B21AB4 /* CustomBackButtonView.swift */; };
+		35545F252B7FBA9700B21AB4 /* ImageMagnificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F242B7FBA9700B21AB4 /* ImageMagnificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		35315F782B5556F90045014B /* AddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModel.swift; sourceTree = "<group>"; };
-		35315F7A2B5D181B0045014B /* ScannerServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerServise.swift; sourceTree = "<group>"; };
 		35315F7D2B6142A20045014B /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		35315F7F2B6974810045014B /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
 		35315F812B6DE1350045014B /* PreviewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPage.swift; sourceTree = "<group>"; };
@@ -73,6 +75,10 @@
 		3542558A2B4BDA6A00559413 /* AddPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPage.swift; sourceTree = "<group>"; };
 		3542558E2B4BDEBB00559413 /* LibraryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPage.swift; sourceTree = "<group>"; };
 		354255902B4C0BBE00559413 /* TextFieldView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldView .swift"; sourceTree = "<group>"; };
+		35545F1E2B79198300B21AB4 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		35545F202B7E449D00B21AB4 /* view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = view.swift; sourceTree = "<group>"; };
+		35545F222B7E44C000B21AB4 /* CustomBackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonView.swift; sourceTree = "<group>"; };
+		35545F242B7FBA9700B21AB4 /* ImageMagnificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMagnificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +118,7 @@
 		35315F7C2B5D18240045014B /* Servise */ = {
 			isa = PBXGroup;
 			children = (
-				35315F7A2B5D181B0045014B /* ScannerServise.swift */,
+				35545F1E2B79198300B21AB4 /* ScannerView.swift */,
 			);
 			path = Servise;
 			sourceTree = "<group>";
@@ -196,6 +202,9 @@
 				354255902B4C0BBE00559413 /* TextFieldView .swift */,
 				35315F7D2B6142A20045014B /* DropDownView.swift */,
 				35315F942B720D150045014B /* SearchBarView.swift */,
+				35545F202B7E449D00B21AB4 /* view.swift */,
+				35545F222B7E44C000B21AB4 /* CustomBackButtonView.swift */,
+				35545F242B7FBA9700B21AB4 /* ImageMagnificationView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -342,15 +351,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				354255912B4C0BBE00559413 /* TextFieldView .swift in Sources */,
+				35545F212B7E449D00B21AB4 /* view.swift in Sources */,
+				35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */,
 				35315F8F2B6E271E0045014B /* Persistence.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
+				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
 				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,
 				35315F952B720D150045014B /* SearchBarView.swift in Sources */,
 				35315F822B6DE1350045014B /* PreviewPage.swift in Sources */,
 				35315F842B6DE1B80045014B /* LibraryModel.swift in Sources */,
 				35315F792B5556F90045014B /* AddModel.swift in Sources */,
-				35315F7B2B5D181B0045014B /* ScannerServise.swift in Sources */,
 				354255672B4BC8B200559413 /* ScanBook.xcdatamodeld in Sources */,
+				35545F252B7FBA9700B21AB4 /* ImageMagnificationView.swift in Sources */,
 				35315F922B6E27900045014B /* BookData+CoreDataClass.swift in Sources */,
 				3542555D2B4BC8B100559413 /* ContentView.swift in Sources */,
 				35315F802B6974810045014B /* SettingPage.swift in Sources */,
@@ -615,6 +627,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2GKXFJ7B26;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ScanBookUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -633,6 +646,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2GKXFJ7B26;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ScanBookUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

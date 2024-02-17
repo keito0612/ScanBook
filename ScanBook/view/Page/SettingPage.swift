@@ -9,7 +9,16 @@ import SwiftUI
 
 struct SettingPage: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            ZStack{
+                Color.black.ignoresSafeArea()
+                VStack{
+                    
+                }
+            }.navigationTitle("設定").toolbarBackground(Color.black,for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
+                .toolbarColorScheme(.dark)
+        }
     }
 }
 

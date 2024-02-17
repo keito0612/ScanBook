@@ -24,8 +24,7 @@ struct TextFieldView: View {
                 .onSubmit {
                     submit()
                 }
-            TextField("", text: $text, prompt: Text(hintText).foregroundColor(Color.gray.opacity(8.0)
-                                                                             ))
+            TextField("", text: $text, prompt: Text(hintText).foregroundColor(Color.gray.opacity(8.0)))
             .foregroundColor(Color.white)
             .accentColor(Color.white)
             .padding(10)

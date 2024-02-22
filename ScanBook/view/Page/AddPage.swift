@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct AddPage: View {
+    @Binding var isPresented :Bool
     @StateObject var  addModel: AddModel = AddModel()
     @Environment(\.managedObjectContext)private var context
+    @State private var path = [Path]()
     var body: some View {
-        NavigationStack{
+        NavigationStack(path: $path){
             ZStack {
                 Color.black
                     .ignoresSafeArea()
@@ -32,14 +34,17 @@ struct AddPage: View {
                         if(addModel.category != "書類"){                        BookCoverView(model: addModel)
                             Divider().frame(height: 2).background(Color.white).padding()
                         }
-                            BookPageAdd(model: addModel)
+                            BookPageAdd(model: addModel,path: $path)
                             Divider().frame(height: 2).background(Color.white).padding()
-                        AddButton(model: addModel)
+                        AddButton(model: addModel, isPresented: $isPresented)
                     }.padding(.all, 10).navigationBarTitle("追加", displayMode: .inline)
+                        .navigationDestination(for: Path.self) {_ in 
+                            PreviewPage(images: addModel.imageArray, path: $path)
+                        }
                         .toolbarBackground(Color.black,for: .navigationBar)
                         .toolbarBackground(.visible, for: .navigationBar)
                         .toolbarColorScheme(.dark)
-                        .customBackButton()
+                        .customBackButton(onBack: {})
                 }
             }.sheet(isPresented: $addModel.showingScan) {
                 ScannerView(scannedImages: $addModel.imageArray, scannedImage: $addModel.bookCovarImage, multiCapture: true, isScanning: $addModel.showingScan,  completion: {
@@ -84,6 +89,7 @@ struct BookCoverView :View{
 
 struct BookPageAdd :View{
     @ObservedObject var model:AddModel
+    @Binding var path:[Path]
     var body: some View{
         VStack{
             Text( model.category == "書類" ?  "書類の追加"  : "ページの追加")
@@ -103,7 +109,7 @@ struct BookPageAdd :View{
             }
             
             Button(action: {
-                
+                path.append(.preview)
             }) {
                 Text("確認").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
                     .overlay(
@@ -125,12 +131,15 @@ struct BookPageAdd :View{
 
 struct AddButton:View{
     @ObservedObject var model:AddModel
+    @Binding var isPresented :Bool
+    @Environment(\.managedObjectContext)private var context
     var body: some View{
         Button(action: {
             if(isValidetion()){
                 return
             }
-            
+            model.add(context: context)
+            isPresented.toggle()
         }) {
             Text("追加").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
                 .overlay(
@@ -168,7 +177,8 @@ struct AddButton:View{
 
 
 struct AddPage_Previews: PreviewProvider {
+    @State static var isPresented : Bool = false
     static var previews: some View {
-        AddPage().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        AddPage(isPresented: $isPresented).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

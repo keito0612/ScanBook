@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct LibraryPage: View {
     @Environment(\.managedObjectContext)private var context
     @StateObject var libraryModel :LibraryModel  = LibraryModel()
+    @FetchRequest(entity:BookData.entity(),sortDescriptors: [NSSortDescriptor(keyPath: \BookData.date, ascending: false)],
+           animation: .default)
+    private var bookDatas: FetchedResults<BookData>
     var body: some View {
         NavigationStack{
             ZStack {
@@ -21,12 +25,13 @@ struct LibraryPage: View {
                           
                         }).padding(.vertical, 20)
                         LazyVGrid(
-                            columns: Array(repeating: .init(.flexible()), count: 3),
+                            columns: Array(repeating: .init(.flexible()), count: 2),
                             alignment: .center,
                             spacing: 30
                         ) {
-                            ForEach(0..<5) { i in
-                                Color.red }.frame(width: 110, height: 150)
+                            ForEach(bookDatas) { book in
+                              BookItemView(book: book)
+                            }
                         }.padding(.horizontal)
                     }
                 }
@@ -41,7 +46,7 @@ struct LibraryPage: View {
                 .toolbarBackground(.visible, for: .navigationBar)
                 .toolbarColorScheme(.dark)
         }.sheet(isPresented: $libraryModel.isPresented) {
-            AddPage()
+            AddPage(isPresented: $libraryModel.isPresented)
         }
     }
 }
@@ -60,6 +65,36 @@ struct FloatingActionButton: View{
                 .shadow(radius: 4, x: 0, y: 4)
             
         }.padding()
+    }
+}
+
+struct BookItemView:View{
+    let book: BookData
+    var body: some View{
+        VStack{
+            if let coverImage = book.coverImage, let uiImage = UIImage(data: coverImage) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13).padding()
+            }else{
+                if(book.categoryStatus == 2){
+                    Image(decorative: "folder")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13).padding(.top, 30)
+                }else{
+                    Image(decorative: "no_image")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13)
+                }
+            }
+            Text(book.title!).font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 10).padding(.top,5)
+            Spacer()
+        }.frame(width: Bounds.width * 0.4, height: Bounds.height * 0.27).border(Color.white, width: 2)
     }
 }
 

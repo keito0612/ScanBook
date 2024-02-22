@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 
 extension View {
-    func customBackButton() -> some View {
-        self.modifier(CustomBackButton())
+    func customBackButton(onBack: @escaping () -> Void ) -> some View {
+        self.modifier(CustomBackButton(onBack:{
+            onBack()
+        }))
     }
 }
 extension View{

@@ -8,6 +8,11 @@
 import SwiftUI
 import CoreData
 
+enum Path: String, Hashable {
+    case preview
+    case setting
+}
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var selection = 0
@@ -18,7 +23,7 @@ struct ContentView: View {
         var body: some View {
             ZStack{
                 TabView (selection: $selection){
-                    LibraryPage().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                    LibraryPage().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                         .tabItem {
                             Image(systemName: "books.vertical")
                             Text("ライブラリ")

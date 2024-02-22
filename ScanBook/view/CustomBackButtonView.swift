@@ -10,6 +10,7 @@ import SwiftUI
 struct CustomBackButton: ViewModifier {
     
     @Environment(\.dismiss) var dismiss
+    let onBack: () -> Void;
 
     func body(content: Content) -> some View {
         content
@@ -19,6 +20,7 @@ struct CustomBackButton: ViewModifier {
                     Button(
                         action: {
                             dismiss()
+                            onBack()
                         }, label: {
                             Text("戻る").fontWeight(.bold)
                         }

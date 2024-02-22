@@ -31,6 +31,11 @@
 		35545F212B7E449D00B21AB4 /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F202B7E449D00B21AB4 /* view.swift */; };
 		35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F222B7E44C000B21AB4 /* CustomBackButtonView.swift */; };
 		35545F252B7FBA9700B21AB4 /* ImageMagnificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F242B7FBA9700B21AB4 /* ImageMagnificationView.swift */; };
+		35545F282B80B09E00B21AB4 /* BookSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F272B80B09E00B21AB4 /* BookSlider.swift */; };
+		35545F2A2B821C2A00B21AB4 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F292B821C2A00B21AB4 /* PageViewController.swift */; };
+		35545F2D2B82201700B21AB4 /* WithPrevious in Frameworks */ = {isa = PBXBuildFile; productRef = 35545F2C2B82201700B21AB4 /* WithPrevious */; };
+		35545F2F2B8497F800B21AB4 /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F2E2B8497F800B21AB4 /* Bounds.swift */; };
+		35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F312B849FFE00B21AB4 /* UtilDate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +84,10 @@
 		35545F202B7E449D00B21AB4 /* view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = view.swift; sourceTree = "<group>"; };
 		35545F222B7E44C000B21AB4 /* CustomBackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonView.swift; sourceTree = "<group>"; };
 		35545F242B7FBA9700B21AB4 /* ImageMagnificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMagnificationView.swift; sourceTree = "<group>"; };
+		35545F272B80B09E00B21AB4 /* BookSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSlider.swift; sourceTree = "<group>"; };
+		35545F292B821C2A00B21AB4 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		35545F2E2B8497F800B21AB4 /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
+		35545F312B849FFE00B21AB4 /* UtilDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilDate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35545F2D2B82201700B21AB4 /* WithPrevious in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +166,7 @@
 		354255592B4BC8B100559413 /* ScanBook */ = {
 			isa = PBXGroup;
 			children = (
+				35545F262B80A49200B21AB4 /* Utils */,
 				35315F892B6E23BC0045014B /* model */,
 				35315F7C2B5D18240045014B /* Servise */,
 				35315F772B5553060045014B /* ViewModel */,
@@ -205,6 +216,8 @@
 				35545F202B7E449D00B21AB4 /* view.swift */,
 				35545F222B7E44C000B21AB4 /* CustomBackButtonView.swift */,
 				35545F242B7FBA9700B21AB4 /* ImageMagnificationView.swift */,
+				35545F272B80B09E00B21AB4 /* BookSlider.swift */,
+				35545F292B821C2A00B21AB4 /* PageViewController.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -218,6 +231,15 @@
 				35315F812B6DE1350045014B /* PreviewPage.swift */,
 			);
 			path = Page;
+			sourceTree = "<group>";
+		};
+		35545F262B80A49200B21AB4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				35545F2E2B8497F800B21AB4 /* Bounds.swift */,
+				35545F312B849FFE00B21AB4 /* UtilDate.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +258,9 @@
 			dependencies = (
 			);
 			name = ScanBook;
+			packageProductDependencies = (
+				35545F2C2B82201700B21AB4 /* WithPrevious */,
+			);
 			productName = ScanBook;
 			productReference = 354255572B4BC8B100559413 /* ScanBook.app */;
 			productType = "com.apple.product-type.application";
@@ -308,6 +333,9 @@
 				Base,
 			);
 			mainGroup = 3542554E2B4BC8B100559413;
+			packageReferences = (
+				35545F2B2B82201700B21AB4 /* XCRemoteSwiftPackageReference "swift-with-previous" */,
+			);
 			productRefGroup = 354255582B4BC8B100559413 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -357,17 +385,21 @@
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
 				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
 				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,
+				35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */,
 				35315F952B720D150045014B /* SearchBarView.swift in Sources */,
 				35315F822B6DE1350045014B /* PreviewPage.swift in Sources */,
 				35315F842B6DE1B80045014B /* LibraryModel.swift in Sources */,
 				35315F792B5556F90045014B /* AddModel.swift in Sources */,
 				354255672B4BC8B200559413 /* ScanBook.xcdatamodeld in Sources */,
 				35545F252B7FBA9700B21AB4 /* ImageMagnificationView.swift in Sources */,
+				35545F282B80B09E00B21AB4 /* BookSlider.swift in Sources */,
 				35315F922B6E27900045014B /* BookData+CoreDataClass.swift in Sources */,
+				35545F2A2B821C2A00B21AB4 /* PageViewController.swift in Sources */,
 				3542555D2B4BC8B100559413 /* ContentView.swift in Sources */,
 				35315F802B6974810045014B /* SettingPage.swift in Sources */,
 				35315F8D2B6E26A90045014B /* BookData+CoreDataProperties.swift in Sources */,
 				3542558B2B4BDA6A00559413 /* AddPage.swift in Sources */,
+				35545F2F2B8497F800B21AB4 /* Bounds.swift in Sources */,
 				3542555B2B4BC8B100559413 /* ScanBookApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -697,6 +729,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		35545F2B2B82201700B21AB4 /* XCRemoteSwiftPackageReference "swift-with-previous" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ikesyo/swift-with-previous.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		35545F2C2B82201700B21AB4 /* WithPrevious */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35545F2B2B82201700B21AB4 /* XCRemoteSwiftPackageReference "swift-with-previous" */;
+			productName = WithPrevious;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		354255652B4BC8B200559413 /* ScanBook.xcdatamodeld */ = {

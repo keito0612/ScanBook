@@ -18,11 +18,11 @@ struct PersistenceController {
         BookData.id = UUID()
         BookData.coverImage = Data.init()
         BookData.images = ""
-        BookData.type = 0
+        BookData.categoryStatus = 2
         BookData.favorito = false
         BookData.date = Date()
         BookData.reading = false
-        BookData.title = ""
+        BookData.title = "タイトル"
         do {
             try viewContext.save()
         } catch {

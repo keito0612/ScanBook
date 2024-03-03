@@ -12,7 +12,6 @@ import WithPrevious
 
 struct PreviewPage: View {
     let images : [UIImage]
-    @Binding var path:[Path]
     @State private var sliderValue: Int = 0
     @State @WithPrevious var page = 0
     @State var visibilityValue: Visibility = .visible
@@ -40,19 +39,16 @@ struct PreviewPage: View {
                     Spacer()
                     BookSlider(slidePageCount: $sliderValue, pageCount: $page.animation(), maxPageCount: Double(images.count))
                 }
-            }.navigationBarTitle( visibilityValue != .hidden ? "確認" : "" , displayMode: .inline)
+            }.navigationBarTitle("", displayMode: .inline)
                 .toolbarBackground(Color.black,for: .navigationBar)
                 .toolbarBackground(visibilityValue, for: .navigationBar)
                     .toolbarColorScheme(.dark)
-                    .customBackButton(onBack: {
-                        path.removeAll()
-                    })
+                    .customBackButton(onBack: {})
         }
     }
 struct PreviewPage_Previews: PreviewProvider {
     static let images :[UIImage] = []
-    @State static var path:[Path] = [.preview]
     static var previews: some View {
-        PreviewPage(images: images, path: $path)
+        PreviewPage(images: images)
     }
 }

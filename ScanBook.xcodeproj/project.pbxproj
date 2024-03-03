@@ -36,6 +36,7 @@
 		35545F2D2B82201700B21AB4 /* WithPrevious in Frameworks */ = {isa = PBXBuildFile; productRef = 35545F2C2B82201700B21AB4 /* WithPrevious */; };
 		35545F2F2B8497F800B21AB4 /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F2E2B8497F800B21AB4 /* Bounds.swift */; };
 		35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F312B849FFE00B21AB4 /* UtilDate.swift */; };
+		35545F342B88F9AD00B21AB4 /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F332B88F9AC00B21AB4 /* Convert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		35545F292B821C2A00B21AB4 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		35545F2E2B8497F800B21AB4 /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
 		35545F312B849FFE00B21AB4 /* UtilDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilDate.swift; sourceTree = "<group>"; };
+		35545F332B88F9AC00B21AB4 /* Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 			children = (
 				35545F2E2B8497F800B21AB4 /* Bounds.swift */,
 				35545F312B849FFE00B21AB4 /* UtilDate.swift */,
+				35545F332B88F9AC00B21AB4 /* Convert.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				354255912B4C0BBE00559413 /* TextFieldView .swift in Sources */,
+				35545F342B88F9AD00B21AB4 /* Convert.swift in Sources */,
 				35545F212B7E449D00B21AB4 /* view.swift in Sources */,
 				35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */,
 				35315F8F2B6E271E0045014B /* Persistence.swift in Sources */,

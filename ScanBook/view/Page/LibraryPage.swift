@@ -30,23 +30,28 @@ struct LibraryPage: View {
                             spacing: 30
                         ) {
                             ForEach(bookDatas) { book in
-                              BookItemView(book: book)
+                                BookItemView(bookData: book, context: context, model: libraryModel).onTapGesture {
+                                    
+                                }
                             }
                         }.padding(.horizontal)
                     }
                 }
                 VStack {
                     Spacer()
-                    FloatingActionButton(onTap: {
-                      libraryModel.isPresented.toggle()
-                    }).padding(.leading , 320)
+                    HStack {
+                        Spacer()
+                        FloatingActionButton(onTap: {
+                          libraryModel.isAddPresented.toggle()
+                        }).padding(.trailing , 20)
+                    }
                 }
             }.navigationTitle("ライブラリ")
                 .toolbarBackground(Color.black,for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
                 .toolbarColorScheme(.dark)
-        }.sheet(isPresented: $libraryModel.isPresented) {
-            AddPage(isPresented: $libraryModel.isPresented)
+        }.sheet(isPresented: $libraryModel.isAddPresented) {
+            AddPage(isPresented: $libraryModel.isAddPresented, bookData: nil)
         }
     }
 }
@@ -64,38 +69,75 @@ struct FloatingActionButton: View{
                 .clipShape(Circle())
                 .shadow(radius: 4, x: 0, y: 4)
             
-        }.padding()
+        }
     }
 }
 
 struct BookItemView:View{
-    let book: BookData
+    let bookData: BookData
+    let context: NSManagedObjectContext
+    @ObservedObject var model : LibraryModel
     var body: some View{
-        VStack{
-            if let coverImage = book.coverImage, let uiImage = UIImage(data: coverImage) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13).padding()
-            }else{
-                if(book.categoryStatus == 2){
-                    Image(decorative: "folder")
+        ZStack {
+            VStack{
+                if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
+                    Image(uiImage: uiImage)
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13).padding(.top, 30)
+                        .scaledToFit()
+                        .frame(width: Bounds.width * 0.75, height: Bounds.height * 0.13).padding()
                 }else{
-                    Image(decorative: "no_image")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13)
+                    if(bookData.categoryStatus == 2){
+                        Image(decorative: "folder")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: Bounds.width * 0.25, height: Bounds.height * 0.08).padding(.top, 30)
+                    }else{
+                        Image(decorative: "no_image")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13)
+                    }
                 }
+                Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 10).padding(.top,5)
+                Text(bookData.title!).font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 10).padding(.top,1)
+                Text(UtilDate().DateTimeToString(date: bookData.date!)).font(.system(size: 12)).foregroundStyle(Color.white).fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .center).padding(.top,1)
+                Spacer()
+            }.frame(width: Bounds.width * 0.4, height: Bounds.height * 0.21)
+            VStack {
+                HStack{
+                    Spacer()
+                    Menu{
+                        Button(role: .destructive,action: {
+                          model.dalete(book: bookData, context: context)
+                        }) {
+                            Label("削除", systemImage: "trash.fill")
+                        }
+                        Button(action: {
+                            model.isEditPresented.toggle()
+                        }) {
+                            Label("編集", systemImage: "pencil")
+                        }
+                    }label: {
+                        Image(systemName: "ellipsis").foregroundColor(.white).font(.system(size: 14))
+                            .frame(width: Bounds.width * 0.06, height:Bounds.width * 0.06).background(Color.black).cornerRadius(70)  .overlay(
+                                RoundedRectangle(cornerRadius: 70).stroke(Color.white, lineWidth: 2)
+                            )
+                    }.onTapGesture {
+                        
+                    }.padding(.top, 10).padding(.trailing, 22)
+                }
+                Spacer()
             }
-            Text(book.title!).font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 10).padding(.top,5)
-            Spacer()
-        }.frame(width: Bounds.width * 0.4, height: Bounds.height * 0.27).border(Color.white, width: 2)
+        }.sheet(isPresented: $model.isEditPresented) {
+            AddPage(isPresented: $model.isEditPresented, bookData: bookData)
+        }
     }
+    
 }
 
 

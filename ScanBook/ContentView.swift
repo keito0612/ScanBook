@@ -8,10 +8,29 @@
 import SwiftUI
 import CoreData
 
-enum Path: String, Hashable {
-    case preview
-    case setting
+enum Path: Hashable{
+    case preview(Array<UIImage>)
+    case edit
+    
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .preview(let input):
+            hasher.combine(input)
+        case .edit: break
+        }
+    }
 }
+extension Path: Equatable {
+    static func == (lhs: Path, rhs: Path) -> Bool {
+        switch (lhs, rhs) {
+        case (.preview, .preview), (.edit, .edit) :
+            return true
+        default:
+            return false
+        }
+    }
+}
+
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext

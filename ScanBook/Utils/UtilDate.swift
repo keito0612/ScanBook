@@ -9,7 +9,7 @@ import Foundation
 class UtilDate{
     private let dateFormatter = DateFormatter()
     init(){
-        dateFormatter.dateFormat = "YYYY/MM/dd(E) \nHH:mm:ss"
+        dateFormatter.dateFormat = "YYYY/MM/dd(E)HH:mm:ss"
         dateFormatter.locale = Locale(identifier: "ja_jp")
     }
     func DateTimeToString(date : Date) -> String {

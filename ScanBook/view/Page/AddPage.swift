@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct AddPage: View {
+    init(isPresented: Binding<Bool>, bookData: BookData?) {
+        _isPresented = isPresented
+        self.bookData = bookData
+        _addModel = StateObject( wrappedValue: AddModel(bookData:bookData))
+    }
     @Binding var isPresented :Bool
-    @StateObject var  addModel: AddModel = AddModel()
+    let bookData: BookData?
+    @StateObject var addModel: AddModel
     @Environment(\.managedObjectContext)private var context
-    @State private var path = [Path]()
     var body: some View {
-        NavigationStack(path: $path){
+        NavigationStack{
             ZStack {
                 Color.black
                     .ignoresSafeArea()
@@ -31,15 +36,20 @@ struct AddPage: View {
                             }
                         })
                         Divider().frame(height: 2).background(Color.white).padding()
-                        if(addModel.category != "書類"){                        BookCoverView(model: addModel)
+                        if(addModel.category != "書類"){                        
+                            BookCoverView(model: addModel)
                             Divider().frame(height: 2).background(Color.white).padding()
                         }
-                            BookPageAdd(model: addModel,path: $path)
-                            Divider().frame(height: 2).background(Color.white).padding()
-                        AddButton(model: addModel, isPresented: $isPresented)
-                    }.padding(.all, 10).navigationBarTitle("追加", displayMode: .inline)
-                        .navigationDestination(for: Path.self) {_ in 
-                            PreviewPage(images: addModel.imageArray, path: $path)
+                        BookPageAdd(model: addModel)
+                        Divider().frame(height: 2).background(Color.white).padding()
+                        if(bookData == nil ){
+                            AddButton(model: addModel, isPresented: $isPresented)
+                        }else{
+                            EditButton(model: addModel , isPresented: $isPresented)
+                        }
+                    }.padding(.all, 10).navigationBarTitle(bookData == nil ? "追加": "編集" , displayMode: .inline)
+                        .navigationDestination(isPresented: $addModel.isPresented ) {
+                            PreviewPage(images: addModel.imageArray)
                         }
                         .toolbarBackground(Color.black,for: .navigationBar)
                         .toolbarBackground(.visible, for: .navigationBar)
@@ -48,7 +58,7 @@ struct AddPage: View {
                 }
             }.sheet(isPresented: $addModel.showingScan) {
                 ScannerView(scannedImages: $addModel.imageArray, scannedImage: $addModel.bookCovarImage, multiCapture: true, isScanning: $addModel.showingScan,  completion: {
-                        addModel.pageCount =  addModel.imageArray.count
+                    addModel.pageCount =  addModel.imageArray.count
                 })
             }
             .sheet(isPresented:$addModel.showingCovarImage ){
@@ -58,76 +68,78 @@ struct AddPage: View {
         }
     }
 }
-
-struct BookCoverView :View{
-    @ObservedObject var model:AddModel
-    var body: some View{
-        VStack{
-            Text("本 / 漫画の表紙")
-                .bold()
-                .foregroundColor(Color.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            if(model.bookCovarImage.size == CGSize.zero){
-                Rectangle()
-                    .fill(Color.white)
-                    .frame(width:130, height: 130).onTapGesture {
-                        model.showingCovarImage.toggle()
-                    }
-                    .padding(.vertical)
-            } else{
-                Image(uiImage: model.bookCovarImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 130, height: 130).onTapGesture {
-                    model.showingCovarImage.toggle()
-                }
-                    .padding(.vertical)
-            }
-        }
-    }
-}
-
-struct BookPageAdd :View{
-    @ObservedObject var model:AddModel
-    @Binding var path:[Path]
-    var body: some View{
-        VStack{
-            Text( model.category == "書類" ?  "書類の追加"  : "ページの追加")
-                .bold()
-                .foregroundColor(Color.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Text(model.category == "書類" ? "現在の枚数": "現在のページ数").padding(.top).font(.system(size: 13)).foregroundColor(Color.white)
-            Text(String(model.pageCount)).bold().font(.system(size: 40)).foregroundColor(Color.white)
-            Button(action: {
-                model.showingScan.toggle()
-            }) {
-                Text(model.category == "書類" ? "書類を追加する": "ページを追加する").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 30)
-                            .stroke(Color.white, lineWidth: 4)
-                    ).padding(.horizontal)
-            }
-            
-            Button(action: {
-                path.append(.preview)
-            }) {
-                Text("確認").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 30)
-                            .stroke(Color.white, lineWidth: 4)
-                    ).padding()
-            }
-            if(model.pageErrorValidation){
-                Text(model.pageErrorText)
-                    .font(.system(size: 13))
+    
+    struct BookCoverView :View{
+        @ObservedObject var model:AddModel
+        var body: some View{
+            VStack{
+                Text("本 / 漫画の表紙")
                     .bold()
-                    .foregroundColor(Color.red)
+                    .foregroundColor(Color.white)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
+                if(model.bookCovarImage.size == CGSize.zero){
+                    Rectangle()
+                        .fill(Color.white)
+                        .frame(width:130, height: 130).onTapGesture {
+                            model.showingCovarImage.toggle()
+                        }
+                        .padding(.vertical)
+                } else{
+                    Image(uiImage: model.bookCovarImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 130, height: 130).onTapGesture {
+                            model.showingCovarImage.toggle()
+                        }
+                        .padding(.vertical)
+                }
             }
         }
     }
-}
+    struct BookPageAdd :View{
+        @ObservedObject var model:AddModel
+        var body: some View{
+            VStack{
+                Text( model.category == "書類" ?  "書類の追加"  : "ページの追加")
+                    .bold()
+                    .foregroundColor(Color.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(model.category == "書類" ? "現在の枚数": "現在のページ数").padding(.top).font(.system(size: 13)).foregroundColor(Color.white)
+                Text(String(model.pageCount)).bold().font(.system(size: 40)).foregroundColor(Color.white)
+                Button(action: {
+                    model.showingScan.toggle()
+                }) {
+                    Text(model.category == "書類" ? "書類を追加する": "ページを追加する").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 30)
+                                .stroke(Color.white, lineWidth: 4)
+                        ).padding(.horizontal)
+                }
+                
+                Button(action: {
+                    if(model.pageCount != 0){
+                        model.isPresented = true
+                    }else{
+                        model.pageErrorValidation = true
+                    }
+                }) {
+                    Text("確認").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 30)
+                                .stroke(Color.white, lineWidth: 4)
+                        ).padding()
+                }
+                if(model.pageErrorValidation){
+                    Text(model.pageErrorText)
+                        .font(.system(size: 13))
+                        .bold()
+                        .foregroundColor(Color.red)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal)
+                }
+            }
+        }
+    }
 
 struct AddButton:View{
     @ObservedObject var model:AddModel
@@ -135,7 +147,7 @@ struct AddButton:View{
     @Environment(\.managedObjectContext)private var context
     var body: some View{
         Button(action: {
-            if(isValidetion()){
+            if(model.isValidetion()){
                 return
             }
             model.add(context: context)
@@ -148,37 +160,37 @@ struct AddButton:View{
                 ).padding(.horizontal, 80)
         }
     }
-    
-    func isValidetion() -> Bool{
-        var valide:Bool = false
-        model.titleErrorValidation = false
-        model.categoryValidetion = false
-        model.pageErrorValidation = false
-        //タイトル
-        if(model.titleText.isEmpty){
-            model.titleErrorValidation = true
-            valide = true
-            return valide
+}
+
+struct EditButton:View{
+    @ObservedObject var model:AddModel
+    @Binding var isPresented :Bool
+    @Environment(\.managedObjectContext)private var context
+    var body: some View{
+        Button(action: {
+            if(model.isValidetion()){
+                return
+            }
+            model.edit(context: context)
+            isPresented.toggle()
+        }) {
+            Text("編集").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 30)
+                        .stroke(Color.white, lineWidth: 4)
+                ).padding(.horizontal, 80)
         }
-        //カテゴリー
-        if(model.categoryStatus == nil){
-            model.categoryValidetion = true
-            valide = true
-            return valide
-        }
-        if(model.pageCount == 0){
-            model.pageErrorValidation = true
-        }else{
-            
-        }
-        return valide
     }
 }
+
+
 
 
 struct AddPage_Previews: PreviewProvider {
     @State static var isPresented : Bool = false
+    @State static var bookData : BookData? = nil
     static var previews: some View {
-        AddPage(isPresented: $isPresented).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        AddPage(isPresented: $isPresented, bookData: bookData).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
+

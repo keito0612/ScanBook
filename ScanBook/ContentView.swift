@@ -36,25 +36,29 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var selection = 0
     
-        init(){
-            UITabBar.appearance().backgroundColor = .black
+    init(){
+        UITabBar.appearance().backgroundColor = .black
+    }
+    var body: some View {
+        ZStack{
+            TabView (selection: $selection){
+                HomePage().tabItem{
+                    Image(systemName: "house")
+                    Text("ホーム")
+                }.tag(0)
+                LibraryPage().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                    .tabItem {
+                        Image(systemName: "books.vertical")
+                        Text("ライブラリ")
+                    }.tag(1)
+                SettingPage()
+                    .tabItem {
+                        Image(systemName: "person.crop.circle")
+                        Text("設定")
+                    }.tag(2)
+            }.accentColor(.white).background(Color.white)
         }
-        var body: some View {
-            ZStack{
-                TabView (selection: $selection){
-                    LibraryPage().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
-                        .tabItem {
-                            Image(systemName: "books.vertical")
-                            Text("ライブラリ")
-                        }.tag(0)
-                     SettingPage()
-                        .tabItem {
-                            Image(systemName: "person.crop.circle")
-                            Text("設定")
-                        }.tag(1)
-                }.accentColor(.white).background(Color.white)
-            }
-        }
+    }
     
 //    private func addItem() {
 //        withAnimation {

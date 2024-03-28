@@ -21,8 +21,9 @@ struct LibraryPage: View {
                     .ignoresSafeArea()
                 ScrollView {
                     VStack{
+                        
                         SearchBarView(searchText: $libraryModel.searchText, onSubmit: {
-                          
+                            search(text: libraryModel.searchText)
                         }).padding(.vertical, 20)
                         LazyVGrid(
                             columns: Array(repeating: .init(.flexible()), count: 2),
@@ -43,7 +44,7 @@ struct LibraryPage: View {
                         Spacer()
                         FloatingActionButton(onTap: {
                           libraryModel.isAddPresented.toggle()
-                        }).padding(.trailing , 20)
+                        }).padding(.trailing , 20).padding(.bottom)
                     }
                 }
             }.navigationTitle("ライブラリ")
@@ -52,6 +53,16 @@ struct LibraryPage: View {
                 .toolbarColorScheme(.dark)
         }.sheet(isPresented: $libraryModel.isAddPresented) {
             AddPage(isPresented: $libraryModel.isAddPresented, bookData: nil)
+        }
+    }
+    
+    private func search(text: String) {
+        if text.isEmpty {
+            bookDatas.nsPredicate = nil
+        } else {
+            let titlePredicate: NSPredicate = NSPredicate(format: "title  contains[c] %@", text)
+            let categoryStatusPredicate: NSPredicate = NSPredicate(format: "categoryStatus contains %@", libraryModel.getCategoryStatusNumber(text))
+            bookDatas.nsPredicate =  NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate,categoryStatusPredicate])
         }
     }
 }
@@ -84,12 +95,12 @@ struct BookItemView:View{
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: Bounds.width * 0.75, height: Bounds.height * 0.13).padding()
+                        .frame(width: Bounds.width * 0.75, height: Bounds.height * 0.13).padding().padding(.top, 40)
                 }else{
                     if(bookData.categoryStatus == 2){
                         Image(decorative: "folder")
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
+                            .scaledToFit()
                             .frame(width: Bounds.width * 0.25, height: Bounds.height * 0.08).padding(.top, 30)
                     }else{
                         Image(decorative: "no_image")

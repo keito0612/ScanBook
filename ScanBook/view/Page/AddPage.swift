@@ -49,13 +49,18 @@ struct AddPage: View {
                         }
                     }.padding(.all, 10).navigationBarTitle(bookData == nil ? "追加": "編集" , displayMode: .inline)
                         .navigationDestination(isPresented: $addModel.isPresented ) {
-                            PreviewPage(images: addModel.imageArray)
+                            PreviewPage(images: addModel.imageArray, bookData: nil)
                         }
                         .toolbarBackground(Color.black,for: .navigationBar)
                         .toolbarBackground(.visible, for: .navigationBar)
                         .toolbarColorScheme(.dark)
                         .customBackButton(onBack: {})
                 }
+                CustomAlertView(alertType: addModel.alertType, title: addModel.alertTitle , message: addModel.alertMessage, isShow: $addModel.showAlert, onSubmit: {
+                    if(addModel.alertType == .success){
+                        isPresented.toggle()
+                    }
+                })
             }.sheet(isPresented: $addModel.showingScan) {
                 ScannerView(scannedImages: $addModel.imageArray, scannedImage: $addModel.bookCovarImage, multiCapture: true, isScanning: $addModel.showingScan,  completion: {
                     addModel.pageCount =  addModel.imageArray.count
@@ -151,7 +156,6 @@ struct AddButton:View{
                 return
             }
             model.add(context: context)
-            isPresented.toggle()
         }) {
             Text("追加").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
                 .overlay(
@@ -172,7 +176,6 @@ struct EditButton:View{
                 return
             }
             model.edit(context: context)
-            isPresented.toggle()
         }) {
             Text("編集").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
                 .overlay(

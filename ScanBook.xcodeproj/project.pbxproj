@@ -37,6 +37,12 @@
 		35545F2F2B8497F800B21AB4 /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F2E2B8497F800B21AB4 /* Bounds.swift */; };
 		35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F312B849FFE00B21AB4 /* UtilDate.swift */; };
 		35545F342B88F9AD00B21AB4 /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F332B88F9AC00B21AB4 /* Convert.swift */; };
+		35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */; };
+		35882AD82B9A1FA000079C48 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 35882AD72B9A1FA000079C48 /* CombineCocoa */; };
+		35882ADA2B9A21AC00079C48 /* imageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD92B9A21AC00079C48 /* imageViewer.swift */; };
+		35882ADC2B9C976300079C48 /* PreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882ADB2B9C976300079C48 /* PreviewModel.swift */; };
+		359B0DFC2BB5159B00F2A7E4 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */; };
+		359CD2DD2BA57AA700BC7005 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +96,11 @@
 		35545F2E2B8497F800B21AB4 /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
 		35545F312B849FFE00B21AB4 /* UtilDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilDate.swift; sourceTree = "<group>"; };
 		35545F332B88F9AC00B21AB4 /* Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
+		35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewerView.swift; sourceTree = "<group>"; };
+		35882AD92B9A21AC00079C48 /* imageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageViewer.swift; sourceTree = "<group>"; };
+		35882ADB2B9C976300079C48 /* PreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
+		359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35882AD82B9A1FA000079C48 /* CombineCocoa in Frameworks */,
 				35545F2D2B82201700B21AB4 /* WithPrevious in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +135,7 @@
 			children = (
 				35315F782B5556F90045014B /* AddModel.swift */,
 				35315F832B6DE1B80045014B /* LibraryModel.swift */,
+				35882ADB2B9C976300079C48 /* PreviewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -168,6 +181,7 @@
 		354255592B4BC8B100559413 /* ScanBook */ = {
 			isa = PBXGroup;
 			children = (
+				35545F2E2B8497F800B21AB4 /* Bounds.swift */,
 				35545F262B80A49200B21AB4 /* Utils */,
 				35315F892B6E23BC0045014B /* model */,
 				35315F7C2B5D18240045014B /* Servise */,
@@ -220,6 +234,9 @@
 				35545F242B7FBA9700B21AB4 /* ImageMagnificationView.swift */,
 				35545F272B80B09E00B21AB4 /* BookSlider.swift */,
 				35545F292B821C2A00B21AB4 /* PageViewController.swift */,
+				35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */,
+				35882AD92B9A21AC00079C48 /* imageViewer.swift */,
+				359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -231,6 +248,7 @@
 				3542558E2B4BDEBB00559413 /* LibraryPage.swift */,
 				35315F7F2B6974810045014B /* SettingPage.swift */,
 				35315F812B6DE1350045014B /* PreviewPage.swift */,
+				359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -238,7 +256,6 @@
 		35545F262B80A49200B21AB4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				35545F2E2B8497F800B21AB4 /* Bounds.swift */,
 				35545F312B849FFE00B21AB4 /* UtilDate.swift */,
 				35545F332B88F9AC00B21AB4 /* Convert.swift */,
 			);
@@ -263,6 +280,7 @@
 			name = ScanBook;
 			packageProductDependencies = (
 				35545F2C2B82201700B21AB4 /* WithPrevious */,
+				35882AD72B9A1FA000079C48 /* CombineCocoa */,
 			);
 			productName = ScanBook;
 			productReference = 354255572B4BC8B100559413 /* ScanBook.app */;
@@ -338,6 +356,7 @@
 			mainGroup = 3542554E2B4BC8B100559413;
 			packageReferences = (
 				35545F2B2B82201700B21AB4 /* XCRemoteSwiftPackageReference "swift-with-previous" */,
+				35882AD62B9A1F9F00079C48 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 			);
 			productRefGroup = 354255582B4BC8B100559413 /* Products */;
 			projectDirPath = "";
@@ -382,15 +401,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				354255912B4C0BBE00559413 /* TextFieldView .swift in Sources */,
+				35882ADA2B9A21AC00079C48 /* imageViewer.swift in Sources */,
 				35545F342B88F9AD00B21AB4 /* Convert.swift in Sources */,
 				35545F212B7E449D00B21AB4 /* view.swift in Sources */,
 				35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */,
+				35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */,
 				35315F8F2B6E271E0045014B /* Persistence.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
 				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
 				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,
 				35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */,
 				35315F952B720D150045014B /* SearchBarView.swift in Sources */,
+				359B0DFC2BB5159B00F2A7E4 /* HomePage.swift in Sources */,
 				35315F822B6DE1350045014B /* PreviewPage.swift in Sources */,
 				35315F842B6DE1B80045014B /* LibraryModel.swift in Sources */,
 				35315F792B5556F90045014B /* AddModel.swift in Sources */,
@@ -401,7 +423,9 @@
 				35545F2A2B821C2A00B21AB4 /* PageViewController.swift in Sources */,
 				3542555D2B4BC8B100559413 /* ContentView.swift in Sources */,
 				35315F802B6974810045014B /* SettingPage.swift in Sources */,
+				359CD2DD2BA57AA700BC7005 /* CustomAlertView.swift in Sources */,
 				35315F8D2B6E26A90045014B /* BookData+CoreDataProperties.swift in Sources */,
+				35882ADC2B9C976300079C48 /* PreviewModel.swift in Sources */,
 				3542558B2B4BDA6A00559413 /* AddPage.swift in Sources */,
 				35545F2F2B8497F800B21AB4 /* Bounds.swift in Sources */,
 				3542555B2B4BC8B100559413 /* ScanBookApp.swift in Sources */,
@@ -743,6 +767,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		35882AD62B9A1F9F00079C48 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -750,6 +782,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 35545F2B2B82201700B21AB4 /* XCRemoteSwiftPackageReference "swift-with-previous" */;
 			productName = WithPrevious;
+		};
+		35882AD72B9A1FA000079C48 /* CombineCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35882AD62B9A1F9F00079C48 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			productName = CombineCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */
 

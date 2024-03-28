@@ -22,6 +22,7 @@ struct PersistenceController {
         BookData.favorito = false
         BookData.date = Date()
         BookData.reading = false
+        BookData.pageCount = 0
         BookData.title = "タイトル"
         do {
             try viewContext.save()

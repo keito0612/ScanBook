@@ -49,7 +49,15 @@ class AddModel : ObservableObject{
     @Published var pageErrorText: String = "※ページを追加してください。"
     @Published var pageErrorValidation:Bool = false
     //画面遷移フラグ
-    @Published var isPresented = false
+    @Published var isPresented :Bool = false
+    //アラート表示フラグ
+    @Published var showAlert: Bool = false
+    //アラートタイトル
+    @Published var alertTitle: String = ""
+    //アラートメッセージ
+    @Published var alertMessage : String = ""
+    //アラートタイプ
+    @Published var alertType :AlertType = .success
     
     let bookData: BookData?
     
@@ -65,9 +73,16 @@ class AddModel : ObservableObject{
             newBookData.categoryStatus = Int64(categoryStatus!)
             newBookData.images = Convert.convertImagesToBase64(imageArray).joined(separator: ",")
             newBookData.date = Date()
+            newBookData.pageCount = Int16(0)
+            showAlert = true
+            alertType = .success
+            alertTitle = "追加をしました。"
             try context.save()
         }catch{
           print(error.localizedDescription)
+            showAlert = true
+            alertType = .error
+            alertTitle = "追加をしました。"
         }
     }
     public func edit(context : NSManagedObjectContext){
@@ -78,6 +93,9 @@ class AddModel : ObservableObject{
             bookData!.images = Convert.convertImagesToBase64(imageArray).joined(separator: ",")
             bookData!.date = Date()
             try context.save()
+            showAlert = true
+            alertType = .success
+            alertTitle = "編集をしました。"
         }catch{
             print(error.localizedDescription)
         }

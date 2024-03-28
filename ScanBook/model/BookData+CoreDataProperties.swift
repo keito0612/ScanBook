@@ -22,6 +22,7 @@ extension BookData {
     @NSManaged public var date: Date?
     @NSManaged public var images: String?
     @NSManaged public var title: String?
+    @NSManaged public var pageCount:Int16
     @NSManaged public var categoryStatus: Int64
     @NSManaged public var favorito: Bool
 

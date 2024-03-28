@@ -22,6 +22,20 @@ class LibraryModel :ObservableObject{
             return "書類"
         }
     }
+    
+    func getCategoryStatusNumber(_ status: String) -> String{
+        switch status {
+        case "漫画":
+            return "0"
+        case "小説":
+            return "1"
+        case "書類":
+            return "2"
+        default:
+            return "3"
+        }
+    }
+    
     func dalete(book: BookData , context :NSManagedObjectContext){
         context.delete(book)
         do{

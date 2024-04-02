@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "alertmessage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielkmarks23/AlertMessage.git",
+      "state" : {
+        "revision" : "2b18c14a8420020d869e3efb3fe0dca13a5507b6",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "combinecocoa",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/CombineCommunity/CombineCocoa.git",

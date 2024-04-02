@@ -37,12 +37,16 @@ struct ContentView: View {
     @State var selection = 0
     
     init(){
-        UITabBar.appearance().backgroundColor = .black
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .black
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
     }
     var body: some View {
         ZStack{
             TabView (selection: $selection){
-                HomePage().tabItem{
+                HomePage().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                    .tabItem{
                     Image(systemName: "house")
                     Text("ホーム")
                 }.tag(0)
@@ -56,8 +60,8 @@ struct ContentView: View {
                         Image(systemName: "person.crop.circle")
                         Text("設定")
                     }.tag(2)
-            }.accentColor(.white).background(Color.white)
-        }
+            }.toolbarBackground(Color.black, for: .tabBar) .toolbarBackground(.visible, for: .tabBar) .toolbarColorScheme(.dark, for: .tabBar).accentColor(.white).background(Color.black)
+        } 
     }
     
 //    private func addItem() {

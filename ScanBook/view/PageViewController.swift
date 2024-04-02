@@ -54,7 +54,7 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             }
         }
 
-//        context.coordinator.controllers.removeLast(max(context.coordinator.controllers.count - pages.count, 0))
+        context.coordinator.controllers.removeLast(max(context.coordinator.controllers.count - pages.count, 0))
 
         pageViewController.setViewControllers(
             [context.coordinator.controllers[currentPage]], direction: direction, animated: true

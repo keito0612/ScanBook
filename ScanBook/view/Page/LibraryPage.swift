@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import AlertMessage
 
 struct LibraryPage: View {
     @Environment(\.managedObjectContext)private var context
@@ -44,7 +45,7 @@ struct LibraryPage: View {
                         Spacer()
                         FloatingActionButton(onTap: {
                           libraryModel.isAddPresented.toggle()
-                        }).padding(.trailing , 20).padding(.bottom)
+                        }).padding(.trailing , 20).padding(.bottom , libraryModel.showSnack ? 80 : 10)
                     }
                 }
             }.navigationTitle("ライブラリ")
@@ -53,6 +54,13 @@ struct LibraryPage: View {
                 .toolbarColorScheme(.dark)
         }.sheet(isPresented: $libraryModel.isAddPresented) {
             AddPage(isPresented: $libraryModel.isAddPresented, bookData: nil)
+        }.alertMessage(isPresented: $libraryModel.showSnack,type: .snackbar) {
+            HStack {
+                Text(libraryModel.snackText).bold()
+                    .foregroundColor(.white).padding(.vertical)
+                  Spacer()
+            }.padding(.horizontal).padding(.top).padding(.bottom, 60)
+                .background(Color(white: 0.3, opacity: 1.0))
         }
     }
     
@@ -88,6 +96,13 @@ struct BookItemView:View{
     let bookData: BookData
     let context: NSManagedObjectContext
     @ObservedObject var model : LibraryModel
+    @State var favorite :Bool
+    init(bookData: BookData, context: NSManagedObjectContext, model: LibraryModel) {
+        self.bookData = bookData
+        self.context = context
+        self.model = model
+        _favorite = State(initialValue:bookData.favorito)
+    }
     var body: some View{
         ZStack {
             VStack{
@@ -124,7 +139,7 @@ struct BookItemView:View{
                     Spacer()
                     Menu{
                         Button(role: .destructive,action: {
-                          model.dalete(book: bookData, context: context)
+                            model.dalete(book: bookData, context: context)
                         }) {
                             Label("削除", systemImage: "trash.fill")
                         }
@@ -132,6 +147,23 @@ struct BookItemView:View{
                             model.isEditPresented.toggle()
                         }) {
                             Label("編集", systemImage: "pencil")
+                        }
+                        Button(action: {
+                            if(favorite){
+                                model.editFavorite(book:bookData, value: false, context: context)
+                                model.snackText = "お気に入りを解除しました。"
+                                favorite = false
+                            }else{
+                                model.editFavorite(book:bookData, value: true, context: context)
+                                model.snackText = "お気に入りを登録しました。"
+                                favorite = true
+                            }
+                            model.showSnack.toggle()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                model.showSnack.toggle()
+                            }
+                        }) {
+                            Label(favorite ? "お気に入りを解除する": "お気に入りに登録する", systemImage: favorite ?  "heart.fill" :  "heart")
                         }
                     }label: {
                         Image(systemName: "ellipsis").foregroundColor(.white).font(.system(size: 14))
@@ -148,7 +180,6 @@ struct BookItemView:View{
             AddPage(isPresented: $model.isEditPresented, bookData: bookData)
         }
     }
-    
 }
 
 

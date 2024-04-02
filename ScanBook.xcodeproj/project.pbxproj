@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350ED2652BBAA1970051A11E /* HomeModel.swift */; };
+		350ED2692BBBDF1A0051A11E /* AlertMessage in Frameworks */ = {isa = PBXBuildFile; productRef = 350ED2682BBBDF1A0051A11E /* AlertMessage */; };
 		35315F792B5556F90045014B /* AddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F782B5556F90045014B /* AddModel.swift */; };
 		35315F7E2B6142A20045014B /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F7D2B6142A20045014B /* DropDownView.swift */; };
 		35315F802B6974810045014B /* SettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F7F2B6974810045014B /* SettingPage.swift */; };
@@ -63,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		350ED2652BBAA1970051A11E /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		35315F782B5556F90045014B /* AddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModel.swift; sourceTree = "<group>"; };
 		35315F7D2B6142A20045014B /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		35315F7F2B6974810045014B /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				350ED2692BBBDF1A0051A11E /* AlertMessage in Frameworks */,
 				35882AD82B9A1FA000079C48 /* CombineCocoa in Frameworks */,
 				35545F2D2B82201700B21AB4 /* WithPrevious in Frameworks */,
 			);
@@ -136,6 +140,7 @@
 				35315F782B5556F90045014B /* AddModel.swift */,
 				35315F832B6DE1B80045014B /* LibraryModel.swift */,
 				35882ADB2B9C976300079C48 /* PreviewModel.swift */,
+				350ED2652BBAA1970051A11E /* HomeModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 			packageProductDependencies = (
 				35545F2C2B82201700B21AB4 /* WithPrevious */,
 				35882AD72B9A1FA000079C48 /* CombineCocoa */,
+				350ED2682BBBDF1A0051A11E /* AlertMessage */,
 			);
 			productName = ScanBook;
 			productReference = 354255572B4BC8B100559413 /* ScanBook.app */;
@@ -357,6 +363,7 @@
 			packageReferences = (
 				35545F2B2B82201700B21AB4 /* XCRemoteSwiftPackageReference "swift-with-previous" */,
 				35882AD62B9A1F9F00079C48 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				350ED2672BBBDF1A0051A11E /* XCRemoteSwiftPackageReference "AlertMessage" */,
 			);
 			productRefGroup = 354255582B4BC8B100559413 /* Products */;
 			projectDirPath = "";
@@ -408,6 +415,7 @@
 				35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */,
 				35315F8F2B6E271E0045014B /* Persistence.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
+				350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */,
 				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
 				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,
 				35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */,
@@ -759,6 +767,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		350ED2672BBBDF1A0051A11E /* XCRemoteSwiftPackageReference "AlertMessage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielkmarks23/AlertMessage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		35545F2B2B82201700B21AB4 /* XCRemoteSwiftPackageReference "swift-with-previous" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ikesyo/swift-with-previous.git";
@@ -778,6 +794,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		350ED2682BBBDF1A0051A11E /* AlertMessage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 350ED2672BBBDF1A0051A11E /* XCRemoteSwiftPackageReference "AlertMessage" */;
+			productName = AlertMessage;
+		};
 		35545F2C2B82201700B21AB4 /* WithPrevious */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 35545F2B2B82201700B21AB4 /* XCRemoteSwiftPackageReference "swift-with-previous" */;

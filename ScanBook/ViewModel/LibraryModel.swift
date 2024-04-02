@@ -11,6 +11,8 @@ class LibraryModel :ObservableObject{
     @Published var searchText = ""
     @Published var isAddPresented: Bool = false
     @Published var isEditPresented :Bool = false
+    @Published var snackText:String = ""
+    @Published var showSnack:Bool = false
     
     func getCategoryStatusText(_ status : Int64 ) -> String{
         switch status {
@@ -33,6 +35,15 @@ class LibraryModel :ObservableObject{
             return "2"
         default:
             return "3"
+        }
+    }
+    
+    func editFavorite(book: BookData, value: Bool, context :NSManagedObjectContext){
+        do{
+            book.favorito = value
+            try context.save()
+        }catch{
+            print(error.localizedDescription)
         }
     }
     

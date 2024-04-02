@@ -10,11 +10,11 @@ import CoreData
 import WithPrevious
 class PreviewModel : ObservableObject {
     let bookData:BookData?
-//    @Published @WithPrevious<Int> var pageCount = 0
+    @WithPrevious var pageCount :Int = 0
     init(bookData: BookData?) {
         self.bookData = bookData
         if(bookData != nil){
-//            self.pageCount = 0
+            pageCount = Int(bookData!.pageCount)
         }
     }
     

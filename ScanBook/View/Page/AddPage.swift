@@ -49,7 +49,7 @@ struct AddPage: View {
                         }
                     }.padding(.all, 10).navigationBarTitle(bookData == nil ? "追加": "編集" , displayMode: .inline)
                         .navigationDestination(isPresented: $addModel.isPresented ) {
-                            PreviewPage(images: addModel.imageArray, bookData: nil)
+                            PreviewPage(images: addModel.imageArray, bookData: nil).environment(\.managedObjectContext,context)
                         }
                         .toolbarBackground(Color.black,for: .navigationBar)
                         .toolbarBackground(.visible, for: .navigationBar)

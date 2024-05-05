@@ -25,8 +25,7 @@ struct DropDownView: View {
                 ForEach(dropItemList, id: \.self) { item in
                     Button(action: {
                         value = item
-                        print(item)
-                       onChange(item)
+                        onChange(item)
                     }) {
                         Text(item)
                     }

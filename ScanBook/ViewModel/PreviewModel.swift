@@ -8,22 +8,38 @@
 import Foundation
 import CoreData
 import WithPrevious
+import SwiftUI
 class PreviewModel : ObservableObject {
+    @Published  var sliderValue: Int = 0
+    @Published  var aspectRatio: CGFloat = 1.0
+    @Published  var visibilityValue: Visibility = .visible
     let bookData:BookData?
-    @WithPrevious var pageCount :Int = 0
     init(bookData: BookData?) {
         self.bookData = bookData
-        if(bookData != nil){
-            pageCount = Int(bookData!.pageCount)
-        }
     }
     
-    func editPageCount(context : NSManagedObjectContext) {
+    func editPageCount(context : NSManagedObjectContext, pageCount: Int) {
         do{
-//            bookData!.pageCount = Int16(pageCount)
+            self.bookData!.pageCount = Int16(pageCount)
+            if(pageCount != 0){
+                print("呼ばれているよ")
+                editReading(context: context, reading: true)
+            }else{
+                editReading(context: context, reading: false)
+            }
             try context.save()
         }catch{
             print(error.localizedDescription)
         }
     }
+    
+    private func editReading(context : NSManagedObjectContext,reading:Bool) {
+        do{
+            self.bookData!.reading = reading
+            try context.save()
+        }catch{
+            print(error.localizedDescription)
+        }
+    }
+    
 }

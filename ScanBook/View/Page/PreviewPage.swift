@@ -11,12 +11,10 @@ import SwiftUI
 import WithPrevious
 
 struct PreviewPage: View {
+    @Environment(\.managedObjectContext)private var context
     let images : [UIImage]
     let bookData:BookData?
-    @State private var sliderValue: Int = 0
-    @State private var aspectRatio: CGFloat = 1.0
-    @State @WithPrevious var page = 0
-    @State var visibilityValue: Visibility = .visible
+    @State @WithPrevious var pageCount:Int
     @StateObject var previewModel: PreviewModel
     let screenSizeWidth = UIScreen.main.bounds.width
     
@@ -24,6 +22,11 @@ struct PreviewPage: View {
         self.images = images
         self.bookData = bookData
         _previewModel = StateObject(wrappedValue: PreviewModel(bookData: bookData))
+        if(bookData != nil ){
+            pageCount = Int(bookData!.pageCount)
+        }else{
+            pageCount = 0
+        }
     }
     var body: some View {
         ZStack {
@@ -34,32 +37,30 @@ struct PreviewPage: View {
                     pages: images.map{
                         ImageViewer(image: $0).background(Color.black)
                     },
-                    slidePageCount: $sliderValue,
-                    currentPage: $page.animation(),
+                    slidePageCount: $previewModel.sliderValue,
+                    currentPage: $pageCount,
                     onChange:{ value  in
-                        if(value != 0 ){
-                          if(bookData != nil ){
-                                
-                            }
+                        if(bookData != nil){
+                            previewModel.editPageCount(context: context, pageCount: value)
                         }
                     }
                 ).background(Color.black).onTapGesture {
-                    if(visibilityValue == .visible){
-                        visibilityValue = .hidden
+                    if(previewModel.visibilityValue == .visible){
+                        previewModel.visibilityValue = .hidden
                     }else{
-                        visibilityValue = .visible
+                        previewModel.visibilityValue = .visible
                     }
                 }
             }.navigationBarTitle("", displayMode: .inline)
                 .toolbarBackground(Color.black,for: .navigationBar)
-                .toolbarBackground(visibilityValue, for: .navigationBar)
+                .toolbarBackground(previewModel.visibilityValue, for: .navigationBar)
                 .toolbarColorScheme(.dark)
                 .customBackButton(onBack: {})
-            if(visibilityValue == .visible){
+            if(previewModel.visibilityValue == .visible){
                 VStack(alignment: .trailing){
                     HStack(){
                         Spacer()
-                        PreviewPageCountBar(imagesCount: images.count, pageCount: $page).padding(.trailing, 10).padding(.top, 10)
+                        PreviewPageCountBar(imagesCount: images.count, pageCount: $pageCount).padding(.trailing, 10).padding(.top, 10)
                     }
                     Spacer()
                 }

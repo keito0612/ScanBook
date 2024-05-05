@@ -19,9 +19,9 @@ struct CustomAlertView: View {
     let alertType: AlertType
     let title : String
     let message :String
-    var cancelButtonLabel :String
+    let cancelButtonLabel :String
     let onCansel:() -> Void
-    var destructiveLavel : String
+    let destructiveLavel : String
     let onDestructive:() -> Void
     @Binding  var isShow : Bool
     let onSubmit: () -> Void
@@ -51,10 +51,11 @@ struct CustomAlertView: View {
                     }else if(alertType == .warning){
                         Image(systemName: "exclamationmark.triangle").foregroundColor(.yellow).font(.system(size: 35)).padding(.vertical)
                     }
+                    
                     Text(title).foregroundStyle(alertType == .success ? .black : .red ).bold().padding(.horizontal)
                     
                     Text(message).foregroundStyle(alertType == .success ? .black : .red  ).multilineTextAlignment(.center).padding(.top, 2).padding(.horizontal)
-                    Divider()
+            
                     if(alertType == .confirmation || alertType == .warning){
                         HStack{
                             Button(action: {
@@ -66,7 +67,7 @@ struct CustomAlertView: View {
                                     Spacer()
                                     Text(cancelButtonLabel).bold().font(.system(size: 20))
                                     Spacer()
-                                }.frame(width: 140)
+                                }
                             }
                             Divider()
                             Button(action: {
@@ -79,15 +80,21 @@ struct CustomAlertView: View {
                                     Spacer()
                                 }.frame(width: 139)
                             }
-                        }.frame(width: 300, height: 60)
+                        }.overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color.gray.opacity(0.5)), alignment: .top).frame(width: 300, height: 60)
+                        
                     }else{
                         Button(action: {
                             isShow.toggle()
                             onSubmit()
-                        }) {
-                            Text("OK").font(.system(size: 20)) .frame(width: 300)
-                        }.padding()
+                        },label: {
+                            VStack{
+                                Spacer()
+                                Text("OK").font(.system(size: 20))
+                                Spacer()
+                            }.frame(width: 300)
+                        }).overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color.gray.opacity(0.5)), alignment: .top).frame(width: 300, height: 60)
                     }
+                    
                 }.frame(width: 300).frame(minHeight: 150)
                     .background(.regularMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 30))
@@ -97,9 +104,9 @@ struct CustomAlertView: View {
 }
 
 #Preview {
-    let alertType :AlertType = .warning
+    let alertType :AlertType = .success
     let title :String  = "削除しますか?"
-    let message : String = ""
+    let message : String = "本当によろしいでしょうか?"
     @State var isShowDialog =  true
     return CustomAlertView(alertType: alertType, title: title,message: message,cancelButtonLabel: "いいえ", onCansel: {},destructiveLavel: "はい",isShow: $isShowDialog,onSubmit: {})
 }

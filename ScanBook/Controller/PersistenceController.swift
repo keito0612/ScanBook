@@ -21,7 +21,7 @@ struct PersistenceController {
         BookData.categoryStatus = 2
         BookData.favorito = false
         BookData.date = Date()
-        BookData.reading = false
+        BookData.reading = true
         BookData.pageCount = 0
         BookData.title = "タイトル"
         do {

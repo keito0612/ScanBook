@@ -101,18 +101,11 @@ class AddModel : ObservableObject{
         }
     }
     
-  public func isValidetion() -> Bool{
+    public func isValidetion() -> Bool{
         var valide:Bool = false
         titleErrorValidation = false
         categoryValidetion = false
         pageErrorValidation = false
-        
-        //ページ数
-        if(pageCount == 0){
-            pageErrorValidation = true
-            valide = true
-            return valide
-        }
         
         //タイトル
         if(titleText.isEmpty){
@@ -126,6 +119,15 @@ class AddModel : ObservableObject{
             valide = true
             return valide
         }
+        
+        
+        //ページ数
+        if(pageCount == 0){
+            pageErrorValidation = true
+            valide = true
+            return valide
+        }
+        
         return valide
     }
 }

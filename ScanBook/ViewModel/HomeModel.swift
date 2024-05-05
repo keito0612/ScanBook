@@ -7,7 +7,8 @@
 
 import Foundation
 
-class HomeModel{
+class HomeModel: ObservableObject{
+    @Published var isPresentPreview: Bool = false
     func getCategoryStatusText(_ status : Int64 ) -> String{
         switch status {
           case 0:

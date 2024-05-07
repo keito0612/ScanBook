@@ -179,5 +179,5 @@ struct favoriteBookItemView : View{
 }
 
 #Preview {
-    HomePage()
+   HomePage().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }

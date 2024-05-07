@@ -22,7 +22,6 @@ class PreviewModel : ObservableObject {
         do{
             self.bookData!.pageCount = Int16(pageCount)
             if(pageCount != 0){
-                print("呼ばれているよ")
                 editReading(context: context, reading: true)
             }else{
                 editReading(context: context, reading: false)

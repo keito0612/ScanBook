@@ -13,13 +13,11 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     private var pages: [Page]
     @Binding @WithPrevious var currentPage: Int
     @Binding var slidePageCount:Int
-    let onChange: (Int) -> Void
-
-    init(pages: [Page], slidePageCount: Binding<Int> ,currentPage: Binding<WithPrevious<Int>>, onChange: @escaping (Int) -> Void ) {
+    
+    init(pages: [Page], slidePageCount: Binding<Int> ,currentPage: Binding<WithPrevious<Int>>) {
         self.pages = pages
         self._slidePageCount = slidePageCount
         self._currentPage = currentPage
-        self.onChange = onChange
     }
 
     func makeCoordinator() -> Coordinator {
@@ -111,7 +109,6 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             {
                 parent.currentPage = index
                 parent.slidePageCount = index
-                parent.onChange(index)
             }
         }
     }

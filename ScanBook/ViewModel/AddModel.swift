@@ -74,15 +74,15 @@ class AddModel : ObservableObject{
             newBookData.images = Convert.convertImagesToBase64(imageArray).joined(separator: ",")
             newBookData.date = Date()
             newBookData.pageCount = Int16(0)
+            try context.save()
             showAlert = true
             alertType = .success
-            alertTitle = "追加をしました。"
-            try context.save()
+            alertTitle = "追加しました。"
         }catch{
           print(error.localizedDescription)
             showAlert = true
             alertType = .error
-            alertTitle = "追加をしました。"
+            alertTitle = "エラーが発生しました。"
         }
     }
     public func edit(context : NSManagedObjectContext){
@@ -95,7 +95,7 @@ class AddModel : ObservableObject{
             try context.save()
             showAlert = true
             alertType = .success
-            alertTitle = "編集をしました。"
+            alertTitle = "編集しました。"
         }catch{
             print(error.localizedDescription)
         }

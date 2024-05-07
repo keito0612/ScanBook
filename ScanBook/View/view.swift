@@ -20,3 +20,9 @@ extension View{
         self.modifier(ImageMagnificationView(contentSize: contentSize, aspectRatio: aspectRatio))
     }
 }
+
+extension View{
+    func tapGestureWithEffectView(action: @escaping () -> Void) -> some View{
+        self.modifier(TapGestureWithEffectView(action: action))
+    }
+}

@@ -32,8 +32,10 @@ struct LibraryPage: View {
                             spacing: 30
                         ) {
                             ForEach(bookDatas) { book in
-                                BookItemView(bookData: book, context: context, model: libraryModel).onTapGesture {
-                                    
+                                BookItemView(bookData: book, context: context, model: libraryModel).tapGestureWithEffectView(action: {
+                                    libraryModel.isPreviewPresented.toggle()
+                                }).sheet(isPresented: $libraryModel.isPreviewPresented) {
+                                    PreviewPage(images: [], bookData: book).environment(\.managedObjectContext,context)
                                 }
                             }
                         }.padding(.horizontal)
@@ -104,81 +106,86 @@ struct BookItemView:View{
         _favorite = State(initialValue:bookData.favorito)
     }
     var body: some View{
-        ZStack {
-            VStack{
-                if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: Bounds.width * 0.75, height: Bounds.height * 0.13).padding().padding(.top, 40)
-                }else{
-                    if(bookData.categoryStatus == 2){
-                        Image(decorative: "folder")
+            ZStack {
+                Button(action: {
+                    model.isPreviewPresented.toggle()
+                }, label: {
+                VStack{
+                    if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
+                        Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: Bounds.width * 0.25, height: Bounds.height * 0.08).padding(.top, 30)
+                            .frame(width: Bounds.width * 0.75, height: Bounds.height * 0.13).padding().padding(.top, 40)
                     }else{
-                        Image(decorative: "no_image")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13)
+                        if(bookData.categoryStatus == 2){
+                            Image(decorative: "folder")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: Bounds.width * 0.25, height: Bounds.height * 0.08).padding(.top, 30)
+                        }else{
+                            Image(decorative: "no_image")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13)
+                        }
                     }
-                }
-                Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 10).padding(.top,5)
-                Text(bookData.title!).font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 10).padding(.top,1)
-                Text(UtilDate().DateTimeToString(date: bookData.date!)).font(.system(size: 12)).foregroundStyle(Color.white).fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .center).padding(.top,1)
-                Spacer()
-            }.frame(width: Bounds.width * 0.4, height: Bounds.height * 0.21)
-            VStack {
-                HStack{
+                    Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 10).padding(.top,5)
+                    Text(bookData.title!).font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 10).padding(.top,1)
+                    Text(UtilDate().DateTimeToString(date: bookData.date!)).font(.system(size: 12)).foregroundStyle(Color.white).fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .center).padding(.top,1)
                     Spacer()
-                    Menu{
-                        Button(role: .destructive,action: {
-                            model.dalete(book: bookData, context: context)
-                        }) {
-                            Label("削除", systemImage: "trash.fill")
-                        }
-                        Button(action: {
-                            model.isEditPresented.toggle()
-                        }) {
-                            Label("編集", systemImage: "pencil")
-                        }
-                        Button(action: {
-                            if(favorite){
-                                model.editFavorite(book:bookData, value: false, context: context)
-                                model.snackText = "お気に入りを解除しました。"
-                                favorite = false
-                            }else{
-                                model.editFavorite(book:bookData, value: true, context: context)
-                                model.snackText = "お気に入りを登録しました。"
-                                favorite = true
+                }.frame(width: Bounds.width * 0.4, height: Bounds.height * 0.21)
+                })
+                VStack {
+                    HStack{
+                        Spacer()
+                        Menu{
+                            Button(role: .destructive,action: {
+                                model.dalete(book: bookData, context: context)
+                            }) {
+                                Label("削除", systemImage: "trash.fill")
                             }
-                            model.showSnack.toggle()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            Button(action: {
+                                model.isEditPresented.toggle()
+                            }) {
+                                Label("編集", systemImage: "pencil")
+                            }
+                            Button(action: {
+                                if(favorite){
+                                    model.editFavorite(book:bookData, value: false, context: context)
+                                    model.snackText = "お気に入りを解除しました。"
+                                    favorite = false
+                                }else{
+                                    model.editFavorite(book:bookData, value: true, context: context)
+                                    model.snackText = "お気に入りを登録しました。"
+                                    favorite = true
+                                }
                                 model.showSnack.toggle()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                    model.showSnack.toggle()
+                                }
+                            }) {
+                                Label(favorite ? "お気に入りを解除する": "お気に入りに登録する", systemImage: favorite ?  "heart.fill" :  "heart")
                             }
-                        }) {
-                            Label(favorite ? "お気に入りを解除する": "お気に入りに登録する", systemImage: favorite ?  "heart.fill" :  "heart")
+                        }label: {
+                            ZStack {
+                                Circle().fill(Color.clear).frame(width: Bounds.width * 0.1, height:Bounds.width * 0.1).padding(.trailing, 12)
+                                Image(systemName: "ellipsis").foregroundColor(.white).font(.system(size: 14))
+                                    .frame(width: Bounds.width * 0.06, height:Bounds.width * 0.06).background(Color.black).cornerRadius(70)  .overlay(
+                                        RoundedRectangle(cornerRadius: 70).stroke(Color.white, lineWidth: 2)
+                                    ).padding(.all, 10).padding(.trailing, 12)
+                            }
                         }
-                    }label: {
-                        Image(systemName: "ellipsis").foregroundColor(.white).font(.system(size: 14))
-                            .frame(width: Bounds.width * 0.06, height:Bounds.width * 0.06).background(Color.black).cornerRadius(70)  .overlay(
-                                RoundedRectangle(cornerRadius: 70).stroke(Color.white, lineWidth: 2)
-                            )
-                    }.onTapGesture {
-                        
-                    }.padding(.top, 10).padding(.trailing, 22)
+                    }
+                    Spacer()
                 }
-                Spacer()
+            }.sheet(isPresented: $model.isEditPresented) {
+                AddPage(isPresented: $model.isEditPresented, bookData: bookData)
             }
-        }.sheet(isPresented: $model.isEditPresented) {
-            AddPage(isPresented: $model.isEditPresented, bookData: bookData)
-        }
     }
 }
 

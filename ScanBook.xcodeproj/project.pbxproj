@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350ED2652BBAA1970051A11E /* HomeModel.swift */; };
 		350ED2692BBBDF1A0051A11E /* AlertMessage in Frameworks */ = {isa = PBXBuildFile; productRef = 350ED2682BBBDF1A0051A11E /* AlertMessage */; };
-		351DA06F2BE7DD6A00C1DCC0 /* TapGestureWithEffecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351DA06E2BE7DD6A00C1DCC0 /* TapGestureWithEffecView.swift */; };
 		352A7F192BE631A4005E06BD /* SwiftUIRippleEffect in Frameworks */ = {isa = PBXBuildFile; productRef = 352A7F182BE631A4005E06BD /* SwiftUIRippleEffect */; };
 		35315F792B5556F90045014B /* AddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F782B5556F90045014B /* AddModel.swift */; };
 		35315F7E2B6142A20045014B /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F7D2B6142A20045014B /* DropDownView.swift */; };
@@ -68,7 +67,6 @@
 
 /* Begin PBXFileReference section */
 		350ED2652BBAA1970051A11E /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
-		351DA06E2BE7DD6A00C1DCC0 /* TapGestureWithEffecView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureWithEffecView.swift; sourceTree = "<group>"; };
 		35315F782B5556F90045014B /* AddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModel.swift; sourceTree = "<group>"; };
 		35315F7D2B6142A20045014B /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		35315F7F2B6974810045014B /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
@@ -254,7 +252,6 @@
 				35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */,
 				35882AD92B9A21AC00079C48 /* imageViewer.swift */,
 				359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */,
-				351DA06E2BE7DD6A00C1DCC0 /* TapGestureWithEffecView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -447,7 +444,6 @@
 				35545F2A2B821C2A00B21AB4 /* PageViewController.swift in Sources */,
 				3542555D2B4BC8B100559413 /* ContentView.swift in Sources */,
 				35315F802B6974810045014B /* SettingPage.swift in Sources */,
-				351DA06F2BE7DD6A00C1DCC0 /* TapGestureWithEffecView.swift in Sources */,
 				359CD2DD2BA57AA700BC7005 /* CustomAlertView.swift in Sources */,
 				35315F8D2B6E26A90045014B /* BookData+CoreDataProperties.swift in Sources */,
 				35882ADC2B9C976300079C48 /* PreviewModel.swift in Sources */,

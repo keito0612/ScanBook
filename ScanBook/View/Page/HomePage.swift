@@ -37,7 +37,7 @@ struct HomePage: View {
                             .font(.system(size:Bounds.width * 0.07 ))
                             .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
                         FavoriteZoomInHStackScrollView(favoriteBookDatas: favoriteBookDatas, model: homeModel).frame(height: 400)
-                    }.padding(.all, 10).padding(.horizontal, 5)
+                    }.padding(.all, 8).padding(.horizontal, 4)
                 }
             }.navigationBarTitle("ホーム" , displayMode: .inline)
                 .toolbarBackground(Color.black,for: .navigationBar)
@@ -104,6 +104,7 @@ struct FavoriteZoomInHStackScrollView :View {
                                     .scaleEffect(x: scale, y: scale, anchor: .top)
                             }
                             .frame(width: mainViewSize.width * 0.76 , height: mainViewSize.height)
+                            
                         }
                     }
                 }
@@ -130,13 +131,33 @@ struct ReadingBookItemView : View{
     let model: HomeModel
     @Binding var isPresent:Bool
     var body: some View{
-        VStack(alignment:.leading){
-            Group{
-                Text("タイトル")
-                Text("小説")
-                Text("200/500").font(.system(size: 25))
-            }.foregroundStyle(Color.white).fontWeight(.bold)
-        }.padding(.horizontal).frame(width: 250, height: 130,alignment:.leading ).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(30)
+            HStack {
+                if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1).padding(.all, 5)
+                }else{
+                    if(bookData.categoryStatus == 2){
+                        Image(decorative: "folder")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1).padding(.all, 5)
+                    }else{
+                        Image(decorative: "no_image")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1)
+                    }
+                }
+                VStack(alignment:.leading) {
+                    Group{
+                        Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
+                        Text(bookData.title!).frame(height: Bounds.width * 0.04)
+                        Text("\(bookData.pageCount) / \(Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")).count) ").font(.system(size: 20))
+                    }.foregroundStyle(Color.white).fontWeight(.bold)
+                }
+            }.padding(.large).frame(width: Bounds.width * 0.65, alignment:.leading ).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(30)
         
     }
 }
@@ -167,7 +188,7 @@ struct favoriteBookItemView : View{
             }
             Group{
                 Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
-                Text(bookData.title!)
+                Text(bookData.title ?? "")
             }.foregroundStyle(Color.white).fontWeight(.bold)
         }.padding(.horizontal).frame(width: 250, height: 300,alignment:.leading ).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(30)
             .sheet(isPresented: $isPresent) {

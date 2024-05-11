@@ -31,12 +31,13 @@ struct LibraryPage: View {
                             alignment: .center,
                             spacing: 30
                         ) {
-                            ForEach(bookDatas) { book in
-                                BookItemView(bookData: book, context: context, model: libraryModel).tapGestureWithEffectView(action: {
-                                    libraryModel.isPreviewPresented.toggle()
-                                }).sheet(isPresented: $libraryModel.isPreviewPresented) {
-                                    PreviewPage(images: [], bookData: book).environment(\.managedObjectContext,context)
+                            ForEach(bookDatas) { bookData in
+                                BookItemView(bookData: bookData, model: libraryModel).sheet(isPresented: $libraryModel.isEditPresented) {
+                                    AddPage(isPresented: $libraryModel.isEditPresented, bookData: bookData)
+                                }.sheet(isPresented: $libraryModel.isPreviewPresented) {
+                                    PreviewPage(images: [], bookData: bookData)
                                 }
+                                
                             }
                         }.padding(.horizontal)
                     }
@@ -47,7 +48,7 @@ struct LibraryPage: View {
                         Spacer()
                         FloatingActionButton(onTap: {
                           libraryModel.isAddPresented.toggle()
-                        }).padding(.trailing , 20).padding(.bottom , libraryModel.showSnack ? 80 : 10)
+                        }).padding(.trailing , 16).padding(.bottom , libraryModel.showSnack ? 80 : 8)
                     }
                 }
             }.navigationTitle("ライブラリ")
@@ -96,12 +97,11 @@ struct FloatingActionButton: View{
 
 struct BookItemView:View{
     let bookData: BookData
-    let context: NSManagedObjectContext
+    @Environment(\.managedObjectContext)private var context
     @ObservedObject var model : LibraryModel
     @State var favorite :Bool
-    init(bookData: BookData, context: NSManagedObjectContext, model: LibraryModel) {
+    init(bookData: BookData, model: LibraryModel) {
         self.bookData = bookData
-        self.context = context
         self.model = model
         _favorite = State(initialValue:bookData.favorito)
     }
@@ -131,10 +131,10 @@ struct BookItemView:View{
                     }
                     Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 10).padding(.top,5)
+                        .padding(.horizontal, 8).padding(.top,4)
                     Text(bookData.title!).font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 10).padding(.top,1)
+                        .padding(.horizontal, 8).padding(.top,1)
                     Text(UtilDate().DateTimeToString(date: bookData.date!)).font(.system(size: 12)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .center).padding(.top,1)
                     Spacer()
@@ -144,16 +144,19 @@ struct BookItemView:View{
                     HStack{
                         Spacer()
                         Menu{
+                            //削除
                             Button(role: .destructive,action: {
                                 model.dalete(book: bookData, context: context)
                             }) {
                                 Label("削除", systemImage: "trash.fill")
                             }
+                            //編集
                             Button(action: {
                                 model.isEditPresented.toggle()
                             }) {
                                 Label("編集", systemImage: "pencil")
                             }
+                            //お気に入り登録
                             Button(action: {
                                 if(favorite){
                                     model.editFavorite(book:bookData, value: false, context: context)
@@ -183,8 +186,6 @@ struct BookItemView:View{
                     }
                     Spacer()
                 }
-            }.sheet(isPresented: $model.isEditPresented) {
-                AddPage(isPresented: $model.isEditPresented, bookData: bookData)
             }
     }
 }

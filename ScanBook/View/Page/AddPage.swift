@@ -23,9 +23,12 @@ struct AddPage: View {
                 Color.black
                     .ignoresSafeArea()
                 ScrollView {
-                    VStack{
+                    VStack(){
+                        //タイトル
                         TextFieldView(lavel: "タイトル", text: $addModel.titleText, errorValidation: $addModel.titleErrorValidation, errorText:addModel.titleErrorText , hintText: "本名、漫画名、レシート名", submit:{})
-                        Divider().frame(height: 2).background(Color.white).padding()
+                        
+                        Divider().frame(height: 2).background(Color.white).padding(.medium)
+                        //カテゴリー
                         DropDownView(value:$addModel.category , lavel: "カテゴリー", dropItemList: addModel.categoryItems, errorValidation: $addModel.categoryValidetion, errorText: addModel.errorCategoryText, onChange: {(value) in
                             if(value == "漫画"){
                                 addModel.categoryStatus = 0
@@ -35,19 +38,20 @@ struct AddPage: View {
                                 addModel.categoryStatus = 2
                             }
                         })
-                        Divider().frame(height: 2).background(Color.white).padding()
+                        
+                        Divider().frame(height: 2).background(Color.white).padding(.medium)
                         if(addModel.category != "書類"){
                             BookCoverView(model: addModel)
-                            Divider().frame(height: 2).background(Color.white).padding()
+                            Divider().frame(height: 2).background(Color.white).padding(.medium)
                         }
                         BookPageAdd(model: addModel)
-                        Divider().frame(height: 2).background(Color.white).padding()
+                        Divider().frame(height: 2).background(Color.white).padding(.medium)
                         if(bookData == nil ){
                             AddButton(model: addModel, isPresented: $isPresented)
                         }else{
                             EditButton(model: addModel , isPresented: $isPresented)
                         }
-                    }.padding(.all, 10).navigationBarTitle(bookData == nil ? "追加": "編集" , displayMode: .inline)
+                    }.padding(.all, 8).navigationBarTitle(bookData == nil ? "追加": "編集" , displayMode: .inline)
                         .navigationDestination(isPresented: $addModel.isPresented ) {
                             PreviewPage(images: addModel.imageArray, bookData: nil).environment(\.managedObjectContext,context)
                         }
@@ -88,7 +92,7 @@ struct BookCoverView :View{
                     .frame(width:130, height: 130).onTapGesture {
                         model.showingCovarImage.toggle()
                     }
-                    .padding(.vertical)
+                    .padding(.vertical, 8)
             } else{
                 Image(uiImage: model.bookCovarImage)
                     .resizable()
@@ -96,7 +100,7 @@ struct BookCoverView :View{
                     .frame(width: 130, height: 130).onTapGesture {
                         model.showingCovarImage.toggle()
                     }
-                    .padding(.vertical)
+                    .padding(.vertical, 8)
             }
         }
     }
@@ -118,7 +122,7 @@ struct BookPageAdd :View{
                     .overlay(
                         RoundedRectangle(cornerRadius: 30)
                             .stroke(Color.white, lineWidth: 4)
-                    ).padding(.horizontal)
+                    ).padding(.horizontal, 8)
             }
             
             Button(action: {
@@ -132,7 +136,7 @@ struct BookPageAdd :View{
                     .overlay(
                         RoundedRectangle(cornerRadius: 30)
                             .stroke(Color.white, lineWidth: 4)
-                    ).padding()
+                    ).padding(.medium)
             }
             if(model.pageErrorValidation){
                 Text(model.pageErrorText)
@@ -140,7 +144,7 @@ struct BookPageAdd :View{
                     .bold()
                     .foregroundColor(Color.red)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
+                    .padding(.horizontal, 8)
             }
         }
     }
@@ -191,7 +195,7 @@ struct EditButton:View{
 
 struct AddPage_Previews: PreviewProvider {
     @State static var isPresented : Bool = false
-    @State static var bookData : BookData? = nil
+    static let bookData : BookData? = nil
     static var previews: some View {
         AddPage(isPresented: $isPresented, bookData: bookData).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }

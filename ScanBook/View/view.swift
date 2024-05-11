@@ -21,8 +21,29 @@ extension View{
     }
 }
 
-extension View{
-    func tapGestureWithEffectView(action: @escaping () -> Void) -> some View{
-        self.modifier(TapGestureWithEffectView(action: action))
+enum Design {
+    enum Padding {
+        case small, medium, large, xlarge
+    }
+}
+
+extension View {
+
+    @ViewBuilder
+    func padding(_ context: Design.Padding) -> some View {
+        switch context {
+        case .small:
+            self.padding(4)
+
+        case .medium:
+            self.padding(8)
+
+        case .large:
+            self.padding(16)
+
+        case .xlarge:
+            self.padding(32)
+
+        }
     }
 }

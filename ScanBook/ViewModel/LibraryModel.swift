@@ -14,6 +14,7 @@ class LibraryModel :ObservableObject{
     @Published var isPreviewPresented: Bool = false
     @Published var snackText:String = ""
     @Published var showSnack:Bool = false
+    @Published var selectedBookDataItem:BookDataItem?
     
     func getCategoryStatusText(_ status : Int64 ) -> String{
         switch status {

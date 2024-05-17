@@ -91,9 +91,6 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             if index + 1 == controllers.count {
                 return controllers.first
             }
-            if index == controllers.endIndex {
-                return controllers.last
-            }
             return controllers[index + 1]
         }
 

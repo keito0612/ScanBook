@@ -46,6 +46,7 @@
 		35882ADC2B9C976300079C48 /* PreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882ADB2B9C976300079C48 /* PreviewModel.swift */; };
 		359B0DFC2BB5159B00F2A7E4 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */; };
 		359CD2DD2BA57AA700BC7005 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */; };
+		35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		35882ADB2B9C976300079C48 /* PreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
 		359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDataItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				354255652B4BC8B200559413 /* ScanBook.xcdatamodeld */,
 				35315F902B6E27900045014B /* BookData+CoreDataClass.swift */,
 				35315F8C2B6E26A90045014B /* BookData+CoreDataProperties.swift */,
+				35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				35315F8F2B6E271E0045014B /* PersistenceController.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
 				350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */,
+				35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */,
 				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
 				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,
 				35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */,

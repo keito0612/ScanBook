@@ -31,12 +31,8 @@ struct LibraryPage: View {
                             alignment: .center,
                             spacing: 30
                         ) {
-                            ForEach(bookDatas) { bookData in
-                                BookItemView(bookData: bookData, model: libraryModel).sheet(isPresented: $libraryModel.isEditPresented) {
-                                    AddPage(isPresented: $libraryModel.isEditPresented, bookData: bookData)
-                                }.sheet(isPresented: $libraryModel.isPreviewPresented) {
-                                    PreviewPage(images: [], bookData: bookData)
-                                }
+                            ForEach(bookDatas, id: \.self) { bookData in
+                                BookItemView(bookData: bookData, model: libraryModel)
                                 
                             }
                         }.padding(.horizontal)
@@ -56,7 +52,7 @@ struct LibraryPage: View {
                 .toolbarBackground(.visible, for: .navigationBar)
                 .toolbarColorScheme(.dark)
         }.sheet(isPresented: $libraryModel.isAddPresented) {
-            AddPage(isPresented: $libraryModel.isAddPresented, bookData: nil)
+            AddPage(isPresented: $libraryModel.isAddPresented, bookDataItem: nil)
         }.alertMessage(isPresented: $libraryModel.showSnack,type: .snackbar) {
             HStack {
                 Text(libraryModel.snackText).bold()
@@ -96,20 +92,19 @@ struct FloatingActionButton: View{
 }
 
 struct BookItemView:View{
-    let bookData: BookData
+    var bookData: BookData
     @Environment(\.managedObjectContext)private var context
     @ObservedObject var model : LibraryModel
-    @State var favorite :Bool
     init(bookData: BookData, model: LibraryModel) {
         self.bookData = bookData
         self.model = model
-        _favorite = State(initialValue:bookData.favorito)
     }
     var body: some View{
-            ZStack {
-                Button(action: {
-                    model.isPreviewPresented.toggle()
-                }, label: {
+        ZStack {
+            Button(action: {
+                model.selectedBookDataItem = BookDataItem(page: Page.preview, bookData: bookData)
+                
+            }, label: {
                 VStack{
                     if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
                         Image(uiImage: uiImage)
@@ -139,54 +134,75 @@ struct BookItemView:View{
                         .frame(maxWidth: .infinity, alignment: .center).padding(.top,1)
                     Spacer()
                 }.frame(width: Bounds.width * 0.4, height: Bounds.height * 0.21)
-                })
-                VStack {
-                    HStack{
-                        Spacer()
-                        Menu{
-                            //削除
-                            Button(role: .destructive,action: {
-                                model.dalete(book: bookData, context: context)
-                            }) {
-                                Label("削除", systemImage: "trash.fill")
-                            }
-                            //編集
-                            Button(action: {
-                                model.isEditPresented.toggle()
-                            }) {
-                                Label("編集", systemImage: "pencil")
-                            }
-                            //お気に入り登録
-                            Button(action: {
-                                if(favorite){
-                                    model.editFavorite(book:bookData, value: false, context: context)
-                                    model.snackText = "お気に入りを解除しました。"
-                                    favorite = false
-                                }else{
-                                    model.editFavorite(book:bookData, value: true, context: context)
-                                    model.snackText = "お気に入りを登録しました。"
-                                    favorite = true
-                                }
-                                model.showSnack.toggle()
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                    model.showSnack.toggle()
-                                }
-                            }) {
-                                Label(favorite ? "お気に入りを解除する": "お気に入りに登録する", systemImage: favorite ?  "heart.fill" :  "heart")
-                            }
-                        }label: {
-                            ZStack {
-                                Circle().fill(Color.clear).frame(width: Bounds.width * 0.1, height:Bounds.width * 0.1).padding(.trailing, 12)
-                                Image(systemName: "ellipsis").foregroundColor(.white).font(.system(size: 14))
-                                    .frame(width: Bounds.width * 0.06, height:Bounds.width * 0.06).background(Color.black).cornerRadius(70)  .overlay(
-                                        RoundedRectangle(cornerRadius: 70).stroke(Color.white, lineWidth: 2)
-                                    ).padding(.all, 10).padding(.trailing, 12)
-                            }
-                        }
-                    }
+            })
+            VStack {
+                HStack{
                     Spacer()
+                    MenuTtripleDotButton(bookData: bookData, model: model)
+                }
+                Spacer()
+            }.sheet(item: $model.selectedBookDataItem) { item in
+                if(item.page == .preview ){
+                    PreviewPage(images: [], bookData: item.bookData)
+                }else{
+                    AddPage(isPresented: $model.isAddPresented , bookDataItem: $model.selectedBookDataItem)
                 }
             }
+        }
+    }
+}
+
+struct MenuTtripleDotButton : View{
+    var bookData: BookData
+    @Environment(\.managedObjectContext)private var context
+    @ObservedObject var model : LibraryModel
+    @State var favorite :Bool
+    init(bookData: BookData, model: LibraryModel) {
+        self.bookData = bookData
+        self.model = model
+        _favorite = State(initialValue:bookData.favorito)
+    }
+    var body: some View{
+        Menu{
+            //削除
+            Button(role: .destructive,action: {
+                model.dalete(book: bookData, context: context)
+            }) {
+                Label("削除", systemImage: "trash.fill")
+            }
+            //編集
+            Button(action: {
+                model.selectedBookDataItem = BookDataItem(page: Page.edit, bookData: bookData)
+            }) {
+                Label("編集", systemImage: "pencil")
+            }
+            //お気に入り登録
+            Button(action: {
+                if(favorite){
+                    model.editFavorite(book:bookData, value: false, context: context)
+                    model.snackText = "お気に入りを解除しました。"
+                    favorite = false
+                }else{
+                    model.editFavorite(book:bookData, value: true, context: context)
+                    model.snackText = "お気に入りを登録しました。"
+                    favorite = true
+                }
+                model.showSnack.toggle()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    model.showSnack.toggle()
+                }
+            }) {
+                Label(favorite ? "お気に入りを解除する": "お気に入りに登録する", systemImage: favorite ?  "heart.fill" :  "heart")
+            }
+        }label: {
+            ZStack {
+                Circle().fill(Color.clear).frame(width: Bounds.width * 0.1, height:Bounds.width * 0.1).padding(.trailing, 12)
+                Image(systemName: "ellipsis").foregroundColor(.white).font(.system(size: 14))
+                    .frame(width: Bounds.width * 0.06, height:Bounds.width * 0.06).background(Color.black).cornerRadius(70)  .overlay(
+                        RoundedRectangle(cornerRadius: 70).stroke(Color.white, lineWidth: 2)
+                    ).padding(.all, 10).padding(.trailing, 12)
+            }
+        }
     }
 }
 

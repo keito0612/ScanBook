@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct AddPage: View {
-    init(isPresented: Binding<Bool>, bookData: BookData?) {
+    init(isPresented: Binding<Bool>, bookDataItem :Binding<BookDataItem?>?) {
         _isPresented = isPresented
-        self.bookData = bookData
-        _addModel = StateObject( wrappedValue: AddModel(bookData:bookData))
+        self._bookDataItem =  bookDataItem ?? Binding.constant(nil)
+        self.bookData = bookDataItem?.wrappedValue?.bookData
+        self._addModel = StateObject( wrappedValue: AddModel(bookData: bookDataItem?.wrappedValue?.bookData))
     }
     @Binding var isPresented :Bool
+    @Binding var bookDataItem : BookDataItem?
+    
     let bookData: BookData?
     @StateObject var addModel: AddModel
     @Environment(\.managedObjectContext)private var context
@@ -49,7 +52,7 @@ struct AddPage: View {
                         if(bookData == nil ){
                             AddButton(model: addModel, isPresented: $isPresented)
                         }else{
-                            EditButton(model: addModel , isPresented: $isPresented)
+                            EditButton(model: addModel , bookDataItem: $bookDataItem)
                         }
                     }.padding(.all, 8).navigationBarTitle(bookData == nil ? "追加": "編集" , displayMode: .inline)
                         .navigationDestination(isPresented: $addModel.isPresented ) {
@@ -62,7 +65,11 @@ struct AddPage: View {
                 }
                 CustomAlertView(alertType: addModel.alertType, title: addModel.alertTitle , message: addModel.alertMessage, isShow: $addModel.showAlert, onSubmit: {
                     if(addModel.alertType == .success){
-                        isPresented.toggle()
+                        if(bookDataItem == nil){
+                            isPresented.toggle()
+                        }else{
+                            bookDataItem = nil
+                        }
                     }
                 })
             }.sheet(isPresented: $addModel.showingScan) {
@@ -172,7 +179,7 @@ struct AddButton:View{
 
 struct EditButton:View{
     @ObservedObject var model:AddModel
-    @Binding var isPresented :Bool
+    @Binding var bookDataItem:BookDataItem?
     @Environment(\.managedObjectContext)private var context
     var body: some View{
         Button(action: {
@@ -195,9 +202,9 @@ struct EditButton:View{
 
 struct AddPage_Previews: PreviewProvider {
     @State static var isPresented : Bool = false
-    static let bookData : BookData? = nil
+    @State static var bookDataItem : BookDataItem? = nil
     static var previews: some View {
-        AddPage(isPresented: $isPresented, bookData: bookData).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        AddPage(isPresented: $isPresented, bookDataItem: $bookDataItem).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
 

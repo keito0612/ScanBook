@@ -17,7 +17,7 @@ struct SearchBarView: View {
                 .foregroundColor(Color.white)
                 .padding(.leading, 10)
                 TextField("", text: $searchText, prompt: Text("検索").foregroundColor(Color.gray.opacity(8.0)))
-                    .frame(height: 60)
+                    .frame(height: Bounds.height * 0.07)
                     .foregroundColor(Color.white)
                     .accentColor(Color.white)
                 .background(Color.black)

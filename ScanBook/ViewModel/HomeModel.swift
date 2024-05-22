@@ -9,6 +9,8 @@ import Foundation
 
 class HomeModel: ObservableObject{
     @Published var isPresentPreview: Bool = false
+    @Published var selectedReadingBookDataItem:BookDataItem?
+    @Published var selectedFavoriteBookDataItem:BookDataItem?
     func getCategoryStatusText(_ status : Int64 ) -> String{
         switch status {
           case 0:

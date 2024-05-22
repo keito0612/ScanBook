@@ -75,10 +75,10 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             guard let index = controllers.firstIndex(of: viewController) else {
                 return nil
             }
-            if index == 0 {
-                return controllers.last
+            if index + 1 == controllers.count {
+                return controllers.first
             }
-            return controllers[index - 1]
+            return controllers[index + 1]
         }
 
         func pageViewController(
@@ -88,10 +88,10 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             guard let index = controllers.firstIndex(of: viewController) else {
                 return nil
             }
-            if index + 1 == controllers.count {
-                return controllers.first
+            if index == 0 {
+                return controllers.last
             }
-            return controllers[index + 1]
+            return controllers[index - 1]
         }
 
         func pageViewController(
@@ -101,8 +101,8 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             transitionCompleted completed: Bool
         ) {
             if completed,
-               let visibleViewController = pageViewController.viewControllers?.first,
-               let index = controllers.firstIndex(of: visibleViewController)
+               let visibleViewController = pageViewController.viewControllers?.last,
+               let index = controllers.lastIndex(of: visibleViewController)
             {
                 parent.currentPage = index
                 parent.slidePageCount = index

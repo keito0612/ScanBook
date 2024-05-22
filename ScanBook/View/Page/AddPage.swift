@@ -26,11 +26,11 @@ struct AddPage: View {
                 Color.black
                     .ignoresSafeArea()
                 ScrollView {
-                    VStack(){
+                    VStack(spacing: 16){
                         //タイトル
                         TextFieldView(lavel: "タイトル", text: $addModel.titleText, errorValidation: $addModel.titleErrorValidation, errorText:addModel.titleErrorText , hintText: "本名、漫画名、レシート名", submit:{})
                         
-                        Divider().frame(height: 2).background(Color.white).padding(.medium)
+                        Divider().frame(height: 2).background(Color.white)
                         //カテゴリー
                         DropDownView(value:$addModel.category , lavel: "カテゴリー", dropItemList: addModel.categoryItems, errorValidation: $addModel.categoryValidetion, errorText: addModel.errorCategoryText, onChange: {(value) in
                             if(value == "漫画"){
@@ -42,19 +42,19 @@ struct AddPage: View {
                             }
                         })
                         
-                        Divider().frame(height: 2).background(Color.white).padding(.medium)
+                        Divider().frame(height: 2).background(Color.white)
                         if(addModel.category != "書類"){
                             BookCoverView(model: addModel)
-                            Divider().frame(height: 2).background(Color.white).padding(.medium)
+                            Divider().frame(height: 2).background(Color.white)
                         }
                         BookPageAdd(model: addModel)
-                        Divider().frame(height: 2).background(Color.white).padding(.medium)
+                        Divider().frame(height: 2).background(Color.white)
                         if(bookData == nil ){
                             AddButton(model: addModel, isPresented: $isPresented)
                         }else{
                             EditButton(model: addModel , bookDataItem: $bookDataItem)
                         }
-                    }.padding(.all, 8).navigationBarTitle(bookData == nil ? "追加": "編集" , displayMode: .inline)
+                    }.padding(.large).navigationBarTitle(bookData == nil ? "追加": "編集" , displayMode: .inline)
                         .navigationDestination(isPresented: $addModel.isPresented ) {
                             PreviewPage(images: addModel.imageArray, bookData: nil).environment(\.managedObjectContext,context)
                         }
@@ -62,6 +62,9 @@ struct AddPage: View {
                         .toolbarBackground(.visible, for: .navigationBar)
                         .toolbarColorScheme(.dark)
                         .customBackButton(onBack: {})
+                }
+                if(addModel.isLoading){
+                    LoadingView(scaleEffect: 3)
                 }
                 CustomAlertView(alertType: addModel.alertType, title: addModel.alertTitle , message: addModel.alertMessage, isShow: $addModel.showAlert, onSubmit: {
                     if(addModel.alertType == .success){
@@ -120,12 +123,12 @@ struct BookPageAdd :View{
                 .bold()
                 .foregroundColor(Color.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(model.category == "書類" ? "現在の枚数": "現在のページ数").padding(.top).font(.system(size: 13)).foregroundColor(Color.white)
-            Text(String(model.pageCount)).bold().font(.system(size: 40)).foregroundColor(Color.white)
+            Text(model.category == "書類" ? "現在の枚数": "現在のページ数").bold().padding(.top).font(.system(size: Bounds.width * 0.04)).foregroundColor(Color.white)
+            Text(String(model.pageCount)).bold().font(.system(size:  Bounds.width * 0.14)).foregroundColor(Color.white)
             Button(action: {
                 model.showingScan.toggle()
             }) {
-                Text(model.category == "書類" ? "書類を追加する": "ページを追加する").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
+                Text(model.category == "書類" ? "書類を追加する": "ページを追加する").font(.system(size: Bounds.width * 0.04)).bold().foregroundColor(Color.white).frame(height: Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
                     .overlay(
                         RoundedRectangle(cornerRadius: 30)
                             .stroke(Color.white, lineWidth: 4)
@@ -139,7 +142,7 @@ struct BookPageAdd :View{
                     model.pageErrorValidation = true
                 }
             }) {
-                Text("確認").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
+                Text("確認").font(.system(size: Bounds.width * 0.04)).bold().foregroundColor(Color.white).frame(height: Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
                     .overlay(
                         RoundedRectangle(cornerRadius: 30)
                             .stroke(Color.white, lineWidth: 4)
@@ -147,7 +150,7 @@ struct BookPageAdd :View{
             }
             if(model.pageErrorValidation){
                 Text(model.pageErrorText)
-                    .font(.system(size: 13))
+                    .font(.system(size: Bounds.width * 0.035))
                     .bold()
                     .foregroundColor(Color.red)
                     .frame(maxWidth: .infinity, alignment: .leading)

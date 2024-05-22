@@ -47,6 +47,7 @@
 		359B0DFC2BB5159B00F2A7E4 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */; };
 		359CD2DD2BA57AA700BC7005 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */; };
 		35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */; };
+		35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E13DC32BFB235E00F97C53 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDataItem.swift; sourceTree = "<group>"; };
+		35E13DC32BFB235E00F97C53 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +162,6 @@
 		35315F7C2B5D18240045014B /* Servise */ = {
 			isa = PBXGroup;
 			children = (
-				35545F1E2B79198300B21AB4 /* ScannerView.swift */,
 			);
 			path = Servise;
 			sourceTree = "<group>";
@@ -255,6 +256,8 @@
 				35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */,
 				35882AD92B9A21AC00079C48 /* imageViewer.swift */,
 				359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */,
+				35E13DC32BFB235E00F97C53 /* LoadingView.swift */,
+				35545F1E2B79198300B21AB4 /* ScannerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				35545F342B88F9AD00B21AB4 /* Convert.swift in Sources */,
 				35545F212B7E449D00B21AB4 /* view.swift in Sources */,
 				35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */,
+				35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */,
 				35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */,
 				35315F8F2B6E271E0045014B /* PersistenceController.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,

@@ -31,13 +31,13 @@ struct HomePage: View {
                             .bold()
                             .font(.system(size:Bounds.width * 0.07 ))
                             .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
-                        ReadingZoomInHStackScrollView(readingBookDatas: readingBookDatas, model: homeModel).frame(height: 200)
+                        ReadingZoomInHStackScrollView(readingBookDatas: readingBookDatas, model: homeModel).frame(height: Bounds.height * 0.18)
                         Text("お気に入り")
                             .bold()
                             .font(.system(size:Bounds.width * 0.07 ))
                             .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
-                        FavoriteZoomInHStackScrollView(favoriteBookDatas: favoriteBookDatas, model: homeModel).frame(height: 400)
-                    }.padding(.all, 8).padding(.horizontal, 4)
+                        FavoriteZoomInHStackScrollView(favoriteBookDatas: favoriteBookDatas, model: homeModel).frame(height: Bounds.height * 0.4)
+                    }.padding(.all, 8).padding(.horizontal, 8)
                 }
             }.navigationBarTitle("ホーム" , displayMode: .inline)
                 .toolbarBackground(Color.black,for: .navigationBar)
@@ -60,7 +60,7 @@ struct ReadingZoomInHStackScrollView :View {
                             GeometryReader { item in
                                 // スクロールによるズームイン・ズームアウトのスケールを計算
                                 let scale = scale(mainFrame: mainView.frame(in: .global), itemFrame: item.frame(in: .global))
-                                ReadingBookItemView(bookData: book, model: model, isPresent: $model.isPresentPreview)
+                                ReadingBookItemView(bookData: book, model: model)
                                     .frame(width: mainViewSize.width * 0.8  , height: mainViewSize.height * 0.9)
                                 // コンテンツのスケールを変える
                                     .scaleEffect(x: scale, y: scale, anchor: .top)
@@ -98,7 +98,7 @@ struct FavoriteZoomInHStackScrollView :View {
                             GeometryReader { item in
                                 // スクロールによるズームイン・ズームアウトのスケールを計算
                                 let scale = scale(mainFrame: mainView.frame(in: .global), itemFrame: item.frame(in: .global))
-                                favoriteBookItemView(bookData: book, model: model, isPresent: $model.isPresentPreview)
+                                favoriteBookItemView(bookData: book, model: model)
                                     .frame(width: mainViewSize.width * 0.8  , height: mainViewSize.height * 0.9)
                                 // コンテンツのスケールを変える
                                     .scaleEffect(x: scale, y: scale, anchor: .top)
@@ -128,75 +128,87 @@ struct FavoriteZoomInHStackScrollView :View {
 
 struct ReadingBookItemView : View{
     let bookData: BookData
-    let model: HomeModel
-    @Binding var isPresent:Bool
+    @ObservedObject var model: HomeModel
     var body: some View{
-            HStack {
+        Button(action: {
+            model.selectedReadingBookDataItem = BookDataItem(page: Page.preview, bookData: bookData)
+        }, label: {
+            VStack {
+                HStack {
+                    if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1)
+                            .scaledToFit()
+                            .padding(.all, 5)
+                    }else{
+                        if(bookData.categoryStatus == 2){
+                            Image(decorative: "folder")
+                                .resizable()
+                                .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1)
+                                .scaledToFit()
+                                .padding(.all, 5)
+                        }else{
+                            Image(decorative: "no_image")
+                                .resizable()
+                                .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1)
+                                .aspectRatio(contentMode: .fill)
+                             
+                        }
+                    }
+                    VStack(alignment:.leading) {
+                        Group{
+                            Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
+                            Text(bookData.title!).frame(height: Bounds.width * 0.04)
+                            Text("\(bookData.pageCount + 1) / \(Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")).count) ").font(.system(size: 20))
+                        }.foregroundStyle(Color.white).fontWeight(.bold)
+                    }
+                }.padding(.large).frame(width: Bounds.width * 0.65, alignment:.leading ).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(30)
+            }.fullScreenCover(item: $model.selectedReadingBookDataItem) { item in
+                PreviewPage(images:  Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")), bookData: item.bookData)
+            }
+        })
+    }
+}
+
+
+struct favoriteBookItemView : View{
+    let bookData: BookData
+    @ObservedObject var model: HomeModel
+    var body: some View{
+        
+        Button(action: {
+            model.selectedFavoriteBookDataItem = BookDataItem(page: Page.preview, bookData: bookData)
+        }, label: {
+            VStack{
                 if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
                     Image(uiImage: uiImage)
                         .resizable()
+                        .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.2).padding()
                         .scaledToFit()
-                        .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1).padding(.all, 5)
                 }else{
                     if(bookData.categoryStatus == 2){
                         Image(decorative: "folder")
                             .resizable()
+                            .frame(width: Bounds.width * 0.5, height: Bounds.height * 0.2).padding(.top, 30)
                             .scaledToFit()
-                            .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1).padding(.all, 5)
                     }else{
                         Image(decorative: "no_image")
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1)
+                            .frame(width: Bounds.width * 0.5, height: Bounds.height * 0.2)
+                            .scaledToFit()
                     }
                 }
-                VStack(alignment:.leading) {
-                    Group{
-                        Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
-                        Text(bookData.title!).frame(height: Bounds.width * 0.04)
-                        Text("\(bookData.pageCount) / \(Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")).count) ").font(.system(size: 20))
-                    }.foregroundStyle(Color.white).fontWeight(.bold)
+                Group{
+                    Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").frame(maxWidth: .infinity, alignment: .leading)
+                    Text(bookData.title ?? "").frame(maxWidth: .infinity, alignment: .leading)
+                }.foregroundStyle(Color.white).fontWeight(.bold)
+            }.padding(.horizontal).frame(width: 250, height: 300).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(30)
+                .fullScreenCover(item: $model.selectedFavoriteBookDataItem) { item in
+                    PreviewPage(images:  Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")), bookData: item.bookData)
                 }
-            }.padding(.large).frame(width: Bounds.width * 0.65, alignment:.leading ).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(30)
-        
+        })
     }
-}
-
-struct favoriteBookItemView : View{
-    let bookData: BookData
-    let model: HomeModel
-    @Binding var isPresent:Bool
-    var body: some View{
-        VStack(alignment:.leading){
-            if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: Bounds.width * 0.5, height: Bounds.height * 0.2).padding()
-            }else{
-                if(bookData.categoryStatus == 2){
-                    Image(decorative: "folder")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: Bounds.width * 0.5, height: Bounds.height * 0.2).padding(.top, 30)
-                }else{
-                    Image(decorative: "no_image")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: Bounds.width * 0.5, height: Bounds.height * 0.2)
-                }
-            }
-            Group{
-                Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
-                Text(bookData.title ?? "")
-            }.foregroundStyle(Color.white).fontWeight(.bold)
-        }.padding(.horizontal).frame(width: 250, height: 300,alignment:.leading ).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(30)
-            .sheet(isPresented: $isPresent) {
-                PreviewPage(images:  Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")), bookData: bookData)
-            }
-        
-    }
-    
 }
 
 #Preview {

@@ -32,7 +32,7 @@ struct TextFieldView: View {
                 RoundedRectangle(cornerRadius: 30)
                     .stroke( errorValidation ? Color.red : Color.white, lineWidth: 3)
             )
-            .frame(height : 50)
+            .frame(height : Bounds.height * 0.06)
             .padding(.horizontal)
             if(errorValidation){
                 Text(errorText)

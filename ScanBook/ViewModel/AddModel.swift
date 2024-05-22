@@ -58,11 +58,14 @@ class AddModel : ObservableObject{
     @Published var alertMessage : String = ""
     //アラートタイプ
     @Published var alertType :AlertType = .success
+    //ローディング
+    @Published var isLoading :Bool = false
     
     let bookData: BookData?
     
     
     public func add(context :NSManagedObjectContext){
+        isLoading = true
         do{
             let newBookData = BookData(context: context)
             newBookData.id = UUID()
@@ -75,17 +78,20 @@ class AddModel : ObservableObject{
             newBookData.date = Date()
             newBookData.pageCount = Int16(0)
             try context.save()
+            isLoading = false
             showAlert = true
             alertType = .success
             alertTitle = "追加しました。"
         }catch{
-          print(error.localizedDescription)
+            print(error.localizedDescription)
+            isLoading = false
             showAlert = true
             alertType = .error
             alertTitle = "エラーが発生しました。"
         }
     }
     public func edit(context : NSManagedObjectContext){
+        isLoading = true
         do{
             bookData!.title = titleText
             bookData!.categoryStatus = Int64(categoryStatus!)
@@ -93,11 +99,16 @@ class AddModel : ObservableObject{
             bookData!.images = Convert.convertImagesToBase64(imageArray).joined(separator: ",")
             bookData!.date = Date()
             try context.save()
+            isLoading = false
             showAlert = true
             alertType = .success
             alertTitle = "編集しました。"
         }catch{
             print(error.localizedDescription)
+            isLoading = false
+            showAlert = true
+            alertType = .error
+            alertTitle = "エラーが発生しました。"
         }
     }
     

@@ -51,7 +51,7 @@ struct LibraryPage: View {
                 .toolbarBackground(Color.black,for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
                 .toolbarColorScheme(.dark)
-        }.sheet(isPresented: $libraryModel.isAddPresented) {
+        }.fullScreenCover(isPresented: $libraryModel.isAddPresented) {
             AddPage(isPresented: $libraryModel.isAddPresented, bookDataItem: nil)
         }.alertMessage(isPresented: $libraryModel.showSnack,type: .snackbar) {
             HStack {
@@ -109,29 +109,30 @@ struct BookItemView:View{
                     if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
                         Image(uiImage: uiImage)
                             .resizable()
+                            .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.09).padding().padding(.top, 40)
                             .scaledToFit()
-                            .frame(width: Bounds.width * 0.75, height: Bounds.height * 0.13).padding().padding(.top, 40)
                     }else{
                         if(bookData.categoryStatus == 2){
                             Image(decorative: "folder")
                                 .resizable()
+                                .frame(width: Bounds.width * 0.2, height: Bounds.height * 0.1)
                                 .scaledToFit()
-                                .frame(width: Bounds.width * 0.25, height: Bounds.height * 0.08).padding(.top, 30)
+                                .padding(.top, 30)
                         }else{
                             Image(decorative: "no_image")
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)
                                 .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13)
+                                .aspectRatio(contentMode: .fill)
                         }
                     }
-                    Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
+                    Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").font(.system(size: Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 8).padding(.top,4)
-                    Text(bookData.title!).font(.system(size: 13)).foregroundStyle(Color.white).fontWeight(.bold)
+                        .padding(.top,4)
+                    Text(bookData.title!).font(.system(size:Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 8).padding(.top,1)
-                    Text(UtilDate().DateTimeToString(date: bookData.date!)).font(.system(size: 12)).foregroundStyle(Color.white).fontWeight(.bold)
-                        .frame(maxWidth: .infinity, alignment: .center).padding(.top,1)
+                        .padding(.top,1)
+                    Text(UtilDate().DateTimeToString(date: bookData.date!)).font(.system(size: Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading).padding(.top,1)
                     Spacer()
                 }.frame(width: Bounds.width * 0.4, height: Bounds.height * 0.21)
             })
@@ -141,7 +142,7 @@ struct BookItemView:View{
                     MenuTtripleDotButton(bookData: bookData, model: model)
                 }
                 Spacer()
-            }.sheet(item: $model.selectedBookDataItem) { item in
+            }.fullScreenCover(item: $model.selectedBookDataItem) { item in
                 if(item.page == .preview ){
                     PreviewPage(images: [], bookData: item.bookData)
                 }else{
@@ -197,8 +198,8 @@ struct MenuTtripleDotButton : View{
         }label: {
             ZStack {
                 Circle().fill(Color.clear).frame(width: Bounds.width * 0.1, height:Bounds.width * 0.1).padding(.trailing, 12)
-                Image(systemName: "ellipsis").foregroundColor(.white).font(.system(size: 14))
-                    .frame(width: Bounds.width * 0.06, height:Bounds.width * 0.06).background(Color.black).cornerRadius(70)  .overlay(
+                Image(systemName: "ellipsis").foregroundColor(.white).font(.system(size: Bounds.width * 0.03 ))
+                    .frame(width: Bounds.width * 0.06, height:Bounds.width * 0.06).background(Color.black).cornerRadius(70).overlay(
                         RoundedRectangle(cornerRadius: 70).stroke(Color.white, lineWidth: 2)
                     ).padding(.all, 10).padding(.trailing, 12)
             }

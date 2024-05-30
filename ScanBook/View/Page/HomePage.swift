@@ -159,7 +159,7 @@ struct ReadingBookItemView : View{
                     VStack(alignment:.leading) {
                         Group{
                             Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
-                            Text(bookData.title!).frame(height: Bounds.width * 0.04)
+                            Text(bookData.title ?? "" ).frame(height: Bounds.width * 0.04)
                             Text("\(bookData.pageCount + 1) / \(Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")).count) ").font(.system(size: 20))
                         }.foregroundStyle(Color.white).fontWeight(.bold)
                     }

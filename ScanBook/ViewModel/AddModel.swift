@@ -17,7 +17,9 @@ class AddModel : ObservableObject{
             titleText = self.bookData!.title!
             categoryStatus = Int(self.bookData!.categoryStatus)
             category = categoryItems[categoryStatus!]
-            bookCovarImage = UIImage(data: self.bookData!.coverImage!)!;
+            if(category != "書類" ){
+                bookCovarImage = UIImage(data: self.bookData!.coverImage!)!;
+            }
             imageArray = Convert.convertBase64ToImages(self.bookData!.images!.components(separatedBy: ","))
             if(imageArray.count != 0){
                 pageCount = imageArray.count

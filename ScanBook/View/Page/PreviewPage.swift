@@ -79,32 +79,60 @@ struct PreviewPageCountBar:View{
     let imagesCount: Int
     @Binding @WithPrevious var pageCount: Int
     var body: some View{
-        ScrollView{
-            Menu {
-                ForEach(0..<imagesCount ,id: \.self){ page in
-                    Button(action: {
-                        pageCount = page
-                    }) {
-                        Text("\(page + 1)")
+        Menu{
+            ScrollView{
+                VStack{
+                    ForEach(0..<imagesCount ,id: \.self){ page in
+                        Button(action: {
+                            pageCount = page
+                        }) {
+                            Text("\(page + 1)")
+                        }
                     }
                 }
-            }label: {
-                HStack{
-                    Group{
-                        Text("\(pageCount + 1) /").font(.system(size: 20)).foregroundStyle(.gray)
-                        Text("\(imagesCount)").font(.system(size: 20))
-                            .foregroundStyle(.gray)
-                    }
-                }.padding(.horizontal).background(Color.white)
-                    .cornerRadius(30).frame(minWidth: 100.0)
-            }
+            }.frame(maxHeight: 100)
+        }label: {
+            HStack{
+                Group{
+                    Text("\(pageCount + 1) /").font(.system(size: 20)).foregroundStyle(.gray)
+                    Text("\(imagesCount)").font(.system(size: 20))
+                        .foregroundStyle(.gray)
+                }
+            }.padding(.horizontal).background(Color.white)
+                .cornerRadius(30)
         }
     }
+    
 }
 
 
 struct PreviewPage_Previews: PreviewProvider {
-    static let images :[UIImage] = []
+    static let images :[UIImage] = [
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!,
+        UIImage(systemName: "circle.fill")!
+    ]
     static var previews: some View {
         PreviewPage(images: images, bookData: nil)
     }

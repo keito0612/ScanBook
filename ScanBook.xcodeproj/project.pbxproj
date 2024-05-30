@@ -46,6 +46,8 @@
 		35882ADC2B9C976300079C48 /* PreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882ADB2B9C976300079C48 /* PreviewModel.swift */; };
 		359B0DFC2BB5159B00F2A7E4 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */; };
 		359CD2DD2BA57AA700BC7005 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */; };
+		35C1B2FB2BFE58B9008D7CB1 /* PassCodeSettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */; };
+		35C1B2FD2C08008E008D7CB1 /* PasscodeSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */; };
 		35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */; };
 		35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E13DC32BFB235E00F97C53 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
@@ -107,6 +109,8 @@
 		35882ADB2B9C976300079C48 /* PreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
 		359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeSettingPage.swift; sourceTree = "<group>"; };
+		35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSettingModel.swift; sourceTree = "<group>"; };
 		35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDataItem.swift; sourceTree = "<group>"; };
 		35E13DC32BFB235E00F97C53 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +159,7 @@
 				35315F832B6DE1B80045014B /* LibraryModel.swift */,
 				35882ADB2B9C976300079C48 /* PreviewModel.swift */,
 				350ED2652BBAA1970051A11E /* HomeModel.swift */,
+				35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 				35315F7F2B6974810045014B /* SettingPage.swift */,
 				35315F812B6DE1350045014B /* PreviewPage.swift */,
 				359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */,
+				35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -432,10 +438,12 @@
 				35545F212B7E449D00B21AB4 /* view.swift in Sources */,
 				35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */,
 				35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */,
+				35C1B2FD2C08008E008D7CB1 /* PasscodeSettingModel.swift in Sources */,
 				35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */,
 				35315F8F2B6E271E0045014B /* PersistenceController.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
 				350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */,
+				35C1B2FB2BFE58B9008D7CB1 /* PassCodeSettingPage.swift in Sources */,
 				35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */,
 				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
 				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,

@@ -131,7 +131,6 @@ struct PassCodeSettingScreen2View: View{
             .navigationBarBackButtonHidden()
             .customBackButton {
                 passCheck.firstCheck = [nil, nil, nil, nil]
-                router.path.removeLast()
             }
             //パスコードが一致した時のアラート
             .alert(Text("FaceIdを使いますか？"), isPresented: $isShowAlert){

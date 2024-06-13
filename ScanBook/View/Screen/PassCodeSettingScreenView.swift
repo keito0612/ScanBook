@@ -128,7 +128,6 @@ struct PassCodeSettingScreenView: View {
             .customBackButton(onBack: {
                 passCheck.firstCheck = [nil, nil, nil, nil]
                 passCheck.passText = "パスワードを忘れると復元できません\n忘れないようご注意ください"
-                router.path.removeLast()
             })
         }
     }

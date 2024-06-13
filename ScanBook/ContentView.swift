@@ -55,7 +55,7 @@ struct ContentView: View {
                         Image(systemName: "books.vertical")
                         Text("ライブラリ")
                     }.tag(1)
-                SettingPage()
+               SettingRootView()
                     .tabItem {
                         Image(systemName: "person.crop.circle")
                         Text("設定")

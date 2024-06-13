@@ -113,15 +113,15 @@ struct BookItemView:View{
                             .scaledToFit()
                     }else{
                         if(bookData.categoryStatus == 2){
-                            Image(decorative: "folder")
-                                .resizable()
-                                .frame(width: Bounds.width * 0.2, height: Bounds.height * 0.1)
-                                .scaledToFit()
-                                .padding(.top, 30)
+                            Image(systemName: "folder")
+                                .foregroundStyle(.white)
+                                .font(.system(size: Bounds.width * 0.2, weight: .medium))
+                                .padding(.top, 46)
+                                .padding(.bottom, 18)
                         }else{
                             Image(decorative: "no_image")
                                 .resizable()
-                                .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.13)
+                                .frame(width: Bounds.width * 0.35, height: Bounds.height * 0.09)
                                 .aspectRatio(contentMode: .fill)
                         }
                     }

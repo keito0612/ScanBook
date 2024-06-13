@@ -40,6 +40,9 @@
 		35545F2F2B8497F800B21AB4 /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F2E2B8497F800B21AB4 /* Bounds.swift */; };
 		35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F312B849FFE00B21AB4 /* UtilDate.swift */; };
 		35545F342B88F9AD00B21AB4 /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F332B88F9AC00B21AB4 /* Convert.swift */; };
+		35586F312C143D76006852F4 /* PassCodeSettingScreen2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35586F302C143D76006852F4 /* PassCodeSettingScreen2View.swift */; };
+		35586F332C17356B006852F4 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35586F322C17356B006852F4 /* SettingModel.swift */; };
+		35586F352C1A80D4006852F4 /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35586F342C1A80D4006852F4 /* SettingRootView.swift */; };
 		35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */; };
 		35882AD82B9A1FA000079C48 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 35882AD72B9A1FA000079C48 /* CombineCocoa */; };
 		35882ADA2B9A21AC00079C48 /* imageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD92B9A21AC00079C48 /* imageViewer.swift */; };
@@ -48,6 +51,11 @@
 		359CD2DD2BA57AA700BC7005 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */; };
 		35C1B2FB2BFE58B9008D7CB1 /* PassCodeSettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */; };
 		35C1B2FD2C08008E008D7CB1 /* PasscodeSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */; };
+		35C1B2FF2C083ED8008D7CB1 /* LocalAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */; };
+		35C1B3012C0B5803008D7CB1 /* LocalAuthServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B3002C0B5802008D7CB1 /* LocalAuthServise.swift */; };
+		35C1B3042C0EED4F008D7CB1 /* PassCodeSettingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B3032C0EED4F008D7CB1 /* PassCodeSettingScreenView.swift */; };
+		35C1B3062C10253F008D7CB1 /* PassCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B3052C10253F008D7CB1 /* PassCheck.swift */; };
+		35C1B3082C1177CE008D7CB1 /* PassCodeLockScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B3072C1177CE008D7CB1 /* PassCodeLockScreenView.swift */; };
 		35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */; };
 		35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E13DC32BFB235E00F97C53 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
@@ -104,6 +112,9 @@
 		35545F2E2B8497F800B21AB4 /* Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounds.swift; sourceTree = "<group>"; };
 		35545F312B849FFE00B21AB4 /* UtilDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilDate.swift; sourceTree = "<group>"; };
 		35545F332B88F9AC00B21AB4 /* Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
+		35586F302C143D76006852F4 /* PassCodeSettingScreen2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeSettingScreen2View.swift; sourceTree = "<group>"; };
+		35586F322C17356B006852F4 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		35586F342C1A80D4006852F4 /* SettingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRootView.swift; sourceTree = "<group>"; };
 		35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewerView.swift; sourceTree = "<group>"; };
 		35882AD92B9A21AC00079C48 /* imageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageViewer.swift; sourceTree = "<group>"; };
 		35882ADB2B9C976300079C48 /* PreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
@@ -111,6 +122,11 @@
 		359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeSettingPage.swift; sourceTree = "<group>"; };
 		35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSettingModel.swift; sourceTree = "<group>"; };
+		35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthView.swift; sourceTree = "<group>"; };
+		35C1B3002C0B5802008D7CB1 /* LocalAuthServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalAuthServise.swift; path = ScanBook/View/LocalAuthServise.swift; sourceTree = SOURCE_ROOT; };
+		35C1B3032C0EED4F008D7CB1 /* PassCodeSettingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeSettingScreenView.swift; sourceTree = "<group>"; };
+		35C1B3052C10253F008D7CB1 /* PassCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCheck.swift; sourceTree = "<group>"; };
+		35C1B3072C1177CE008D7CB1 /* PassCodeLockScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeLockScreenView.swift; sourceTree = "<group>"; };
 		35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDataItem.swift; sourceTree = "<group>"; };
 		35E13DC32BFB235E00F97C53 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +176,7 @@
 				35882ADB2B9C976300079C48 /* PreviewModel.swift */,
 				350ED2652BBAA1970051A11E /* HomeModel.swift */,
 				35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */,
+				35586F322C17356B006852F4 /* SettingModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -167,6 +184,7 @@
 		35315F7C2B5D18240045014B /* Servise */ = {
 			isa = PBXGroup;
 			children = (
+				35C1B3002C0B5802008D7CB1 /* LocalAuthServise.swift */,
 			);
 			path = Servise;
 			sourceTree = "<group>";
@@ -178,6 +196,7 @@
 				35315F902B6E27900045014B /* BookData+CoreDataClass.swift */,
 				35315F8C2B6E26A90045014B /* BookData+CoreDataProperties.swift */,
 				35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */,
+				35C1B3052C10253F008D7CB1 /* PassCheck.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -249,6 +268,7 @@
 		3542558C2B4BDA7400559413 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				35C1B3022C0EED2C008D7CB1 /* Screen */,
 				3542558D2B4BDA8700559413 /* Page */,
 				354255902B4C0BBE00559413 /* TextFieldView .swift */,
 				35315F7D2B6142A20045014B /* DropDownView.swift */,
@@ -263,6 +283,8 @@
 				359CD2DC2BA57AA700BC7005 /* CustomAlertView.swift */,
 				35E13DC32BFB235E00F97C53 /* LoadingView.swift */,
 				35545F1E2B79198300B21AB4 /* ScannerView.swift */,
+				35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */,
+				35586F342C1A80D4006852F4 /* SettingRootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,6 +309,16 @@
 				35545F332B88F9AC00B21AB4 /* Convert.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		35C1B3022C0EED2C008D7CB1 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				35C1B3032C0EED4F008D7CB1 /* PassCodeSettingScreenView.swift */,
+				35C1B3072C1177CE008D7CB1 /* PassCodeLockScreenView.swift */,
+				35586F302C143D76006852F4 /* PassCodeSettingScreen2View.swift */,
+			);
+			path = Screen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,14 +467,18 @@
 				354255912B4C0BBE00559413 /* TextFieldView .swift in Sources */,
 				35882ADA2B9A21AC00079C48 /* imageViewer.swift in Sources */,
 				35545F342B88F9AD00B21AB4 /* Convert.swift in Sources */,
+				35586F332C17356B006852F4 /* SettingModel.swift in Sources */,
 				35545F212B7E449D00B21AB4 /* view.swift in Sources */,
 				35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */,
 				35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */,
 				35C1B2FD2C08008E008D7CB1 /* PasscodeSettingModel.swift in Sources */,
+				35C1B3062C10253F008D7CB1 /* PassCheck.swift in Sources */,
+				35586F312C143D76006852F4 /* PassCodeSettingScreen2View.swift in Sources */,
 				35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */,
 				35315F8F2B6E271E0045014B /* PersistenceController.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
 				350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */,
+				35C1B3012C0B5803008D7CB1 /* LocalAuthServise.swift in Sources */,
 				35C1B2FB2BFE58B9008D7CB1 /* PassCodeSettingPage.swift in Sources */,
 				35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */,
 				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
@@ -453,7 +489,9 @@
 				35315F822B6DE1350045014B /* PreviewPage.swift in Sources */,
 				35315F842B6DE1B80045014B /* LibraryModel.swift in Sources */,
 				35315F792B5556F90045014B /* AddModel.swift in Sources */,
+				35C1B3042C0EED4F008D7CB1 /* PassCodeSettingScreenView.swift in Sources */,
 				354255672B4BC8B200559413 /* ScanBook.xcdatamodeld in Sources */,
+				35C1B3082C1177CE008D7CB1 /* PassCodeLockScreenView.swift in Sources */,
 				35545F252B7FBA9700B21AB4 /* ImageMagnificationView.swift in Sources */,
 				35545F282B80B09E00B21AB4 /* BookSlider.swift in Sources */,
 				35315F922B6E27900045014B /* BookData+CoreDataClass.swift in Sources */,
@@ -465,7 +503,9 @@
 				35882ADC2B9C976300079C48 /* PreviewModel.swift in Sources */,
 				3542558B2B4BDA6A00559413 /* AddPage.swift in Sources */,
 				35545F2F2B8497F800B21AB4 /* Bounds.swift in Sources */,
+				35586F352C1A80D4006852F4 /* SettingRootView.swift in Sources */,
 				3542555B2B4BC8B100559413 /* ScanBookApp.swift in Sources */,
+				35C1B2FF2C083ED8008D7CB1 /* LocalAuthView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,12 +669,15 @@
 				DEVELOPMENT_TEAM = 2GKXFJ7B26;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScanBook/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "本や書類をスキャンするために、カメラを使用します。";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "FaceIDを使用して、アプリへのアクセスを保護し、安全な認証を提供します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -659,12 +702,15 @@
 				DEVELOPMENT_TEAM = 2GKXFJ7B26;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScanBook/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "本や書類をスキャンするために、カメラを使用します。";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "FaceIDを使用して、アプリへのアクセスを保護し、安全な認証を提供します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

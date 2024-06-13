@@ -9,12 +9,18 @@ import SwiftUI
 
 @main
 struct ScanBookApp: App {
+    let password = UserDefaults.standard.string(forKey: "password")
     let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if(password != nil ){
+                PassCodeLockScreenView()
+            }else{
+                ContentView()
+                    .environmentObject(PassCheck())
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .transition(.opacity)
+            }
         }
     }
 }

@@ -25,7 +25,7 @@ struct CustomAlertView: View {
     let onDestructive:() -> Void
     @Binding  var isShow : Bool
     let onSubmit: () -> Void
-    init(alertType: AlertType, title: String, message: String, cancelButtonLabel: String = "いいえ" , onCansel: @escaping () -> Void = {}, destructiveLavel: String = "はい", onDestructive: @escaping () -> Void = {}, isShow:Binding<Bool>, onSubmit: @escaping () -> Void) {
+    init(alertType: AlertType, title: String, message: String, cancelButtonLabel: String = "いいえ" , onCansel: @escaping () -> Void = {}, destructiveLavel: String = "はい", onDestructive: @escaping () -> Void = {}, isShow:Binding<Bool>, onSubmit: @escaping () -> Void = {}) {
         self.alertType = alertType
         self.title = title
         self.message = message

@@ -53,22 +53,22 @@ struct SettingPage: View {
 struct PassCodeItemView:View {
     let onTap:() -> Void
     var body:some View{
-        HStack {
-            Text("パスコード").foregroundStyle(Color.white).bold()
-            Spacer()
-            Image(systemName: "chevron.right")
-                .foregroundColor(.white)
-        }
-        .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
-        .onTapGesture{
+        Button(action: {
             onTap()
-        }
+        }, label: {
+            HStack {
+                Text("パスコード").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.white)
+            }
+        })
+        .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
+       
     }
 }
 
 struct SettingPage_Previews: PreviewProvider {
     static var previews: some View {
-        @StateObject var navigationSettingRouter :NavigationSettingRouter = NavigationSettingRouter()
-        SettingPage() .environmentObject(navigationSettingRouter)
+        SettingPage().environmentObject(NavigationSettingRouter())
     }
 }

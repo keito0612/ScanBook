@@ -143,11 +143,10 @@ struct ReadingBookItemView : View{
                             .padding(.all, 5)
                     }else{
                         if(bookData.categoryStatus == 2){
-                            Image(decorative: "folder")
-                                .resizable()
-                                .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1)
-                                .scaledToFit()
-                                .padding(.all, 5)
+                            Image(systemName: "folder")
+                                .foregroundStyle(.white)
+                                .font(.system(size: Bounds.width * 0.142, weight: .medium))
+                                .padding(.vertical, 18)
                         }else{
                             Image(decorative: "no_image")
                                 .resizable()
@@ -188,10 +187,10 @@ struct favoriteBookItemView : View{
                         .scaledToFit()
                 }else{
                     if(bookData.categoryStatus == 2){
-                        Image(decorative: "folder")
-                            .resizable()
-                            .frame(width: Bounds.width * 0.5, height: Bounds.height * 0.2).padding(.top, 30)
-                            .scaledToFit()
+                        Image(systemName: "folder")
+                            .foregroundStyle(.white)
+                            .font(.system(size: Bounds.width * 0.40, weight: .medium))
+                            .padding(.vertical, 10)
                     }else{
                         Image(decorative: "no_image")
                             .resizable()

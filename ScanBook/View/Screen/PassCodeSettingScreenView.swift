@@ -126,6 +126,7 @@ struct PassCodeSettingScreenView: View {
             .navigationTitle("入力")
             .navigationBarBackButtonHidden()
             .customBackButton(onBack: {
+                UserDefaults.standard.set(false, forKey: "isPassCodeLock")
                 passCheck.firstCheck = [nil, nil, nil, nil]
                 passCheck.passText = "パスワードを忘れると復元できません\n忘れないようご注意ください"
             })

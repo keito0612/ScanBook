@@ -115,9 +115,9 @@ struct BookItemView:View{
                         if(bookData.categoryStatus == 2){
                             Image(systemName: "folder")
                                 .foregroundStyle(.white)
-                                .font(.system(size: Bounds.width * 0.2, weight: .medium))
+                                .font(.system(size: Bounds.height * 0.09, weight: .medium))
                                 .padding(.top, 46)
-                                .padding(.bottom, 18)
+                                .padding(.bottom, 10)
                         }else{
                             Image(decorative: "no_image")
                                 .resizable()

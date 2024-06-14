@@ -15,7 +15,7 @@ struct PassCodeLockScreenView: View {
     let persistenceController = PersistenceController.shared
     let answer = UserDefaults.standard.string(forKey: "password")
 
-    let useFaceID = UserDefaults.standard.bool(forKey: "UseFaceID")
+    @AppStorage("isFaceId") var isFaceId:Bool = UserDefaults.standard.bool(forKey: "password")
     
     
     var body: some View {
@@ -121,7 +121,7 @@ struct PassCodeLockScreenView: View {
                 
                 Spacer()
                 .onAppear{
-                    if useFaceID {
+                    if isFaceId {
                         LocalAuthServise().auth(complation: {_ in
                             passCheck = ["a", "a", "a", "a"]
                             DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {

@@ -19,24 +19,27 @@ struct TextFieldView: View {
         VStack{
             Text(lavel)
                 .bold()
+                .font(.system(size: Bounds.height * 0.02))
                 .foregroundColor(Color.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .onSubmit {
                     submit()
                 }
             TextField("", text: $text, prompt: Text(hintText).foregroundColor(Color.gray.opacity(8.0)))
+                .frame(height: Bounds.height * 0.03)
             .foregroundColor(Color.white)
+            .font(.system(size: Bounds.width * 0.04))
             .accentColor(Color.white)
             .padding(10)
             .overlay(
-                RoundedRectangle(cornerRadius: 30)
+                RoundedRectangle(cornerRadius: Bounds.width * 0.1)
                     .stroke( errorValidation ? Color.red : Color.white, lineWidth: 3)
             )
             .frame(height : Bounds.height * 0.06)
             .padding(.horizontal)
             if(errorValidation){
                 Text(errorText)
-                    .font(.system(size: 13))
+                    .font(.system(size: Bounds.width * 0.03))
                     .bold()
                     .foregroundColor(Color.red)
                     .frame(maxWidth: .infinity, alignment: .leading)

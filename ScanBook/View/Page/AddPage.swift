@@ -95,11 +95,12 @@ struct BookCoverView :View{
             Text("本 / 漫画の表紙")
                 .bold()
                 .foregroundColor(Color.white)
+                .font(.system(size: Bounds.height * 0.02))
                 .frame(maxWidth: .infinity, alignment: .leading)
             if(model.bookCovarImage.size == CGSize.zero){
                 Rectangle()
                     .fill(Color.white)
-                    .frame(width:130, height: 130).onTapGesture {
+                    .frame(width: Bounds.height * 0.2, height: Bounds.height * 0.2).onTapGesture {
                         model.showingCovarImage.toggle()
                     }
                     .padding(.vertical, 8)
@@ -121,6 +122,7 @@ struct BookPageAdd :View{
         VStack{
             Text( model.category == "書類" ?  "書類の追加"  : "ページの追加")
                 .bold()
+                .font(.system(size: Bounds.height * 0.02))
                 .foregroundColor(Color.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text(model.category == "書類" ? "現在の枚数": "現在のページ数").bold().padding(.top).font(.system(size: Bounds.width * 0.04)).foregroundColor(Color.white)
@@ -130,7 +132,7 @@ struct BookPageAdd :View{
             }) {
                 Text(model.category == "書類" ? "書類を追加する": "ページを追加する").font(.system(size: Bounds.width * 0.04)).bold().foregroundColor(Color.white).frame(height: Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 30)
+                        RoundedRectangle(cornerRadius: Bounds.width * 0.1)
                             .stroke(Color.white, lineWidth: 4)
                     ).padding(.horizontal, 8)
             }
@@ -144,13 +146,13 @@ struct BookPageAdd :View{
             }) {
                 Text("確認").font(.system(size: Bounds.width * 0.04)).bold().foregroundColor(Color.white).frame(height: Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 30)
+                        RoundedRectangle(cornerRadius: Bounds.width * 0.1)
                             .stroke(Color.white, lineWidth: 4)
                     ).padding(.medium)
             }
             if(model.pageErrorValidation){
                 Text(model.pageErrorText)
-                    .font(.system(size: Bounds.width * 0.035))
+                    .font(.system(size: Bounds.width * 0.03))
                     .bold()
                     .foregroundColor(Color.red)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -171,9 +173,9 @@ struct AddButton:View{
             }
             model.add(context: context)
         }) {
-            Text("追加").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
+            Text("追加").font(.system(size: Bounds.width * 0.04)).bold().foregroundColor(Color.white).frame(height: Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 30)
+                    RoundedRectangle(cornerRadius: Bounds.width * 0.07)
                         .stroke(Color.white, lineWidth: 4)
                 ).padding(.horizontal, 80)
         }
@@ -191,9 +193,9 @@ struct EditButton:View{
             }
             model.edit(context: context)
         }) {
-            Text("編集").bold().foregroundColor(Color.white).frame(height: 60).frame(maxWidth: .infinity).background(Color.black)
+            Text("編集").bold().font(.system(size: Bounds.width * 0.04)).foregroundColor(Color.white).frame(height:  Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 30)
+                    RoundedRectangle(cornerRadius: Bounds.width * 0.07)
                         .stroke(Color.white, lineWidth: 4)
                 ).padding(.horizontal, 80)
         }

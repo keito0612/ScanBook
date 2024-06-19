@@ -13,7 +13,7 @@ struct SearchBarView: View {
         var body: some View {
             HStack {
                 Image(systemName: "magnifyingglass")
-                .font(.system(size:20, weight: .medium))
+                    .font(.system(size:Bounds.width * 0.05, weight: .medium))
                 .foregroundColor(Color.white)
                 .padding(.leading, 10)
                 TextField("", text: $searchText, prompt: Text("検索").foregroundColor(Color.gray.opacity(8.0)))
@@ -30,16 +30,17 @@ struct SearchBarView: View {
                         searchText.removeAll()
                     } label: {
                         Image(systemName: "xmark.circle.fill")
-                            .font(.system(size:20, weight: .medium))
+                            .font(.system(size:Bounds.width * 0.05, weight: .medium))
                             .foregroundColor(.white)
                     }
                     .padding(.trailing, 10)
                 }
             }.overlay(
-                RoundedRectangle(cornerRadius: 30)
+                RoundedRectangle(cornerRadius: Bounds.width * 0.1)
                  .stroke(Color.white, lineWidth: 3)
             ).background(Color.black).frame(maxWidth: .infinity)
-                .cornerRadius(30).padding(.horizontal)
+                .cornerRadius(Bounds.width * 0.1).padding(.horizontal)
+                .font(.system(size: Bounds.width * 0.04))
         }
 }
 

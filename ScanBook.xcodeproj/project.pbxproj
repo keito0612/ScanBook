@@ -103,6 +103,8 @@
 		3542558A2B4BDA6A00559413 /* AddPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPage.swift; sourceTree = "<group>"; };
 		3542558E2B4BDEBB00559413 /* LibraryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPage.swift; sourceTree = "<group>"; };
 		354255902B4C0BBE00559413 /* TextFieldView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldView .swift"; sourceTree = "<group>"; };
+		354A8D032C1DA125006422A9 /* ScanBookRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScanBookRelease.entitlements; sourceTree = "<group>"; };
+		354A8D042C1EE89A006422A9 /* ScanBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScanBook.entitlements; sourceTree = "<group>"; };
 		35545F1E2B79198300B21AB4 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		35545F202B7E449D00B21AB4 /* view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = view.swift; sourceTree = "<group>"; };
 		35545F222B7E44C000B21AB4 /* CustomBackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonView.swift; sourceTree = "<group>"; };
@@ -224,6 +226,8 @@
 		354255592B4BC8B100559413 /* ScanBook */ = {
 			isa = PBXGroup;
 			children = (
+				354A8D042C1EE89A006422A9 /* ScanBook.entitlements */,
+				354A8D032C1DA125006422A9 /* ScanBookRelease.entitlements */,
 				351DA06D2BE7CBA400C1DCC0 /* Controller */,
 				35545F2E2B8497F800B21AB4 /* Bounds.swift */,
 				35545F262B80A49200B21AB4 /* Utils */,
@@ -663,10 +667,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScanBook/ScanBook.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ScanBook/Preview Content\"";
-				DEVELOPMENT_TEAM = 2GKXFJ7B26;
+				DEVELOPMENT_TEAM = 7UWG7YPL59;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScanBook/Info.plist;
@@ -683,8 +689,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ScanBook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keito.scanbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -696,10 +703,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScanBook/ScanBookRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ScanBook/Preview Content\"";
-				DEVELOPMENT_TEAM = 2GKXFJ7B26;
+				DEVELOPMENT_TEAM = 7UWG7YPL59;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScanBook/Info.plist;
@@ -716,8 +725,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ScanBook;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keito.scanbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

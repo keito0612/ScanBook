@@ -19,6 +19,7 @@ struct DropDownView: View {
         VStack{
             Text(lavel)
                 .bold()
+                .font(.system(size: Bounds.height * 0.02))
                 .foregroundColor(Color.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Menu {
@@ -32,13 +33,15 @@ struct DropDownView: View {
                 }
             } label: {
                 HStack {
-                    Text(value).frame(height: 50).frame(maxWidth: .infinity, alignment: .leading).padding(.leading).foregroundColor(Color.white)
+                    Text(value).frame(maxWidth: .infinity, alignment: .leading).padding(.leading).foregroundColor(Color.white)
+                        .font(.system(size: Bounds.width * 0.04))
                     
-                    Image(systemName: "arrowtriangle.down.circle.fill").foregroundColor(Color.white).font(.system(size: 24, weight: .medium)).padding()
+                    Image(systemName: "arrowtriangle.down.circle.fill").foregroundColor(Color.white).font(.system(size: Bounds.width * 0.04, weight: .medium)).padding()
                 }.background(Color.black)
-                    .cornerRadius(30)
+                    .frame(height: Bounds.height * 0.06)
+                    .cornerRadius(Bounds.width * 0.06)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 30)
+                        RoundedRectangle(cornerRadius: Bounds.width * 0.06)
                             .stroke( errorValidation ? Color.red : Color.white, lineWidth: 3)
                     ).frame(maxWidth: .infinity).padding(.horizontal)
             }

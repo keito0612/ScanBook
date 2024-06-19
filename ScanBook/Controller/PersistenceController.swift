@@ -33,12 +33,17 @@ struct PersistenceController {
         return result
     }()
 
-    let container: NSPersistentContainer
+    let container: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "ScanBook")
+        container = NSPersistentCloudKitContainer(name: "ScanBook")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+            guard let description = container.persistentStoreDescriptions.first else {
+                fatalError("###\(#function): Failed to retrieve a persistent store description.")
+            }
+            description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         }
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
@@ -46,6 +51,12 @@ struct PersistenceController {
               fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         container.viewContext.automaticallyMergesChangesFromParent = true
+        do{
+            try container.viewContext.setQueryGenerationFrom(.current)
+        }catch {
+            assertionFailure("###\(#function): Failed to pin viewContext to the current generation:\(error)")
+        }
     }
 }

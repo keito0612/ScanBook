@@ -65,7 +65,7 @@ struct CustomAlertView: View {
                                  
                                 HStack{
                                     Spacer()
-                                    Text(cancelButtonLabel).bold().font(.system(size: 20))
+                                    Text(cancelButtonLabel).bold().foregroundStyle(.blue).font(.system(size: 20))
                                     Spacer()
                                 }
                             }
@@ -89,7 +89,7 @@ struct CustomAlertView: View {
                         },label: {
                             VStack{
                                 Spacer()
-                                Text("OK").font(.system(size: 20))
+                                Text("OK").foregroundStyle(.blue).font(.system(size: 20))
                                 Spacer()
                             }.frame(width: 300)
                         }).overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color.gray.opacity(0.5)), alignment: .top).frame(width: 300, height: 60)
@@ -104,7 +104,7 @@ struct CustomAlertView: View {
 }
 
 #Preview {
-    let alertType :AlertType = .success
+    let alertType :AlertType = .warning
     let title :String  = "削除しますか?"
     let message : String = "本当によろしいでしょうか?"
     @State var isShowDialog =  true

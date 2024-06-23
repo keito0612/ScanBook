@@ -34,6 +34,7 @@ struct PersistenceController {
     }()
 
     let container: NSPersistentCloudKitContainer
+    var iCloud:Bool = UserDefaults.standard.bool(forKey: "iCloud")
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "ScanBook")
@@ -53,10 +54,12 @@ struct PersistenceController {
         })
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         container.viewContext.automaticallyMergesChangesFromParent = true
-        do{
-            try container.viewContext.setQueryGenerationFrom(.current)
-        }catch {
-            assertionFailure("###\(#function): Failed to pin viewContext to the current generation:\(error)")
+        if(iCloud){
+            do{
+                try container.viewContext.setQueryGenerationFrom(.current)
+            }catch {
+                assertionFailure("###\(#function): Failed to pin viewContext to the current generation:\(error)")
+            }
         }
     }
 }

@@ -43,6 +43,9 @@
 		35586F312C143D76006852F4 /* PassCodeSettingScreen2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35586F302C143D76006852F4 /* PassCodeSettingScreen2View.swift */; };
 		35586F332C17356B006852F4 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35586F322C17356B006852F4 /* SettingModel.swift */; };
 		35586F352C1A80D4006852F4 /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35586F342C1A80D4006852F4 /* SettingRootView.swift */; };
+		356866142C22B135007879EB /* CheckIcloudServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356866132C22B135007879EB /* CheckIcloudServise.swift */; };
+		356866162C23BDDF007879EB /* ICloudSettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356866152C23BDDF007879EB /* ICloudSettingPage.swift */; };
+		356866182C23BF98007879EB /* ICloudSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356866172C23BF98007879EB /* ICloudSettingModel.swift */; };
 		35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */; };
 		35882AD82B9A1FA000079C48 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 35882AD72B9A1FA000079C48 /* CombineCocoa */; };
 		35882ADA2B9A21AC00079C48 /* imageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD92B9A21AC00079C48 /* imageViewer.swift */; };
@@ -117,6 +120,9 @@
 		35586F302C143D76006852F4 /* PassCodeSettingScreen2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeSettingScreen2View.swift; sourceTree = "<group>"; };
 		35586F322C17356B006852F4 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		35586F342C1A80D4006852F4 /* SettingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRootView.swift; sourceTree = "<group>"; };
+		356866132C22B135007879EB /* CheckIcloudServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIcloudServise.swift; sourceTree = "<group>"; };
+		356866152C23BDDF007879EB /* ICloudSettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudSettingPage.swift; sourceTree = "<group>"; };
+		356866172C23BF98007879EB /* ICloudSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudSettingModel.swift; sourceTree = "<group>"; };
 		35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewerView.swift; sourceTree = "<group>"; };
 		35882AD92B9A21AC00079C48 /* imageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageViewer.swift; sourceTree = "<group>"; };
 		35882ADB2B9C976300079C48 /* PreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 				350ED2652BBAA1970051A11E /* HomeModel.swift */,
 				35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */,
 				35586F322C17356B006852F4 /* SettingModel.swift */,
+				356866172C23BF98007879EB /* ICloudSettingModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				35C1B3002C0B5802008D7CB1 /* LocalAuthServise.swift */,
+				356866132C22B135007879EB /* CheckIcloudServise.swift */,
 			);
 			path = Servise;
 			sourceTree = "<group>";
@@ -302,6 +310,7 @@
 				35315F812B6DE1350045014B /* PreviewPage.swift */,
 				359B0DFB2BB5159B00F2A7E4 /* HomePage.swift */,
 				35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */,
+				356866152C23BDDF007879EB /* ICloudSettingPage.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -478,8 +487,10 @@
 				35C1B2FD2C08008E008D7CB1 /* PasscodeSettingModel.swift in Sources */,
 				35C1B3062C10253F008D7CB1 /* PassCheck.swift in Sources */,
 				35586F312C143D76006852F4 /* PassCodeSettingScreen2View.swift in Sources */,
+				356866182C23BF98007879EB /* ICloudSettingModel.swift in Sources */,
 				35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */,
 				35315F8F2B6E271E0045014B /* PersistenceController.swift in Sources */,
+				356866162C23BDDF007879EB /* ICloudSettingPage.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
 				350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */,
 				35C1B3012C0B5803008D7CB1 /* LocalAuthServise.swift in Sources */,
@@ -490,6 +501,7 @@
 				35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */,
 				35315F952B720D150045014B /* SearchBarView.swift in Sources */,
 				359B0DFC2BB5159B00F2A7E4 /* HomePage.swift in Sources */,
+				356866142C22B135007879EB /* CheckIcloudServise.swift in Sources */,
 				35315F822B6DE1350045014B /* PreviewPage.swift in Sources */,
 				35315F842B6DE1B80045014B /* LibraryModel.swift in Sources */,
 				35315F792B5556F90045014B /* AddModel.swift in Sources */,
@@ -676,6 +688,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScanBook/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "本や書類をスキャンするために、カメラを使用します。";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "FaceIDを使用して、アプリへのアクセスを保護し、安全な認証を提供します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -712,6 +725,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScanBook/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "本や書類をスキャンするために、カメラを使用します。";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "FaceIDを使用して、アプリへのアクセスを保護し、安全な認証を提供します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

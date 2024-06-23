@@ -98,17 +98,24 @@ struct BookCoverView :View{
                 .font(.system(size: Bounds.height * 0.02))
                 .frame(maxWidth: .infinity, alignment: .leading)
             if(model.bookCovarImage.size == CGSize.zero){
-                Rectangle()
-                    .fill(Color.white)
+                Image(systemName: "camera")
+                    .font(.system(size: Bounds.height * 0.06, weight: .medium))
+                    .foregroundColor(.white)
                     .frame(width: Bounds.height * 0.2, height: Bounds.height * 0.2).onTapGesture {
                         model.showingCovarImage.toggle()
                     }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 30)
+                            .stroke(Color.white, lineWidth: 10)
+                    )
+                    .cornerRadius(30)
+                    .background(.black)
                     .padding(.vertical, 8)
             } else{
                 Image(uiImage: model.bookCovarImage)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 130, height: 130).onTapGesture {
+                    .frame(width: Bounds.height * 0.2, height: Bounds.height * 0.2).onTapGesture {
                         model.showingCovarImage.toggle()
                     }
                     .padding(.vertical, 8)

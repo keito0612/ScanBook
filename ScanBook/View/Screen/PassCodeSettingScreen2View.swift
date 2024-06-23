@@ -121,36 +121,32 @@ struct PassCodeSettingScreen2View: View{
                             .font(.system(size: 40, weight: .medium))
                             .frame(width: 90, height: 90)
                             .foregroundColor(Color(.white))
-                           
+                        
                     }.padding(.top, 4)
                 }
-                //入力ボタン終
                 Spacer()
-            }//VStack
+            }
             .navigationTitle("確認入力")
             .navigationBarBackButtonHidden()
             .customBackButton {
                 passCheck.firstCheck = [nil, nil, nil, nil]
             }
-            //パスコードが一致した時のアラート
             .alert(Text("FaceIdを使いますか？"), isPresented: $isShowAlert){
-                //ルートへ
                 Button("はい"){
-                    UserDefaults.standard.set(true, forKey: "UseFaceID")
+                    UserDefaults.standard.set(true, forKey: "isFaceId")
                     router.path.removeLast(router.path.count)
                     passCheck.firstCheck = [nil, nil, nil, nil]
                     passCheck.secondCheck = [nil, nil, nil, nil]
                 }
                 Button("いいえ"){
-                    UserDefaults.standard.set(false, forKey: "UseFaceID")
+                    UserDefaults.standard.set(false, forKey: "isFaceId")
                     router.path.removeLast(router.path.count)
                     passCheck.firstCheck = [nil, nil, nil, nil]
                     passCheck.secondCheck = [nil, nil, nil, nil]
                 }
+            }
         }
-        }
-        
-    }//body
+    }
     
     private func daleteText(){
         var  inputTapIndex :Int? = nil

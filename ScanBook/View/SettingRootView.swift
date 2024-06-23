@@ -14,6 +14,7 @@ class NavigationSettingRouter: ObservableObject {
         case passCodeSetting
         case passCodeSettingScreen
         case passCodeSettingScreen2
+        case iCloudSetting
         
         @ViewBuilder
         func destination() -> some View {
@@ -24,6 +25,8 @@ class NavigationSettingRouter: ObservableObject {
                 PassCodeSettingScreenView()
             case .passCodeSettingScreen2:
                 PassCodeSettingScreen2View()
+            case .iCloudSetting:
+                ICloudSettingPage()
             }
         }
     }
@@ -31,6 +34,7 @@ class NavigationSettingRouter: ObservableObject {
 
 struct SettingRootView: View {
     @StateObject private var navigationSettingRouter = NavigationSettingRouter()
+    @Environment(\.managedObjectContext) private var viewContext
     var body: some View {
         NavigationStack(path: $navigationSettingRouter.path) {
                  SettingPage()
@@ -39,9 +43,10 @@ struct SettingRootView: View {
                       })
               }
               .environmentObject(navigationSettingRouter)
+              .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
 
 #Preview {
-    SettingRootView()
+    SettingRootView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }

@@ -12,6 +12,7 @@ struct PassCodeSettingScreen2View: View{
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var passCheck: PassCheck
     @EnvironmentObject var router:NavigationSettingRouter
+    @AppStorage("isPassCodeLock") var isPassCodeLock:Bool = false
     
     @State var isShowAlert = false
     @State var passCode = ""
@@ -20,12 +21,12 @@ struct PassCodeSettingScreen2View: View{
         ZStack {
             Color.black
                 .ignoresSafeArea()
-            VStack{
-                Spacer()
+            VStack(spacing:0){
                 Text("パスコードの再入力")
                     .font(.title3)
                     .foregroundStyle(.white)
                     .fontWeight(.bold)
+                    .padding(.top,70)
                 
                 //黒丸or白丸
                 HStack{
@@ -47,7 +48,7 @@ struct PassCodeSettingScreen2View: View{
                     .font(.footnote)
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color.clear)
-                Spacer()
+                    .padding(.bottom, 24)
                 //入力ボタン
                 HStack{
                     ForEach(1..<4){ i in
@@ -178,7 +179,7 @@ struct PassCodeSettingScreen2View: View{
                         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
                             UserDefaults.standard.set(true, forKey: "SetPass")
                             UserDefaults.standard.set(passCode, forKey: "password")
-                            print(passCode)
+                            isPassCodeLock = true
                             isShowAlert = true
                         }
                         

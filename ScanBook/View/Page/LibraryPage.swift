@@ -44,7 +44,7 @@ struct LibraryPage: View {
                         Spacer()
                         FloatingActionButton(onTap: {
                           libraryModel.isAddPresented.toggle()
-                        }).padding(.trailing , 16).padding(.bottom , libraryModel.showSnack ? 80 : 8)
+                        }).padding(.trailing , 16).padding(.bottom , libraryModel.showSnack ? 150 : 80)
                     }
                 }
             }.navigationTitle("ライブラリ")
@@ -52,13 +52,14 @@ struct LibraryPage: View {
                 .toolbarBackground(.visible, for: .navigationBar)
                 .toolbarColorScheme(.dark)
         }.fullScreenCover(isPresented: $libraryModel.isAddPresented) {
-            AddPage(isPresented: $libraryModel.isAddPresented, bookDataItem: nil)
+            let addModel = AddModel(bookData: libraryModel.selectedBookDataItem?.bookData)
+            AddPage(isPresented: $libraryModel.isAddPresented, bookDataItem: $libraryModel.selectedBookDataItem, addModel:addModel )
         }.alertMessage(isPresented: $libraryModel.showSnack,type: .snackbar) {
             HStack {
                 Text(libraryModel.snackText).bold()
                     .foregroundColor(.white).padding(.vertical)
                   Spacer()
-            }.padding(.horizontal).padding(.top).padding(.bottom, 60)
+            }.padding(.horizontal).padding(.top).padding(.bottom, 120)
                 .background(Color(white: 0.3, opacity: 1.0))
         }
     }
@@ -74,13 +75,20 @@ struct LibraryPage: View {
     }
 }
 struct FloatingActionButton: View{
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     let onTap: () -> Void
     var body: some View{
         Button {
             onTap()
         } label: {
-            Image(systemName: "plus")
-                .font(.title.weight(.semibold))
+          floatingActionButtonDesign
+        }
+    }
+    var floatingActionButtonDesign: some View {
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return Image(systemName: "plus")
+                .font(.largeTitle)
                 .padding()
                 .background(Color.white)
                 .foregroundColor(.black)
@@ -88,6 +96,13 @@ struct FloatingActionButton: View{
                 .shadow(radius: 4, x: 0, y: 4)
             
         }
+        return Image(systemName: "plus")
+            .font(.title.weight(.semibold))
+            .padding()
+            .background(Color.white)
+            .foregroundColor(.black)
+            .clipShape(Circle())
+            .shadow(radius: 4, x: 0, y: 4)
     }
 }
 
@@ -117,7 +132,7 @@ struct BookItemView:View{
                                 .foregroundStyle(.white)
                                 .font(.system(size: Bounds.height * 0.09, weight: .medium))
                                 .padding(.top, 46)
-                                .padding(.bottom, 10)
+                                .padding(.bottom, 15)
                         }else{
                             Image(decorative: "no_image")
                                 .resizable()
@@ -128,7 +143,7 @@ struct BookItemView:View{
                     Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").font(.system(size: Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top,4)
-                    Text(bookData.title!).font(.system(size:Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
+                    Text(bookData.title ??  "").font(.system(size:Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top,1)
                     Text(UtilDate().DateTimeToString(date: bookData.date!)).font(.system(size: Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
@@ -146,7 +161,7 @@ struct BookItemView:View{
                 if(item.page == .preview ){
                     PreviewPage(images: [], bookData: item.bookData)
                 }else{
-                    AddPage(isPresented: $model.isAddPresented , bookDataItem: $model.selectedBookDataItem)
+                    AddPage(isPresented: $model.isAddPresented , bookDataItem: $model.selectedBookDataItem, addModel: AddModel(bookData:item.bookData ) )
                 }
             }
         }

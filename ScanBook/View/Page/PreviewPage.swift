@@ -35,17 +35,28 @@ struct PreviewPage: View {
                 Color.black
                     .ignoresSafeArea()
                 VStack{
-                    PageViewController(
-                        pages: images.map{
-                            ImageViewer(image: $0).background(Color.black)
-                        },
-                        slidePageCount: $previewModel.sliderValue,
-                        currentPage: $pageCount
-                    ).background(Color.black).onTapGesture {
-                        if(previewModel.visibilityValue == .visible){
-                            previewModel.visibilityValue = .hidden
-                        }else{
-                            previewModel.visibilityValue = .visible
+                    if(images.count != 1 ){
+                        PageViewController(
+                            pages: images.map{
+                                ImageViewer(image: $0).background(Color.black)
+                            },
+                            slidePageCount: $previewModel.sliderValue,
+                            currentPage: $pageCount
+                        ).background(Color.black).onTapGesture {
+                            if(previewModel.visibilityValue == .visible){
+                                previewModel.visibilityValue = .hidden
+                            }else{
+                                previewModel.visibilityValue = .visible
+                            }
+                        }
+                    }else{
+                        ImageViewer(image: images[0])
+                            .background(Color.black).onTapGesture {
+                            if(previewModel.visibilityValue == .visible){
+                                previewModel.visibilityValue = .hidden
+                            }else{
+                                previewModel.visibilityValue = .visible
+                            }
                         }
                     }
                 }.navigationBarTitle("", displayMode: .inline)
@@ -108,30 +119,22 @@ struct PreviewPageCountBar:View{
 
 struct PreviewPage_Previews: PreviewProvider {
     static let images :[UIImage] = [
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!,
-        UIImage(systemName: "circle.fill")!
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
+        UIImage(named: "preview_image")!,
     ]
     static var previews: some View {
         PreviewPage(images: images, bookData: nil)

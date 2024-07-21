@@ -1,0 +1,50 @@
+{
+  "pins" : [
+    {
+      "identity" : "alertmessage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielkmarks23/AlertMessage.git",
+      "state" : {
+        "revision" : "2b18c14a8420020d869e3efb3fe0dca13a5507b6",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "combinecocoa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CombineCommunity/CombineCocoa.git",
+      "state" : {
+        "revision" : "7300c75ff9e072aa7fd0fccefcc88f74aae9bf56",
+        "version" : "0.4.1"
+      }
+    },
+    {
+      "identity" : "swift-with-previous",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ikesyo/swift-with-previous.git",
+      "state" : {
+        "revision" : "c713d9c04b9ab0a1e896ddba7417d7e0bac9ac47",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swiftuirippleeffect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Jnis/SwiftUIRippleEffect.git",
+      "state" : {
+        "revision" : "adb1eaf41926b6d30c5b8ffbb889f4775d754ed7",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "viewontouch",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Jnis/ViewOnTouch.git",
+      "state" : {
+        "revision" : "9656e94f354f43ee6906f25cd762794cebf4e346",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}

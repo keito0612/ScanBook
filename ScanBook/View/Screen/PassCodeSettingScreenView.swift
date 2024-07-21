@@ -16,12 +16,12 @@ struct PassCodeSettingScreenView: View {
         ZStack {
             Color.black
                 .ignoresSafeArea()
-            VStack{
-                Spacer()
+            VStack (spacing: 0){
                 Text("パスコードの入力")
                     .font(.title3)
                     .foregroundStyle(.white)
                     .fontWeight(.bold)
+                    .padding(.top,70)
                 
                 HStack{
                     //黒丸
@@ -43,7 +43,8 @@ struct PassCodeSettingScreenView: View {
                     .font(.footnote)
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color.pink)
-                Spacer()
+                    .padding(.bottom, 24)
+               
                 
                 //入力ボタン
                 HStack{
@@ -122,8 +123,9 @@ struct PassCodeSettingScreenView: View {
                     }.padding(.top, 4)
                 }
                 Spacer()
-            }
-            .navigationTitle("入力")
+            }.onDisappear(){
+                UserDefaults.standard.set(false, forKey: "isPassCodeLock")
+            }.navigationTitle("入力")
             .navigationBarBackButtonHidden()
             .customBackButton(onBack: {
                 UserDefaults.standard.set(false, forKey: "isPassCodeLock")

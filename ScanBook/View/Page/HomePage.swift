@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 
 struct HomePage: View {
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(\.managedObjectContext) private var context
     //お気に入りリスト
     @FetchRequest(entity:BookData.entity(),sortDescriptors: [NSSortDescriptor(keyPath: \BookData.date, ascending: false)],
@@ -31,12 +33,12 @@ struct HomePage: View {
                             .bold()
                             .font(.system(size:Bounds.width * 0.07 ))
                             .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
-                        ReadingZoomInHStackScrollView(readingBookDatas: readingBookDatas, model: homeModel).frame(height: Bounds.height * 0.18)
+                        ReadingZoomInHStackScrollView(readingBookDatas: readingBookDatas, model: homeModel).frame(height: readingListItemHeight)
                         Text("お気に入り")
                             .bold()
                             .font(.system(size:Bounds.width * 0.07 ))
-                            .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
-                        FavoriteZoomInHStackScrollView(favoriteBookDatas: favoriteBookDatas, model: homeModel).frame(height: Bounds.height * 0.4)
+                            .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading)
+                        FavoriteZoomInHStackScrollView(favoriteBookDatas: favoriteBookDatas, model: homeModel).frame(height:  favoriteListItemHeight)
                     }.padding(.all, 8).padding(.horizontal, 8)
                 }
             }.navigationBarTitle("ホーム" , displayMode: .inline)
@@ -45,10 +47,26 @@ struct HomePage: View {
                 .toolbarColorScheme(.dark)
         }
     }
+    
+    var readingListItemHeight: CGFloat {
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return Bounds.height * 0.22
+        }
+        return Bounds.height * 0.15
+    }
+    
+    var favoriteListItemHeight: CGFloat {
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return Bounds.height * 0.4
+        }
+        return Bounds.height * 0.3
+    }
 }
 
 struct ReadingZoomInHStackScrollView :View {
     let readingBookDatas : FetchedResults<BookData>
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @ObservedObject var model : HomeModel
     var body: some View {
         if(!readingBookDatas.isEmpty){
@@ -61,11 +79,12 @@ struct ReadingZoomInHStackScrollView :View {
                                 // スクロールによるズームイン・ズームアウトのスケールを計算
                                 let scale = scale(mainFrame: mainView.frame(in: .global), itemFrame: item.frame(in: .global))
                                 ReadingBookItemView(bookData: book, model: model)
-                                    .frame(width: mainViewSize.width * 0.8  , height: mainViewSize.height * 0.9)
+                                    .frame(width: mainViewSize.width * 0.8 , height: mainViewSize.height * 0.9)
+                                    .aspectRatio(contentMode: .fit)
                                 // コンテンツのスケールを変える
                                     .scaleEffect(x: scale, y: scale, anchor: .top)
                             }
-                            .frame(width: mainViewSize.width * 0.76 , height: mainViewSize.height)
+                            .frame(width: mainViewSize.width * 0.75 , height: mainViewSize.height)
                         }
                     }
                 }
@@ -73,9 +92,15 @@ struct ReadingZoomInHStackScrollView :View {
         }else{
             VStack{
                 Spacer()
-                Text("現在、読んでいる物はありません。").foregroundStyle(.white).bold()
+                Text("現在、読んでいる物はありません。").font(.title).foregroundStyle(.white).bold()
                 Spacer()
             }
+        }
+        var readingFontSize: CGFloat {
+            if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+                return Bounds.width * 0.04
+            }
+            return Bounds.width * 0.04
         }
     }
     private func scale(mainFrame: CGRect, itemFrame: CGRect) -> CGFloat {
@@ -86,6 +111,8 @@ struct ReadingZoomInHStackScrollView :View {
 }
 
 struct FavoriteZoomInHStackScrollView :View {
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     let favoriteBookDatas: FetchedResults<BookData>
     @ObservedObject var model : HomeModel
     var body: some View {
@@ -99,11 +126,13 @@ struct FavoriteZoomInHStackScrollView :View {
                                 // スクロールによるズームイン・ズームアウトのスケールを計算
                                 let scale = scale(mainFrame: mainView.frame(in: .global), itemFrame: item.frame(in: .global))
                                 favoriteBookItemView(bookData: book, model: model)
-                                    .frame(width: mainViewSize.width * 0.8  , height: mainViewSize.height * 0.9)
+                                    .frame(width: mainViewSize.width * 0.6, height: mainViewSize.height * 0.85).aspectRatio(contentMode: .fit)
+                                  
                                 // コンテンツのスケールを変える
                                     .scaleEffect(x: scale, y: scale, anchor: .top)
                             }
-                            .frame(width: mainViewSize.width * 0.76 , height: mainViewSize.height)
+                            .frame(width: mainViewSize.width * 0.7
+                                , height: mainViewSize.height)
                             
                         }
                     }
@@ -112,7 +141,7 @@ struct FavoriteZoomInHStackScrollView :View {
         }else{
             VStack{
                 Spacer()
-                Text("現在、お気に入りはありません。").foregroundStyle(.white).bold()
+                Text("現在、お気に入りはありません。").font(.title3).foregroundStyle(.white).bold()
                 Spacer()
             }
         }
@@ -128,6 +157,8 @@ struct FavoriteZoomInHStackScrollView :View {
 
 struct ReadingBookItemView : View{
     let bookData: BookData
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @ObservedObject var model: HomeModel
     var body: some View{
         Button(action: {
@@ -138,15 +169,16 @@ struct ReadingBookItemView : View{
                     if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
                         Image(uiImage: uiImage)
                             .resizable()
-                            .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1)
-                            .scaledToFit()
-                            .padding(.all, 5)
+                            .frame(width: Bounds.width * 0.15,
+                                   height: Bounds.height * 0.08)
+                            .scaledToFill()
+                            .padding(.all, readingPaddingSize)
                     }else{
                         if(bookData.categoryStatus == 2){
                             Image(systemName: "folder")
                                 .foregroundStyle(.white)
                                 .font(.system(size: Bounds.width * 0.142, weight: .medium))
-                                .padding(.vertical, 18)
+                                .padding(.vertical, 14)
                         }else{
                             Image(decorative: "no_image")
                                 .resizable()
@@ -158,56 +190,126 @@ struct ReadingBookItemView : View{
                     VStack(alignment:.leading) {
                         Group{
                             Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
-                            Text(bookData.title ?? "" ).frame(height: Bounds.width * 0.04)
-                            Text("\(bookData.pageCount + 1) / \(Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")).count) ").font(.system(size: 20))
+                                .font(.system(size: Bounds.width * 0.04))
+                                .padding(.bottom,1)
+                            Text(bookData.title ?? "" )
+                                .frame(maxWidth:.infinity, alignment: .leading)
+                                .font(.system(size: Bounds.width * 0.04))
+                           
+                            bookData.images != nil ?  Text("\(bookData.pageCount + 1) / \(  Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")).count)").font(.system(size: readingFontSize))
+                                .padding(.top, 0.2)
+                            :  Text("0/0").font(.system(size:  readingFontSize )).padding(.top, 0.2)
+                                
                         }.foregroundStyle(Color.white).fontWeight(.bold)
                     }
-                }.padding(.large).frame(width: Bounds.width * 0.65, alignment:.leading ).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(30)
+                }.padding(.vertical,readingPaddingVerticalSize ).padding(.leading, 10).frame(width: Bounds.width * 0.65, alignment:.leading ).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(Bounds.width * 0.09)
             }.fullScreenCover(item: $model.selectedReadingBookDataItem) { item in
                 PreviewPage(images:  Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")), bookData: item.bookData)
             }
         })
     }
+    
+    var readingPaddingSize: CGFloat {
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return 15
+        }
+        return 12
+    }
+    
+    var readingFontSize: CGFloat {
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return Bounds.width * 0.04
+        }
+        return Bounds.width * 0.04
+    }
+    
+    var readingPaddingVerticalSize: CGFloat{
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return Bounds.width * 0.03
+        }
+        return Bounds.width * 0.01
+    }
+    
 }
 
 
 struct favoriteBookItemView : View{
     let bookData: BookData
     @ObservedObject var model: HomeModel
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     var body: some View{
         
         Button(action: {
             model.selectedFavoriteBookDataItem = BookDataItem(page: Page.preview, bookData: bookData)
         }, label: {
-            VStack{
+            VStack(spacing: 0){
                 if let coverImage = bookData.coverImage, let uiImage = UIImage(data: coverImage) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.2).padding()
                         .scaledToFit()
+                        .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.135).padding(.vertical, favoriteImagePadding )
+                       
                 }else{
                     if(bookData.categoryStatus == 2){
                         Image(systemName: "folder")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.135)
                             .foregroundStyle(.white)
-                            .font(.system(size: Bounds.width * 0.40, weight: .medium))
-                            .padding(.vertical, 10)
+                            .padding(.vertical, favoriteImagePadding)
                     }else{
                         Image(decorative: "no_image")
                             .resizable()
-                            .frame(width: Bounds.width * 0.5, height: Bounds.height * 0.2)
+                            .frame(width: Bounds.width * 0.25, height: Bounds.height * 0.15)
                             .scaledToFit()
                     }
                 }
                 Group{
-                    Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").frame(maxWidth: .infinity, alignment: .leading)
-                    Text(bookData.title ?? "").frame(maxWidth: .infinity, alignment: .leading)
-                }.foregroundStyle(Color.white).fontWeight(.bold)
-            }.padding(.horizontal).frame(width: 250, height: 300).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(30)
+                    Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
+                        .font(.system(size: Bounds.width * 0.04))
+                        .frame(maxWidth:.infinity, alignment: .leading)
+                        .padding(.bottom,4)
+                    Text(bookData.title ?? "")
+                        .font(.system(size: Bounds.width * 0.04))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom)
+                }.foregroundStyle(Color.white).fontWeight(.bold).padding([.leading, .trailing], favoriteTextHorizontalWithBottomPadding)
+            }.padding(.horizontal).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(Bounds.width * 0.1)
                 .fullScreenCover(item: $model.selectedFavoriteBookDataItem) { item in
                     PreviewPage(images:  Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")), bookData: item.bookData)
                 }
         })
     }
+    var favoriteImageWidthSize : CGFloat{
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return Bounds.width * 0.03
+        }
+        return Bounds.width * 0.3
+    }
+    
+    var favoriteImageHightSize : CGFloat{
+    if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return Bounds.width * 0.03
+        }
+        return Bounds.width * 0.01
+    }
+    
+    var favoriteImagePadding : CGFloat{
+    if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return 40
+        }
+        return 10
+    }
+    
+    var favoriteTextHorizontalWithBottomPadding : CGFloat{
+    if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return 40
+        }
+        return 10
+    }
+    
+    
 }
 
 #Preview {

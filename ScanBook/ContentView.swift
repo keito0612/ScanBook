@@ -33,9 +33,8 @@ extension Path: Equatable {
 
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext)private var viewContext
     @State var selection = 0
-    
     init(){
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = .black
@@ -43,30 +42,34 @@ struct ContentView: View {
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
     var body: some View {
-        ZStack{
+        ZStack {
             TabView (selection: $selection){
-                HomePage().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                HomePage()
                     .tabItem{
-                    Image(systemName: "house")
-                    Text("ホーム")
-                }.tag(0)
-                LibraryPage().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                        Image(systemName: "house")
+                        Text("ホーム")
+                    }.tag(0)
+                LibraryPage()
                     .tabItem {
                         Image(systemName: "books.vertical")
                         Text("ライブラリ")
                     }.tag(1)
-               SettingRootView()
+                SettingRootView()
                     .tabItem {
                         Image(systemName: "person.crop.circle")
                         Text("設定")
                     }.tag(2)
             }.toolbarBackground(Color.black, for: .tabBar) .toolbarBackground(.visible, for: .tabBar) .toolbarColorScheme(.dark, for: .tabBar).accentColor(.white).background(Color.black)
-        } 
+        }
+        VStack{
+          Spacer()
+          BannerView().frame(height:0).padding(.bottom, 110)
+        }.frame(alignment: .bottom)
     }
+}
         
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
-}

@@ -70,7 +70,7 @@ struct PassCodeLockItemButton :View{
         Button(action: onTap,label: {
             HStack{
                 Text("パスコードロック").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity, alignment: .leading)
-                Toggle("", isOn: $model.isPassCodeLock)
+                Toggle("", isOn:model.$isPassCodeLock )
             }
         })
     }

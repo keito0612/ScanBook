@@ -8,16 +8,8 @@
 import SwiftUI
 
 struct AddPage: View {
-    init(isPresented: Binding<Bool>, bookDataItem :Binding<BookDataItem?>?) {
-        _isPresented = isPresented
-        self._bookDataItem =  bookDataItem ?? Binding.constant(nil)
-        self.bookData = bookDataItem?.wrappedValue?.bookData
-        self._addModel = StateObject( wrappedValue: AddModel(bookData: bookDataItem?.wrappedValue?.bookData))
-    }
     @Binding var isPresented :Bool
     @Binding var bookDataItem : BookDataItem?
-    
-    let bookData: BookData?
     @StateObject var addModel: AddModel
     @Environment(\.managedObjectContext)private var context
     var body: some View {
@@ -49,12 +41,12 @@ struct AddPage: View {
                         }
                         BookPageAdd(model: addModel)
                         Divider().frame(height: 2).background(Color.white)
-                        if(bookData == nil ){
+                        if(bookDataItem == nil ){
                             AddButton(model: addModel, isPresented: $isPresented)
                         }else{
                             EditButton(model: addModel , bookDataItem: $bookDataItem)
                         }
-                    }.padding(.large).navigationBarTitle(bookData == nil ? "追加": "編集" , displayMode: .inline)
+                    }.padding(.large).navigationBarTitle(bookDataItem == nil ? "追加": "編集" , displayMode: .inline)
                         .navigationDestination(isPresented: $addModel.isPresented ) {
                             PreviewPage(images: addModel.imageArray, bookData: nil).environment(\.managedObjectContext,context)
                         }
@@ -98,19 +90,22 @@ struct BookCoverView :View{
                 .font(.system(size: Bounds.height * 0.02))
                 .frame(maxWidth: .infinity, alignment: .leading)
             if(model.bookCovarImage.size == CGSize.zero){
-                Image(systemName: "camera")
-                    .font(.system(size: Bounds.height * 0.06, weight: .medium))
-                    .foregroundColor(.white)
-                    .frame(width: Bounds.height * 0.2, height: Bounds.height * 0.2).onTapGesture {
-                        model.showingCovarImage.toggle()
-                    }
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 30)
-                            .stroke(Color.white, lineWidth: 10)
-                    )
-                    .cornerRadius(30)
-                    .background(.black)
-                    .padding(.vertical, 8)
+                Button(action: {
+                    model.showingCovarImage.toggle()
+                }, label: {
+                    Image(systemName: "camera")
+                        .font(.system(size: Bounds.height * 0.06, weight: .medium))
+                        .foregroundColor(.white)
+                        .frame(width: Bounds.height * 0.2, height: Bounds.height * 0.2).onTapGesture {
+                            model.showingCovarImage.toggle()
+                        }
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 30)
+                                .stroke(Color.white, lineWidth: 10)
+                        )
+                        .cornerRadius(30)
+                        .background(.black)
+                }).padding(.vertical, 8)
             } else{
                 Image(uiImage: model.bookCovarImage)
                     .resizable()
@@ -216,7 +211,7 @@ struct AddPage_Previews: PreviewProvider {
     @State static var isPresented : Bool = false
     @State static var bookDataItem : BookDataItem? = nil
     static var previews: some View {
-        AddPage(isPresented: $isPresented, bookDataItem: $bookDataItem).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        AddPage(isPresented: $isPresented, bookDataItem: $bookDataItem, addModel:  AddModel(bookData: bookDataItem?.bookData) ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
 

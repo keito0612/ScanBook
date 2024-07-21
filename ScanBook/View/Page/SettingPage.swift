@@ -46,7 +46,7 @@ struct SettingPage: View {
                             .onTapGesture {}
                     }
                     Section(header: Text("お問い合わせ").bold().foregroundStyle(Color.white)) {
-                        Text("お問い合わせ").bold().foregroundStyle(Color.white) .listRowBackground(Color(white: 0.2, opacity: 1.0))
+                        InquiryItemView()
                     }
                 }.listStyle(.insetGrouped)
                     .background(Color.black)
@@ -120,6 +120,18 @@ struct AllDeleteItemView:View {
         })
         .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
         
+    }
+}
+
+struct InquiryItemView:View{
+    @Environment(\.openURL) var openURL
+    var body: some View{
+        Button(action: {
+            openURL(URL(string: "https://docs.google.com/forms/d/e/1FAIpQLSeTUWSuCRijLPUwLSLRq-0WAb2ztJ0H5SN-cyzFrn6HfEjhqg/viewform")!)
+        }, label: {
+            Text("お問い合わせ").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
+        })
+        .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
     }
 }
 

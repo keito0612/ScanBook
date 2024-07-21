@@ -7,34 +7,106 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 struct PersistenceController {
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        let BookData = BookData(context: viewContext)
-        BookData.id = UUID()
-        BookData.coverImage = Data.init()
-        BookData.images = ""
-        BookData.categoryStatus = 2
-        BookData.favorito = false
-        BookData.date = Date()
-        BookData.reading = true
-        BookData.pageCount = 0
-        BookData.title = "タイトル"
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        let imageArray:[UIImage] = [
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+            UIImage(named: "preview_image")!,
+        ]
+        for i in 0..<2  {
+            let viewContext = result.container.viewContext
+            let BookData = BookData(context: viewContext)
+            BookData.id = UUID()
+            BookData.coverImage = Data.init()
+            BookData.images = Convert.convertImagesToBase64(imageArray).joined(separator: ",")
+            if(i == 1 ){
+                BookData.coverImage =  UIImage(named: "preview_image")?.jpegData(compressionQuality: 1)
+            }
+            BookData.categoryStatus = 2
+            BookData.favorito = true
+            BookData.date = Date()
+            BookData.reading = true
+            BookData.pageCount = 0
+            BookData.title = "タイトル"
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
         }
         return result
     }()
 
     let container: NSPersistentCloudKitContainer
-    var iCloud:Bool = UserDefaults.standard.bool(forKey: "iCloud")
+    let iCloud:Bool = UserDefaults.standard.bool(forKey: "iCloud")
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "ScanBook")

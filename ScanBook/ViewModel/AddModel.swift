@@ -9,6 +9,22 @@ import Foundation
 import UIKit
 import SwiftUI
 import CoreData
+import BinaryCodable
+
+extension Array where Element: UIImage {
+    func encode() -> Data? {
+        return try? NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: false)
+    }
+
+    static func decode(from data: Data) -> [UIImage] {
+        let decodeUIImage = try? NSKeyedUnarchiver.unarchivedObject( ofClasses: [NSArray.self, UIImage.self], from: data) as? [UIImage]
+        if(decodeUIImage != nil){
+            return decodeUIImage!
+        }else{
+            return []
+        }
+    }
+}
 
 class AddModel : ObservableObject{
     init(bookData:BookData?) {
@@ -20,7 +36,7 @@ class AddModel : ObservableObject{
             if(category != "書類" ){
                 bookCovarImage = UIImage(data: self.bookData!.coverImage!)!;
             }
-            imageArray = Convert.convertBase64ToImages(self.bookData!.images!.components(separatedBy: ","))
+            imageArray = Array<UIImage>.decode(from:bookData!.images!)
             if(imageArray.count != 0){
                 pageCount = imageArray.count
             }
@@ -67,6 +83,7 @@ class AddModel : ObservableObject{
     
     
     public func add(context :NSManagedObjectContext){
+        guard let imagesData = imageArray.encode() else { return }
         isLoading = true
         do{
             let newBookData = BookData(context: context)
@@ -76,7 +93,7 @@ class AddModel : ObservableObject{
             newBookData.title = titleText
             newBookData.coverImage = bookCovarImage.jpegData(compressionQuality: 1)
             newBookData.categoryStatus = Int64(categoryStatus!)
-            newBookData.images = Convert.convertImagesToBase64(imageArray).joined(separator: ",")
+            newBookData.images = imagesData
             newBookData.date = Date()
             newBookData.pageCount = Int16(0)
             try context.save()
@@ -93,12 +110,13 @@ class AddModel : ObservableObject{
         }
     }
     public func edit(context : NSManagedObjectContext){
+        guard let imagesData = imageArray.encode() else { return }
         isLoading = true
         do{
             bookData!.title = titleText
             bookData!.categoryStatus = Int64(categoryStatus!)
             bookData!.coverImage = bookCovarImage.jpegData(compressionQuality: 1)
-            bookData!.images = Convert.convertImagesToBase64(imageArray).joined(separator: ",")
+            bookData!.images = imagesData
             bookData!.date = Date()
             try context.save()
             isLoading = false

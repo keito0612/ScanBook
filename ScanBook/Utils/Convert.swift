@@ -41,4 +41,12 @@ class Convert{
         guard let imageData = Data(base64Encoded: base64String) else { return nil }
         return UIImage(data: imageData)
     }
+    
+    static func convertUIImageToDataArray(images: [UIImage]) -> [Data]? {
+        return images.compactMap { $0.jpegData(compressionQuality: 1.0) }
+    }
+    
+    static func convertDataArrayToUIImage(dataArray: [Data]) -> [UIImage]? {
+        return dataArray.compactMap { UIImage(data: $0) }
+    }
 }

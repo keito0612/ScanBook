@@ -62,6 +62,7 @@
 		35C1B3062C10253F008D7CB1 /* PassCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B3052C10253F008D7CB1 /* PassCheck.swift */; };
 		35C1B3082C1177CE008D7CB1 /* PassCodeLockScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B3072C1177CE008D7CB1 /* PassCodeLockScreenView.swift */; };
 		35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */; };
+		35DF4C9B2C569CD10082FEB0 /* BinaryCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 35DF4C9A2C569CD10082FEB0 /* BinaryCodable */; };
 		35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E13DC32BFB235E00F97C53 /* LoadingView.swift */; };
 		6518CC3C501BE066D88472DE /* Pods_ScanBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE14BED3429EA1A36EA48D8D /* Pods_ScanBook.framework */; };
 		D141000B151317C5A4699F28 /* Pods_ScanBook_ScanBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BDFC196451B094C85646FA6 /* Pods_ScanBook_ScanBookUITests.framework */; };
@@ -160,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35DF4C9B2C569CD10082FEB0 /* BinaryCodable in Frameworks */,
 				350ED2692BBBDF1A0051A11E /* AlertMessage in Frameworks */,
 				35882AD82B9A1FA000079C48 /* CombineCocoa in Frameworks */,
 				35545F2D2B82201700B21AB4 /* WithPrevious in Frameworks */,
@@ -403,6 +405,7 @@
 				35882AD72B9A1FA000079C48 /* CombineCocoa */,
 				350ED2682BBBDF1A0051A11E /* AlertMessage */,
 				352A7F182BE631A4005E06BD /* SwiftUIRippleEffect */,
+				35DF4C9A2C569CD10082FEB0 /* BinaryCodable */,
 			);
 			productName = ScanBook;
 			productReference = 354255572B4BC8B100559413 /* ScanBook.app */;
@@ -485,6 +488,7 @@
 				35882AD62B9A1F9F00079C48 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				350ED2672BBBDF1A0051A11E /* XCRemoteSwiftPackageReference "AlertMessage" */,
 				352A7F172BE631A4005E06BD /* XCRemoteSwiftPackageReference "SwiftUIRippleEffect" */,
+				35DF4C992C569CD00082FEB0 /* XCRemoteSwiftPackageReference "BinaryCodable" */,
 			);
 			productRefGroup = 354255582B4BC8B100559413 /* Products */;
 			projectDirPath = "";
@@ -1064,6 +1068,14 @@
 				minimumVersion = 0.4.1;
 			};
 		};
+		35DF4C992C569CD00082FEB0 /* XCRemoteSwiftPackageReference "BinaryCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/christophhagen/BinaryCodable.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1086,6 +1098,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 35882AD62B9A1F9F00079C48 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
+		};
+		35DF4C9A2C569CD10082FEB0 /* BinaryCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35DF4C992C569CD00082FEB0 /* XCRemoteSwiftPackageReference "BinaryCodable" */;
+			productName = BinaryCodable;
 		};
 /* End XCSwiftPackageProductDependency section */
 

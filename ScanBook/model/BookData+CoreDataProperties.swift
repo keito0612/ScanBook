@@ -20,7 +20,7 @@ extension BookData {
     @NSManaged public var coverImage: Data?
     @NSManaged public var reading: Bool
     @NSManaged public var date: Date?
-    @NSManaged public var images: String?
+    @NSManaged public var images: Data?
     @NSManaged public var title: String?
     @NSManaged public var pageCount:Int16
     @NSManaged public var categoryStatus: Int64

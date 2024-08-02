@@ -157,6 +157,7 @@ struct FavoriteZoomInHStackScrollView :View {
 
 struct ReadingBookItemView : View{
     let bookData: BookData
+    @State var imagesCount : Int = 0
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     @ObservedObject var model: HomeModel
@@ -196,7 +197,7 @@ struct ReadingBookItemView : View{
                                 .frame(maxWidth:.infinity, alignment: .leading)
                                 .font(.system(size: Bounds.width * 0.04))
                            
-                            bookData.images != nil ?  Text("\(bookData.pageCount + 1) / \(  Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")).count)").font(.system(size: readingFontSize))
+                            bookData.images != nil ?  Text("\(bookData.pageCount + 1) / \(imagesCount)").font(.system(size: readingFontSize))
                                 .padding(.top, 0.2)
                             :  Text("0/0").font(.system(size:  readingFontSize )).padding(.top, 0.2)
                                 
@@ -204,7 +205,12 @@ struct ReadingBookItemView : View{
                     }
                 }.padding(.vertical,readingPaddingVerticalSize ).padding(.leading, 10).frame(width: Bounds.width * 0.65, alignment:.leading ).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(Bounds.width * 0.09)
             }.fullScreenCover(item: $model.selectedReadingBookDataItem) { item in
-                PreviewPage(images:  Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")), bookData: item.bookData)
+                PreviewPage(images: [], bookData: item.bookData)
+            }
+        })
+        .onAppear(perform: {
+            if(bookData.images != nil ){
+                self.imagesCount = Array<UIImage>.decode(from: bookData.images!).count
             }
         })
     }
@@ -277,7 +283,7 @@ struct favoriteBookItemView : View{
                 }.foregroundStyle(Color.white).fontWeight(.bold).padding([.leading, .trailing], favoriteTextHorizontalWithBottomPadding)
             }.padding(.horizontal).background(Color(white: 0.2, opacity: 1.0)).cornerRadius(Bounds.width * 0.1)
                 .fullScreenCover(item: $model.selectedFavoriteBookDataItem) { item in
-                    PreviewPage(images:  Convert.convertBase64ToImages(bookData.images!.components(separatedBy: ",")), bookData: item.bookData)
+                    PreviewPage(images: [], bookData: item.bookData)
                 }
         })
     }

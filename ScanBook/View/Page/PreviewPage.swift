@@ -24,7 +24,7 @@ struct PreviewPage: View {
         _previewModel = StateObject(wrappedValue: PreviewModel(bookData: bookData))
         if(bookData != nil ){
             pageCount = Int(bookData!.pageCount)
-            self.images = Convert.convertBase64ToImages(self.bookData!.images!.components(separatedBy: ","))
+            self.images = Array<UIImage>.decode(from: bookData!.images!)
         }else{
             pageCount = 0
         }

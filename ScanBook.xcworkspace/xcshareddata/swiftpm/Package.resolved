@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "binarycodable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/christophhagen/BinaryCodable.git",
+      "state" : {
+        "revision" : "f4bdd82c5da4a825634bd32c3b2ef70faa773143",
+        "version" : "3.0.3"
+      }
+    },
+    {
       "identity" : "combinecocoa",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/CombineCommunity/CombineCocoa.git",

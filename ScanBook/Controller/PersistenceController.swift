@@ -80,12 +80,13 @@ struct PersistenceController {
             UIImage(named: "preview_image")!,
             UIImage(named: "preview_image")!,
         ]
+        let imagesData = imageArray.encode()
         for i in 0..<2  {
             let viewContext = result.container.viewContext
             let BookData = BookData(context: viewContext)
             BookData.id = UUID()
             BookData.coverImage = Data.init()
-            BookData.images = Convert.convertImagesToBase64(imageArray).joined(separator: ",")
+            BookData.images = imagesData
             if(i == 1 ){
                 BookData.coverImage =  UIImage(named: "preview_image")?.jpegData(compressionQuality: 1)
             }

@@ -80,13 +80,13 @@ struct PersistenceController {
             UIImage(named: "preview_image")!,
             UIImage(named: "preview_image")!,
         ]
-        let imagesData = imageArray.encode()
-        for i in 0..<2  {
+        for i in 0..<10  {
             let viewContext = result.container.viewContext
             let BookData = BookData(context: viewContext)
             BookData.id = UUID()
             BookData.coverImage = Data.init()
-            BookData.images = imagesData
+            BookData.images = imageArray.encode()
+            
             if(i == 1 ){
                 BookData.coverImage =  UIImage(named: "preview_image")?.jpegData(compressionQuality: 1)
             }
@@ -119,6 +119,10 @@ struct PersistenceController {
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         }
+        let description = NSPersistentStoreDescription()
+        description.shouldMigrateStoreAutomatically = true
+        description.shouldInferMappingModelAutomatically = true
+        container.persistentStoreDescriptions = [description]
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 print("\(error), \(error.userInfo)")

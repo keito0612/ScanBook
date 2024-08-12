@@ -27,25 +27,25 @@ struct HomePage: View {
             ZStack {
                 Color.black
                     .ignoresSafeArea()
-                ScrollView {
                     VStack{
-                        Text("続ける")
-                            .bold()
-                            .font(.system(size:Bounds.width * 0.07 ))
-                            .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
+                        sectionTitle("続ける")
                         ReadingZoomInHStackScrollView(readingBookDatas: readingBookDatas, model: homeModel).frame(height: readingListItemHeight)
-                        Text("お気に入り")
-                            .bold()
-                            .font(.system(size:Bounds.width * 0.07 ))
-                            .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading)
+                        sectionTitle("お気に入り")
                         FavoriteZoomInHStackScrollView(favoriteBookDatas: favoriteBookDatas, model: homeModel).frame(height:  favoriteListItemHeight)
+                        Spacer()
                     }.padding(.all, 8).padding(.horizontal, 8)
-                }
             }.navigationBarTitle("ホーム" , displayMode: .inline)
                 .toolbarBackground(Color.black,for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
                 .toolbarColorScheme(.dark)
         }
+    }
+    
+    private func sectionTitle(_ text: String) -> some View {
+        Text(text)
+            .bold()
+            .font(.system(size:Bounds.width * 0.07 ))
+            .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
     }
     
     var readingListItemHeight: CGFloat {
@@ -92,7 +92,7 @@ struct ReadingZoomInHStackScrollView :View {
         }else{
             VStack{
                 Spacer()
-                Text("現在、読んでいる物はありません。").font(.title).foregroundStyle(.white).bold()
+                Text("現在、読んでいる物はありません。").font(.title2).foregroundStyle(.white).bold()
                 Spacer()
             }
         }
@@ -126,12 +126,13 @@ struct FavoriteZoomInHStackScrollView :View {
                                 // スクロールによるズームイン・ズームアウトのスケールを計算
                                 let scale = scale(mainFrame: mainView.frame(in: .global), itemFrame: item.frame(in: .global))
                                 favoriteBookItemView(bookData: book, model: model)
-                                    .frame(width: mainViewSize.width * 0.6, height: mainViewSize.height * 0.85).aspectRatio(contentMode: .fit)
+                                    .frame(width: mainViewSize.width * 0.7, height: mainViewSize.height ).aspectRatio(contentMode: .fit)
+                                    .padding(.leading,favoriteLeadingPaddingSize)
                                   
                                 // コンテンツのスケールを変える
                                     .scaleEffect(x: scale, y: scale, anchor: .top)
                             }
-                            .frame(width: mainViewSize.width * 0.7
+                            .frame(width: mainViewSize.width * 0.75
                                 , height: mainViewSize.height)
                             
                         }
@@ -141,10 +142,16 @@ struct FavoriteZoomInHStackScrollView :View {
         }else{
             VStack{
                 Spacer()
-                Text("現在、お気に入りはありません。").font(.title3).foregroundStyle(.white).bold()
+                Text("現在、お気に入りはありません。").font(.title2).foregroundStyle(.white).bold()
                 Spacer()
             }
         }
+    }
+    var favoriteLeadingPaddingSize: CGFloat {
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return 60
+        }
+        return 25
     }
     private func scale(mainFrame: CGRect, itemFrame: CGRect) -> CGFloat {
         let scrollRate = itemFrame.minX  / mainFrame.width
@@ -254,14 +261,14 @@ struct favoriteBookItemView : View{
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.135).padding(.vertical, favoriteImagePadding )
+                        .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.2).padding(.vertical, favoriteImagePadding )
                        
                 }else{
                     if(bookData.categoryStatus == 2){
                         Image(systemName: "folder")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.135)
+                            .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.2)
                             .foregroundStyle(.white)
                             .padding(.vertical, favoriteImagePadding)
                     }else{

@@ -37,13 +37,7 @@ struct SettingPage: View {
                     }
                     
                     Section(header: Text("利用規約・プライバシーポリシー").bold().foregroundStyle(Color.white)) {
-                        Text("プライバシーポリシー").bold().foregroundStyle(Color.white)
-                            .listRowSeparatorTint(.white)
-                            .listRowBackground(Color(white: 0.2, opacity: 1.0)).onTapGesture{
-                                
-                            }
-                        Text("利用規約").bold().foregroundStyle(Color.white).listRowBackground(Color(white: 0.2, opacity: 1.0))
-                            .onTapGesture {}
+                        PrivacyPolicyView()
                     }
                     Section(header: Text("お問い合わせ").bold().foregroundStyle(Color.white)) {
                         InquiryItemView()
@@ -120,6 +114,18 @@ struct AllDeleteItemView:View {
         })
         .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
         
+    }
+}
+
+struct PrivacyPolicyView:View{
+    @Environment(\.openURL) var openURL
+    var body: some View{
+        Button(action: {
+            openURL(URL(string: "https://keito0612.github.io/scanbook_privacypolicy/")!)
+        }, label: {
+            Text("利用規約・プライバシーポリシー").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
+        })
+        .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
     }
 }
 

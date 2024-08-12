@@ -11,6 +11,8 @@ import AlertMessage
 
 struct LibraryPage: View {
     @Environment(\.managedObjectContext)private var context
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @StateObject var libraryModel :LibraryModel  = LibraryModel()
     @FetchRequest(entity:BookData.entity(),sortDescriptors: [NSSortDescriptor(keyPath: \BookData.date, ascending: false)],
            animation: .default)
@@ -20,12 +22,10 @@ struct LibraryPage: View {
             ZStack {
                 Color.black
                     .ignoresSafeArea()
+                
                 ScrollView {
                     VStack{
-                        
-                        SearchBarView(searchText: $libraryModel.searchText, onSubmit: {
-                            search(text: libraryModel.searchText)
-                        }).padding(.vertical, 20)
+                        Spacer().frame(height: Bounds.height * 0.13)
                         LazyVGrid(
                             columns: Array(repeating: .init(.flexible()), count: 2),
                             alignment: .center,
@@ -36,7 +36,14 @@ struct LibraryPage: View {
                                 
                             }
                         }.padding(.horizontal)
+                        Spacer().frame(height: spacerFrameHeight)
                     }
+                }
+                VStack{
+                    SearchBarView(searchText: $libraryModel.searchText, onSubmit: {
+                        search(text: libraryModel.searchText)
+                    }).padding(.vertical, 20)
+                Spacer()
                 }
                 VStack {
                     Spacer()
@@ -61,6 +68,14 @@ struct LibraryPage: View {
                   Spacer()
             }.padding(.horizontal).padding(.top).padding(.bottom, 120)
                 .background(Color(white: 0.3, opacity: 1.0))
+        }
+    }
+    
+    var spacerFrameHeight : CGFloat{
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return 120
+        }else{
+            return 100
         }
     }
     

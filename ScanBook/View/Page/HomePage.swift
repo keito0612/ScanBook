@@ -45,7 +45,7 @@ struct HomePage: View {
         Text(text)
             .bold()
             .font(.system(size:Bounds.width * 0.07 ))
-            .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading).padding(.top, 8)
+            .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     var readingListItemHeight: CGFloat {
@@ -59,7 +59,7 @@ struct HomePage: View {
         if horizontalSizeClass == .regular && verticalSizeClass == .regular {
             return Bounds.height * 0.4
         }
-        return Bounds.height * 0.3
+        return Bounds.height * 0.32
     }
 }
 

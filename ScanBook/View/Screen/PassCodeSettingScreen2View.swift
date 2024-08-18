@@ -48,7 +48,7 @@ struct PassCodeSettingScreen2View: View{
                     .font(.footnote)
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color.clear)
-                    .padding(.bottom, 24)
+                    .padding(.bottom, 20)
                 //入力ボタン
                 HStack{
                     ForEach(1..<4){ i in
@@ -125,7 +125,7 @@ struct PassCodeSettingScreen2View: View{
                         
                     }.padding(.top, 4)
                 }
-                Spacer()
+                Spacer().frame(height: 135)
             }
             .navigationTitle("確認入力")
             .navigationBarBackButtonHidden()

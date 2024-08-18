@@ -43,7 +43,7 @@ struct PassCodeSettingScreenView: View {
                     .font(.footnote)
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color.pink)
-                    .padding(.bottom, 24)
+                    .padding(.bottom, 20)
                
                 
                 //入力ボタン
@@ -122,7 +122,7 @@ struct PassCodeSettingScreenView: View {
                         
                     }.padding(.top, 4)
                 }
-                Spacer()
+                Spacer().frame(height: 135)
             }.onDisappear(){
                 UserDefaults.standard.set(false, forKey: "isPassCodeLock")
             }.navigationTitle("入力")

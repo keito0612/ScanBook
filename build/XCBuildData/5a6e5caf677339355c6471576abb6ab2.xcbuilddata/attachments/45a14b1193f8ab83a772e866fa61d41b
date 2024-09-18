@@ -1,0 +1,5 @@
+ extern const unsigned char Pods_ScanBookVersionString[];
+ extern const double Pods_ScanBookVersionNumber;
+
+ const unsigned char Pods_ScanBookVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:Pods_ScanBook  PROJECT:Pods-1" "\n";
+ const double Pods_ScanBookVersionNumber __attribute__ ((used)) = (double)1.;

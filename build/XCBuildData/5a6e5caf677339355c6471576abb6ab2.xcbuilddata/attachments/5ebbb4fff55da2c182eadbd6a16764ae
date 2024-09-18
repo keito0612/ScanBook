@@ -1,0 +1,15 @@
+{
+  "" : {
+    "const-values" : "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/Objects-normal/arm64/iOSSnapshotTestCase-master.swiftconstvalues",
+    "dependencies" : "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/Objects-normal/arm64/iOSSnapshotTestCase-master.d",
+    "diagnostics" : "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/Objects-normal/arm64/iOSSnapshotTestCase-master.dia",
+    "emit-module-dependencies" : "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/Objects-normal/arm64/iOSSnapshotTestCase-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/Objects-normal/arm64/iOSSnapshotTestCase-master-emit-module.dia",
+    "swift-dependencies" : "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/Objects-normal/arm64/iOSSnapshotTestCase-master.swiftdeps"
+  },
+  "/Users/isobekeito/Xcode/ScanBook/Pods/iOSSnapshotTestCase/src/iOSSnapshotTestCase/SwiftSupport.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/Objects-normal/arm64/SwiftSupport.o",
+    "llvm-bc" : "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/Objects-normal/arm64/SwiftSupport.bc",
+    "object" : "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/Objects-normal/arm64/SwiftSupport.o"
+  }
+}

@@ -112,21 +112,21 @@ struct PersistenceController {
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "ScanBook")
         if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-            guard let description = container.persistentStoreDescriptions.first else {
-                fatalError("###\(#function): Failed to retrieve a persistent store description.")
-            }
-            description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-            description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+            let storeURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("ScanBook.sqlite")
+            container.persistentStoreDescriptions.first!.url = storeURL
         }
-        let description = NSPersistentStoreDescription()
+        guard let description = container.persistentStoreDescriptions.first else {
+            fatalError("###\(#function): Failed to retrieve a persistent store description.")
+        }
+        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         description.shouldMigrateStoreAutomatically = true
         description.shouldInferMappingModelAutomatically = true
         container.persistentStoreDescriptions = [description]
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 print("\(error), \(error.userInfo)")
-              fatalError("Unresolved error \(error), \(error.userInfo)")
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy

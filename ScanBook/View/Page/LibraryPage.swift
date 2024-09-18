@@ -161,7 +161,7 @@ struct BookItemView:View{
                     Text(bookData.title ??  "").font(.system(size:Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top,1)
-                    Text(UtilDate().DateTimeToString(date: bookData.date!)).font(.system(size: Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
+                    Text(UtilDate().DateTimeToString(date: bookData.date ?? Date())).font(.system(size: Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading).padding(.top,1)
                     Spacer()
                 }.frame(width: Bounds.width * 0.4, height: Bounds.height * 0.21)

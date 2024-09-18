@@ -64,6 +64,7 @@
 		35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */; };
 		35DF4C9B2C569CD10082FEB0 /* BinaryCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 35DF4C9A2C569CD10082FEB0 /* BinaryCodable */; };
 		35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E13DC32BFB235E00F97C53 /* LoadingView.swift */; };
+		35F4CC252C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 35F4CC242C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel */; };
 		6518CC3C501BE066D88472DE /* Pods_ScanBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE14BED3429EA1A36EA48D8D /* Pods_ScanBook.framework */; };
 		D141000B151317C5A4699F28 /* Pods_ScanBook_ScanBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BDFC196451B094C85646FA6 /* Pods_ScanBook_ScanBookUITests.framework */; };
 		DDAE3CF28493AC8294D1780F /* Pods_ScanBookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D272A8D76F1538BBA9CCE1FA /* Pods_ScanBookTests.framework */; };
@@ -148,6 +149,8 @@
 		35C1B3072C1177CE008D7CB1 /* PassCodeLockScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeLockScreenView.swift; sourceTree = "<group>"; };
 		35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDataItem.swift; sourceTree = "<group>"; };
 		35E13DC32BFB235E00F97C53 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		35F4CC232C99DEC40063D310 /* ScanBook 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScanBook 2.xcdatamodel"; sourceTree = "<group>"; };
+		35F4CC242C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = ScanBookModelVer1toVer2.xcmappingmodel; sourceTree = "<group>"; };
 		4B4B102ABE614F4412FE6A4C /* Pods-ScanBook-ScanBookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanBook-ScanBookUITests.release.xcconfig"; path = "Target Support Files/Pods-ScanBook-ScanBookUITests/Pods-ScanBook-ScanBookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9BDFC196451B094C85646FA6 /* Pods_ScanBook_ScanBookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScanBook_ScanBookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C77C806E3AA40F70950AC1 /* Pods-ScanBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanBook.release.xcconfig"; path = "Target Support Files/Pods-ScanBook/Pods-ScanBook.release.xcconfig"; sourceTree = "<group>"; };
@@ -258,6 +261,7 @@
 		354255592B4BC8B100559413 /* ScanBook */ = {
 			isa = PBXGroup;
 			children = (
+				35F4CC242C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel */,
 				354A8D042C1EE89A006422A9 /* ScanBook.entitlements */,
 				354A8D032C1DA125006422A9 /* ScanBookRelease.entitlements */,
 				351DA06D2BE7CBA400C1DCC0 /* Controller */,
@@ -648,6 +652,7 @@
 				356866182C23BF98007879EB /* ICloudSettingModel.swift in Sources */,
 				35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */,
 				35315F8F2B6E271E0045014B /* PersistenceController.swift in Sources */,
+				35F4CC252C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel in Sources */,
 				356866162C23BDDF007879EB /* ICloudSettingPage.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
 				350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */,
@@ -1110,9 +1115,10 @@
 		354255652B4BC8B200559413 /* ScanBook.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				35F4CC232C99DEC40063D310 /* ScanBook 2.xcdatamodel */,
 				354255662B4BC8B200559413 /* ScanBook.xcdatamodel */,
 			);
-			currentVersion = 354255662B4BC8B200559413 /* ScanBook.xcdatamodel */;
+			currentVersion = 35F4CC232C99DEC40063D310 /* ScanBook 2.xcdatamodel */;
 			path = ScanBook.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

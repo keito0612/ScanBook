@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/isobekeito/Xcode/ScanBook/build/Release-iphoneos/iOSSnapshotTestCase/FBSnapshotTestCase.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/isobekeito/Xcode/ScanBook/build/Release-iphoneos/iOSSnapshotTestCase/FBSnapshotTestCase.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "FBSnapshotTestCase-Swift.h",
+      'external-contents': "/Users/isobekeito/Xcode/ScanBook/build/Pods.build/Release-iphoneos/iOSSnapshotTestCase.build/unextended-interface-header.h",
+    }]
+    }]
+}

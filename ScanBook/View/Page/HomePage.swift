@@ -33,7 +33,7 @@ struct HomePage: View {
                         sectionTitle("お気に入り")
                         FavoriteZoomInHStackScrollView(favoriteBookDatas: favoriteBookDatas, model: homeModel).frame(height:  favoriteListItemHeight)
                         Spacer()
-                    }.padding(.all, 8).padding(.horizontal, 8)
+                    }.padding(.top, 8)
             }.navigationBarTitle("ホーム" , displayMode: .inline)
                 .toolbarBackground(Color.black,for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
@@ -46,6 +46,7 @@ struct HomePage: View {
             .bold()
             .font(.system(size:Bounds.width * 0.07 ))
             .foregroundStyle(Color.white) .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 8)
     }
     
     var readingListItemHeight: CGFloat {
@@ -261,14 +262,14 @@ struct favoriteBookItemView : View{
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.2).padding(.vertical, favoriteImagePadding )
+                        .frame(width: favoriteImageWidthSize, height: favoriteImageHightSize).padding(.vertical, favoriteImagePadding )
                        
                 }else{
                     if(bookData.categoryStatus == 2){
                         Image(systemName: "folder")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: Bounds.width * 0.3, height: Bounds.height * 0.2)
+                            .frame(width: favoriteImageWidthSize, height: favoriteImageHightSize)
                             .foregroundStyle(.white)
                             .padding(.vertical, favoriteImagePadding)
                     }else{
@@ -294,18 +295,24 @@ struct favoriteBookItemView : View{
                 }
         })
     }
+    
     var favoriteImageWidthSize : CGFloat{
         if horizontalSizeClass == .regular && verticalSizeClass == .regular {
-            return Bounds.width * 0.03
+            return Bounds.width * 0.1
+        } else if horizontalSizeClass == .compact && verticalSizeClass == .regular {
+            // Portrait (iPhone)
+            return Bounds.width * 0.4
+        }else{
+            return Bounds.width * 0.35
         }
-        return Bounds.width * 0.3
     }
+    
     
     var favoriteImageHightSize : CGFloat{
     if horizontalSizeClass == .regular && verticalSizeClass == .regular {
             return Bounds.width * 0.03
         }
-        return Bounds.width * 0.01
+        return Bounds.height * 0.2
     }
     
     var favoriteImagePadding : CGFloat{

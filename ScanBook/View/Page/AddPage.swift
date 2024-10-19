@@ -55,9 +55,6 @@ struct AddPage: View {
                         .toolbarColorScheme(.dark)
                         .customBackButton(onBack: {})
                 }
-                if(addModel.isLoading){
-                    LoadingView(scaleEffect: 3)
-                }
                 CustomAlertView(alertType: addModel.alertType, title: addModel.alertTitle , message: addModel.alertMessage, isShow: $addModel.showAlert, onSubmit: {
                     if(addModel.alertType == .success){
                         if(bookDataItem == nil){

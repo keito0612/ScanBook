@@ -15,6 +15,9 @@ class NavigationSettingRouter: ObservableObject {
         case passCodeSettingScreen
         case passCodeSettingScreen2
         case iCloudSetting
+        case account
+        case login
+        case sinUp
         
         @ViewBuilder
         func destination() -> some View {
@@ -27,6 +30,12 @@ class NavigationSettingRouter: ObservableObject {
                 PassCodeSettingScreen2View()
             case .iCloudSetting:
                 ICloudSettingPage()
+            case .account:
+                AccountPage()
+            case .login:
+                LoginPage()
+            case .sinUp:
+                SinUpPage()
             }
         }
     }

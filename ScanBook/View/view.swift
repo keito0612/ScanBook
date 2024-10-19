@@ -20,6 +20,11 @@ extension View{
         self.modifier(ImageMagnificationView(contentSize: contentSize, aspectRatio: aspectRatio))
     }
 }
+extension View{
+    func loadingView(message:String, scaleEffect:CGFloat, isPresented:Binding<Bool>) -> some View{
+        self.modifier(LoadingView(message: message, scaleEffect: scaleEffect, isPresented: isPresented))
+    }
+}
 
 enum Design {
     enum Padding {

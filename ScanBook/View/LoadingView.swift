@@ -7,18 +7,29 @@
 
 import SwiftUI
 
-struct LoadingView: View {
+struct LoadingView: ViewModifier {
+    
+    private let message:String
     private let scaleEffect: CGFloat
-    init(scaleEffect: CGFloat) {
+    private let isPresented:Binding<Bool>
+    init(message:String,scaleEffect: CGFloat,isPresented:Binding<Bool>) {
         self.scaleEffect = scaleEffect
+        self.message = message
+        self.isPresented = isPresented
     }
-    var body: some View {
+    func body(content: Content) -> some View {
+        content.fullScreenCover(isPresented:isPresented){
+            loadingView().ignoresSafeArea(.all).background(SheetBackgroundClearView())
+        }
+    }
+    
+    private func loadingView() -> some View {
         VStack {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle( tint: Color.white))
                 .scaleEffect(scaleEffect)
                 .frame(width: scaleEffect * 20, height: scaleEffect * 20)
-            Text("読み込み中")
+            Text(message)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
                 .font(.title)
@@ -26,6 +37,23 @@ struct LoadingView: View {
     }
 }
 
-#Preview {
-  return LoadingView(scaleEffect: 3)
+
+
+
+struct SheetBackgroundClearView: UIViewRepresentable {
+    func makeUIView(context _: Context) -> UIView {
+        let view = SuperviewRecolourView()
+        return view
+    }
+
+    func updateUIView(_: UIView, context _: Context) {}
+}
+
+class SuperviewRecolourView: UIView {
+    override func layoutSubviews() {
+        guard let parentView = superview?.superview else {
+            return
+        }
+        parentView.backgroundColor = .clear
+    }
 }

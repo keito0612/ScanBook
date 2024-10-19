@@ -26,6 +26,9 @@ struct SettingPage: View {
                             onTap: {
                                 router.path.append(.passCodeSetting)
                             })
+                        AccountItemView(onTap: {
+                            router.path.append(.account)
+                        })
                         ICloudItemView(onTap: {
                             router.path.append(.iCloudSetting)
                         })
@@ -95,6 +98,23 @@ struct ICloudItemView:View {
         }, label: {
             HStack {
                 Text("iCloud").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.white)
+            }
+        })
+        .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
+        
+    }
+}
+
+struct AccountItemView:View {
+    let onTap:() -> Void
+    var body: some View {
+        Button(action: {
+            onTap()
+        }, label: {
+            HStack {
+                Text("アカウント").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
                 Image(systemName: "chevron.right")
                     .foregroundColor(.white)
             }

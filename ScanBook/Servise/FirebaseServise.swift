@@ -27,6 +27,10 @@ class FirebaseServise{
         }
     }
     
+    func passwordReset(email:String) async throws{
+        try await auth.sendPasswordReset(withEmail: email)
+    }
+    
     func signOut() throws{
         try Auth.auth().signOut()
     }

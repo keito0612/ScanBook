@@ -78,6 +78,8 @@
 		35D15AB72CBE7AEE000AC4E1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 35D15AB62CBE7AEE000AC4E1 /* FirebaseStorage */; };
 		35D15AF02CBE8D04000AC4E1 /* FormTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D15AEF2CBE8D04000AC4E1 /* FormTextFieldView.swift */; };
 		35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */; };
+		35D6FF222CC4FE6C00EAA509 /* ResetPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6FF212CC4FE6C00EAA509 /* ResetPasswordPage.swift */; };
+		35D6FF242CC501AF00EAA509 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6FF232CC501AF00EAA509 /* ResetPasswordViewModel.swift */; };
 		35DF4C9B2C569CD10082FEB0 /* BinaryCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 35DF4C9A2C569CD10082FEB0 /* BinaryCodable */; };
 		35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E13DC32BFB235E00F97C53 /* LoadingView.swift */; };
 		35F4CC252C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 35F4CC242C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel */; };
@@ -176,6 +178,8 @@
 		35D15AAD2CBE3C80000AC4E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35D15AEF2CBE8D04000AC4E1 /* FormTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextFieldView.swift; sourceTree = "<group>"; };
 		35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDataItem.swift; sourceTree = "<group>"; };
+		35D6FF212CC4FE6C00EAA509 /* ResetPasswordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordPage.swift; sourceTree = "<group>"; };
+		35D6FF232CC501AF00EAA509 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		35E13DC32BFB235E00F97C53 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		35F4CC232C99DEC40063D310 /* ScanBook 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScanBook 2.xcdatamodel"; sourceTree = "<group>"; };
 		35F4CC242C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = ScanBookModelVer1toVer2.xcmappingmodel; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 				35A17E3D2CC2AD920075A2AB /* SinUpViewModel.swift */,
 				35A17E7A2CC3CB250075A2AB /* AccountViewModel.swift */,
 				35A17E7E2CC3E2C80075A2AB /* LoginViewModel.swift */,
+				35D6FF232CC501AF00EAA509 /* ResetPasswordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 				35A17E332CC2459C0075A2AB /* SinUpPage.swift */,
 				35A17E782CC392E70075A2AB /* AccountPage.swift */,
 				35A17E7C2CC3DC360075A2AB /* LoginPage.swift */,
+				35D6FF212CC4FE6C00EAA509 /* ResetPasswordPage.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -730,6 +736,7 @@
 				35C1B2FB2BFE58B9008D7CB1 /* PassCodeSettingPage.swift in Sources */,
 				35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */,
 				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
+				35D6FF242CC501AF00EAA509 /* ResetPasswordViewModel.swift in Sources */,
 				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,
 				35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */,
 				35315F952B720D150045014B /* SearchBarView.swift in Sources */,
@@ -750,6 +757,7 @@
 				35545F2A2B821C2A00B21AB4 /* PageViewController.swift in Sources */,
 				35A17E392CC24A330075A2AB /* FirebaseServise.swift in Sources */,
 				3542555D2B4BC8B100559413 /* ContentView.swift in Sources */,
+				35D6FF222CC4FE6C00EAA509 /* ResetPasswordPage.swift in Sources */,
 				35A17E7F2CC3E2C80075A2AB /* LoginViewModel.swift in Sources */,
 				356866202C2D1C0D007879EB /* BannerView.swift in Sources */,
 				35315F802B6974810045014B /* SettingPage.swift in Sources */,

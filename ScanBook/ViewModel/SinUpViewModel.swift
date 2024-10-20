@@ -50,7 +50,7 @@ class SinUpViewModel:  ObservableObject {
             showAlert = true
         }
     }
-    public func isValidetion() -> Bool{
+    private func isValidetion() -> Bool{
         var valide:Bool = false
         emailErrorText = ""
         passwordErrorText = ""

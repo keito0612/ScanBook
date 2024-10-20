@@ -8,21 +8,31 @@
 import SwiftUI
 
 struct LoginPage: View {
+    @EnvironmentObject var router:NavigationSettingRouter
     @StateObject var loginViewModel:LoginViewModel = LoginViewModel()
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
             ScrollView {
-                Group{
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        IPhoneLoginBodyView(loginViewModel: loginViewModel)
-                    } else if UIDevice.current.userInterfaceIdiom == .pad {
-                        IPadLoginBodyView(loginViewModel: loginViewModel)
-                    }
+                VStack {
+                    Group{
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            IPhoneLoginBodyView(loginViewModel: loginViewModel)
+                        } else if UIDevice.current.userInterfaceIdiom == .pad {
+                            IPadLoginBodyView(loginViewModel: loginViewModel)
+                        }
+                    }.padding(.horizontal,28).padding(.vertical, 44)
+                    PasswordResetButton(onTap: {
+                        router.path.append(.resetPassword)
+                    })
                 }
             }.loadingView(message: "読み込み中", scaleEffect: 3, isPresented:$loginViewModel.isLoading )
             if(loginViewModel.showAlert){
-                CustomAlertView(alertType: loginViewModel.alertType, title: loginViewModel.alertTitle, message: loginViewModel.alertMessage, isShow: $loginViewModel.showAlert)
+                CustomAlertView(alertType: loginViewModel.alertType, title: loginViewModel.alertTitle, message: loginViewModel.alertMessage, isShow: $loginViewModel.showAlert,onSubmit:{
+                    if(loginViewModel.alertType == .success){
+                        router.path.removeLast()
+                    }
+                })
             }
         }.navigationTitle("ログイン")
             .toolbarBackground(Color.black,for: .navigationBar)
@@ -37,15 +47,14 @@ struct IPhoneLoginBodyView :View{
     @ObservedObject var loginViewModel:LoginViewModel
     var body: some View{
         VStack(spacing: 84){
-            FormTextFieldView(lavel: "メールアドレス", text: $loginViewModel.emailText)
-            FormTextFieldView(lavel: "パスワード", text: $loginViewModel.passwordText, isPassword:true,passwordHidden:$loginViewModel.passwordHidden)
+            FormTextFieldView(lavel: "メールアドレス", text: $loginViewModel.emailText,errorValidation: loginViewModel.emailErrorValidetion,errorText: loginViewModel.emailErrorText)
+            FormTextFieldView(lavel: "パスワード", text: $loginViewModel.passwordText, isPassword:true,passwordHidden:$loginViewModel.passwordHidden,errorValidation: loginViewModel.passwordErrorValidetion, errorText: loginViewModel.passwordErrorText)
             FormButtonView(name: "ログイン", onTap: {
                 Task{
-//                    await loginViewModel.sinUp()
+                    await loginViewModel.signIn()
                 }
             }).padding(.top, 16)
-            Spacer()
-        } .padding(.horizontal,28).padding(.vertical, 44)
+        }
     }
 }
 
@@ -54,25 +63,24 @@ struct IPadLoginBodyView :View{
     var body: some View{
         VStack(spacing: 84){
             Spacer()
-            FormTextFieldView(lavel: "メールアドレス", text: $loginViewModel.emailText)
-            FormTextFieldView(lavel: "パスワード", text: $loginViewModel.passwordText, isPassword:true,passwordHidden:$loginViewModel.passwordHidden)
-            FormButtonView(name: "新規登録", onTap: {
+            FormTextFieldView(lavel: "メールアドレス", text: $loginViewModel.emailText,errorValidation: loginViewModel.emailErrorValidetion,errorText: loginViewModel.emailErrorText)
+            FormTextFieldView(lavel: "パスワード", text: $loginViewModel.passwordText, isPassword:true,passwordHidden:$loginViewModel.passwordHidden,errorValidation: loginViewModel.passwordErrorValidetion, errorText: loginViewModel.passwordErrorText)
+            FormButtonView(name: "ログイン", onTap: {
                 Task{
-//                    await loginViewModel.sinUp()
+                    await loginViewModel.signIn()
                 }
             }).padding(.top, 16)
-            Spacer()
         }.padding(.horizontal, 260)
     }
 }
 
-struct SinUPTextButton:View{
+struct PasswordResetButton:View{
     let onTap: () -> Void
     var body: some View{
         Button(
             action:onTap ,
             label:{
-                Text("パスワード").bold().foregroundStyle(.white)
+                Text("パスワードをお忘れの方はこちらへ").bold().foregroundStyle(.white)
             }
         )
     }
@@ -81,6 +89,6 @@ struct SinUPTextButton:View{
 
 #Preview {
     NavigationStack{
-        LoginPage()
+        LoginPage().environmentObject(NavigationSettingRouter())
     }
 }

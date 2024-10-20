@@ -1,47 +1,38 @@
 //
-//  LoginViewModel.swift
+//  PasswordViewModel.swift
 //  ScanBook
 //
-//  Created by 磯部馨仁 on 2024/10/19.
+//  Created by 磯部馨仁 on 2024/10/20.
 //
 
-import SwiftUI
-import FirebaseFirestore
+import Foundation
 import FirebaseAuth
-
-class LoginViewModel:  ObservableObject {
+import FirebaseFirestore
+class ResetPasswordViewModel :ObservableObject{
     @Published var emailText:String = ""
     @Published var emailErrorText:String = ""
     @Published var emailErrorValidetion:Bool = false
-    @Published var passwordText:String = ""
-    @Published var passwordErrorText:String = ""
-    @Published var passwordErrorValidetion:Bool = false
-    @Published var passwordHidden:Bool = true
     @Published var isLoading:Bool = false
     @Published var alertType:AlertType = .success
     @Published var showAlert = false
     @Published var alertTitle = ""
     @Published var alertMessage = ""
-   
+    
+    
+    
     @MainActor
-    func signIn() async{
+    func resetPassword() async{
         if(isValidetion()){
             return
         }
         isLoading = true
         do{
-           let userId = try await FirebaseServise().signIn(email: emailText, password: passwordText)
+            try await  FirebaseServise().passwordReset(email: emailText)
             isLoading = false
-            if(userId != ""){
-                alertType = .success
-                alertTitle = "ログインが完了しました。"
-                showAlert = true
-            }else{
-                alertType = .error
-                alertTitle = "ログインをする事が出来ませんでした。"
-                alertMessage = "もう一度ログインをお願いします。"
-                showAlert = true
-            }
+            alertType = .success
+            alertTitle = "パスワード再設定用のメールを送りました。"
+            showAlert = true
+            
         }catch{
             isLoading = false
             let authErrorCode = AuthErrorCode(rawValue: error._code)
@@ -61,19 +52,11 @@ class LoginViewModel:  ObservableObject {
     private func isValidetion() -> Bool{
         var valide:Bool = false
         emailErrorText = ""
-        passwordErrorText = ""
         emailErrorValidetion = false
-        passwordErrorValidetion = false
         
         if(emailText.isEmpty){
             emailErrorValidetion = true
-            emailErrorText = "※メールアドレスを入力してください。"
-            valide = true
-            return valide
-        }
-        if(passwordText.isEmpty){
-            passwordErrorValidetion = true
-            passwordErrorText = "※パスワードを入力してください。"
+            emailErrorText = "※パスワードを入力してください。"
             valide = true
             return valide
         }

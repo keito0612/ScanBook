@@ -18,7 +18,11 @@ struct AccountPage: View {
                     if(accountViewModel.isAuthenticated){
                         Group{
                             Section(header: Text("バックアップ").bold().foregroundStyle(Color.white)) {
-                                BackUpItemView(onTap: {})
+                                BackUpItemView(onTap: {
+                                    Task{
+                                       await accountViewModel.backUp()
+                                    }
+                                })
                             }
                             Section(header: Text("アカウント").bold().foregroundStyle(Color.white)) {
                                 LogoutItemView(onTap: {
@@ -42,7 +46,7 @@ struct AccountPage: View {
                 }.listStyle(.insetGrouped)
                     .background(Color.black)
                     .scrollContentBackground(.hidden)
-            }
+            }.loadingView(message: "バックアップ中", scaleEffect: 3, isPresented:$accountViewModel.isLoading)
             if(accountViewModel.showAlert){
                 CustomAlertView(alertType: .warning, title:accountViewModel.alertTitle , message: accountViewModel.alertMessage,onCansel:{
                 }, onDestructive:{
@@ -53,7 +57,7 @@ struct AccountPage: View {
             }
             if(accountViewModel.showAlert2){
                 CustomAlertView(alertType: .warning, title:accountViewModel.alertTitle , message: accountViewModel.alertMessage,onDestructive:{
-                    
+                    router.path.removeLast()
                 }, isShow: $accountViewModel.showAlert2)
             }
         }.navigationBarTitle("アカウント", displayMode: .inline)

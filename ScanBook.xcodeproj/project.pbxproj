@@ -247,8 +247,8 @@
 				35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */,
 				35586F322C17356B006852F4 /* SettingModel.swift */,
 				356866172C23BF98007879EB /* ICloudSettingModel.swift */,
-				35A17E3D2CC2AD920075A2AB /* SinUpViewModel.swift */,
 				35A17E7A2CC3CB250075A2AB /* AccountViewModel.swift */,
+				35A17E3D2CC2AD920075A2AB /* SinUpViewModel.swift */,
 				35A17E7E2CC3E2C80075A2AB /* LoginViewModel.swift */,
 				35D6FF232CC501AF00EAA509 /* ResetPasswordViewModel.swift */,
 			);

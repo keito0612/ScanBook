@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct LoginPage: View {
     @EnvironmentObject var router:NavigationSettingRouter
     @StateObject var loginViewModel:LoginViewModel = LoginViewModel()
+    @Environment(\.managedObjectContext)private var context
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -17,9 +19,9 @@ struct LoginPage: View {
                 VStack {
                     Group{
                         if UIDevice.current.userInterfaceIdiom == .phone {
-                            IPhoneLoginBodyView(loginViewModel: loginViewModel)
+                            IPhoneLoginBodyView(loginViewModel: loginViewModel,context:context)
                         } else if UIDevice.current.userInterfaceIdiom == .pad {
-                            IPadLoginBodyView(loginViewModel: loginViewModel)
+                            IPadLoginBodyView(loginViewModel: loginViewModel,context:context)
                         }
                     }.padding(.horizontal,28).padding(.vertical, 44)
                     PasswordResetButton(onTap: {
@@ -45,13 +47,14 @@ struct LoginPage: View {
 
 struct IPhoneLoginBodyView :View{
     @ObservedObject var loginViewModel:LoginViewModel
+    let context:NSManagedObjectContext
     var body: some View{
         VStack(spacing: 84){
             FormTextFieldView(lavel: "メールアドレス", text: $loginViewModel.emailText,errorValidation: loginViewModel.emailErrorValidetion,errorText: loginViewModel.emailErrorText)
             FormTextFieldView(lavel: "パスワード", text: $loginViewModel.passwordText, isPassword:true,passwordHidden:$loginViewModel.passwordHidden,errorValidation: loginViewModel.passwordErrorValidetion, errorText: loginViewModel.passwordErrorText)
             FormButtonView(name: "ログイン", onTap: {
                 Task{
-                    await loginViewModel.signIn()
+                    await loginViewModel.signIn(context: context)
                 }
             }).padding(.top, 16)
         }
@@ -60,6 +63,7 @@ struct IPhoneLoginBodyView :View{
 
 struct IPadLoginBodyView :View{
     @ObservedObject var loginViewModel:LoginViewModel
+    let context:NSManagedObjectContext
     var body: some View{
         VStack(spacing: 84){
             Spacer()
@@ -67,7 +71,7 @@ struct IPadLoginBodyView :View{
             FormTextFieldView(lavel: "パスワード", text: $loginViewModel.passwordText, isPassword:true,passwordHidden:$loginViewModel.passwordHidden,errorValidation: loginViewModel.passwordErrorValidetion, errorText: loginViewModel.passwordErrorText)
             FormButtonView(name: "ログイン", onTap: {
                 Task{
-                    await loginViewModel.signIn()
+                    await loginViewModel.signIn(context: context)
                 }
             }).padding(.top, 16)
         }.padding(.horizontal, 260)
@@ -89,6 +93,6 @@ struct PasswordResetButton:View{
 
 #Preview {
     NavigationStack{
-        LoginPage().environmentObject(NavigationSettingRouter())
+        LoginPage().environmentObject(NavigationSettingRouter()).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

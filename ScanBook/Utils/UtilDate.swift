@@ -16,4 +16,7 @@ class UtilDate{
         let dateTime = dateFormatter.string(from: date)
         return dateTime
     }
+    func stringToDateTime(dateString: String) -> Date? {
+        return dateFormatter.date(from: dateString)
+    }
 }

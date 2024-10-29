@@ -25,6 +25,27 @@ class Convert{
         return imageDataList
     }
     
+    static func convertImageUrlToUIImage(_ imageUrl:String?) -> UIImage{
+        if(imageUrl != nil){
+            let imageUrl:URL = URL(string: imageUrl!)!
+            let imageData:Data = try! Data(contentsOf: imageUrl)
+            return UIImage(data: imageData)!
+        }else{
+            return UIImage()
+        }
+    }
+    
+    static func convertImageUrlListToUIImageList(_ imageUrlList:Array<String>) ->   Array<UIImage>{
+        var uiImageList :Array<UIImage> = []
+        for imageUrl   in imageUrlList {
+            let imageUrl:URL = URL(string: imageUrl)!
+            let imageData:Data = try! Data(contentsOf: imageUrl)
+            let uiImage:UIImage = UIImage(data: imageData)!
+            uiImageList.append(uiImage)
+        }
+        return uiImageList
+    }
+    
     static func convertBase64ToImages(_ base64StringList: [String]) -> [UIImage] {
         var imageList :[UIImage] = []
         if(!base64StringList.isEmpty){

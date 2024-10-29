@@ -27,6 +27,21 @@ class FirebaseServise{
         }
     }
     
+    
+    func addBookData(_ bookData: BookData) async  throws{
+        var converImage: String = ""
+        var images: Array<String> = []
+        let date  = UtilDate().DateTimeToString(date: bookData.date!)
+        try await upLoadImage(id: bookData.id!.description, scanImages: Array<UIImage>.decode(from: bookData.images!), converImage:                           UIImage(data:bookData.coverImage ?? Data()), resultImage: { downLoadConverImage , downLoadImages  in
+            converImage =  downLoadConverImage
+            images = downLoadImages
+        })
+        let bookData :FirestoreBookData = FirestoreBookData( coverImage:converImage, reading: bookData.reading,images:images, title: bookData.title!,pageCount: Int(bookData.pageCount),categoryStatus:Int( bookData.categoryStatus),
+                        favorito:bookData.favorito, date:date)
+        try db.collection("users").document(getUserId()).collection("books").addDocument(from: bookData)
+    }
+        
+    
     func passwordReset(email:String) async throws{
         try await auth.sendPasswordReset(withEmail: email)
     }
@@ -44,28 +59,39 @@ class FirebaseServise{
         let uid = result.user.uid
         return uid
     }
-    func upLoadImage(id:Int,scanImages:Array<UIImage>,converImage:UIImage) async throws{
-        let path = "gs://scanBook.appspot.com"
+    func upLoadImage(id:String,scanImages:Array<UIImage>,converImage:UIImage?, resultImage: ( _ converImage:String, _ images:Array<String>) -> Void) async throws{
+        var downLoadConverImage:String = ""
+        var downLoadImages:Array<String> = []
+        let path = "gs://scanbook-app-3a9c5.appspot.com"
         do {
             for ( index ,image) in scanImages.enumerated() {
                 guard let uploadImage = image.jpegData(compressionQuality: 0.5) else {
                     break
                 }
-                let scanImageReference = storage.reference(forURL: path).child("scanImage/images/scanImages\(id)/scanImage\(index).jpg")
+                let scanImageReference = storage.reference(forURL: path).child("scanImage/images/scanImages/\(id)/scanImage\(index).jpg")
                 _ =  try await scanImageReference.putDataAsync( uploadImage,metadata: nil, onProgress: nil)
+                let downLoadImage = try await scanImageReference.downloadURL().absoluteString
+                downLoadImages.append(downLoadImage)
             }
-            
-            guard let uploadConverImage = converImage.jpegData(compressionQuality: 0.5) else {
-                return
+            if(converImage != nil){
+                guard let uploadConverImage = converImage!.jpegData(compressionQuality: 0.5) else {
+                    return
+                }
+                
+                let converImageReference = storage.reference(forURL: path).child("converImage/images/converImage\(id).jpg")
+                _ =  try await converImageReference.putDataAsync( uploadConverImage,metadata: nil, onProgress: nil)
+                downLoadConverImage =  try await converImageReference.downloadURL().absoluteString
+                resultImage(downLoadConverImage, downLoadImages)
+            }else{
+                resultImage("", downLoadImages)
             }
-            
-            let converImageReference = storage.reference(forURL: path).child("converImage/images/converImage\(id).jpg")
-            _ =  try await converImageReference.putDataAsync( uploadConverImage,metadata: nil, onProgress: nil)
         }catch{
             print(error.localizedDescription)
         }
     }
     func downloadImage(){
-        
+    }
+    func getUserId() -> String{
+       return auth.currentUser!.uid
     }
 }

@@ -24,6 +24,8 @@ public enum AuthError: Error {
     case invalidEmail
     // 既に登録されているメールアドレス
     case emailAlreadyInUse
+    //メールが違う
+    case missingEmail
     // 不明なエラー
     case unknown
     
@@ -35,7 +37,7 @@ public enum AuthError: Error {
         case .weakPassword:
             return "パスワードは８文字以上でお願いします。"
         case .wrongPassword:
-            return "メールアドレス、もしくはパスワードが違います。"
+            return "パスワードが違います。"
         case .userNotFound:
             return "アカウントがありません。"
         case .invalidEmail:
@@ -44,6 +46,8 @@ public enum AuthError: Error {
             return "既に登録されているメールアドレスです。"
         case .unknown:
             return "エラーが起きました。"
+        case .missingEmail:
+            return "メールアドレスが違います。"
         }
     }
     var message: String
@@ -63,6 +67,8 @@ public enum AuthError: Error {
             return "別のアカウントでお試しください"
         case .unknown:
             return "何かしらのエラーが発生しました。"
+        case .missingEmail:
+            return ""
         }
     }
 }
@@ -205,6 +211,8 @@ class FirebaseErrorHandler{
             return AuthError.weakPassword.title
         case .wrongPassword:
             return AuthError.wrongPassword.title
+        case .missingEmail:
+            return AuthError.missingEmail.title
         case .userNotFound:
             return AuthError.userNotFound.title
         case .invalidEmail:

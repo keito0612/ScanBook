@@ -77,6 +77,7 @@
 		35D15AB52CBE7AEE000AC4E1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 35D15AB42CBE7AEE000AC4E1 /* FirebaseFirestore */; };
 		35D15AB72CBE7AEE000AC4E1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 35D15AB62CBE7AEE000AC4E1 /* FirebaseStorage */; };
 		35D15AF02CBE8D04000AC4E1 /* FormTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D15AEF2CBE8D04000AC4E1 /* FormTextFieldView.swift */; };
+		35D323422CD118580088D093 /* Loading2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D323412CD118580088D093 /* Loading2View.swift */; };
 		35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */; };
 		35D6FF222CC4FE6C00EAA509 /* ResetPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6FF212CC4FE6C00EAA509 /* ResetPasswordPage.swift */; };
 		35D6FF242CC501AF00EAA509 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6FF232CC501AF00EAA509 /* ResetPasswordViewModel.swift */; };
@@ -177,6 +178,7 @@
 		35C1B3072C1177CE008D7CB1 /* PassCodeLockScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeLockScreenView.swift; sourceTree = "<group>"; };
 		35D15AAD2CBE3C80000AC4E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		35D15AEF2CBE8D04000AC4E1 /* FormTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextFieldView.swift; sourceTree = "<group>"; };
+		35D323412CD118580088D093 /* Loading2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading2View.swift; sourceTree = "<group>"; };
 		35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDataItem.swift; sourceTree = "<group>"; };
 		35D6FF212CC4FE6C00EAA509 /* ResetPasswordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordPage.swift; sourceTree = "<group>"; };
 		35D6FF232CC501AF00EAA509 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */,
 				35586F342C1A80D4006852F4 /* SettingRootView.swift */,
 				3568661F2C2D1C0C007879EB /* BannerView.swift */,
+				35D323412CD118580088D093 /* Loading2View.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				35A17E372CC248E40075A2AB /* FirebaseErrorHandler.swift in Sources */,
 				35882ADA2B9A21AC00079C48 /* imageViewer.swift in Sources */,
 				35545F342B88F9AD00B21AB4 /* Convert.swift in Sources */,
+				35D323422CD118580088D093 /* Loading2View.swift in Sources */,
 				35586F332C17356B006852F4 /* SettingModel.swift in Sources */,
 				35545F212B7E449D00B21AB4 /* view.swift in Sources */,
 				35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */,

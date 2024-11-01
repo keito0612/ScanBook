@@ -191,7 +191,7 @@ struct ReadingBookItemView : View{
                         }else{
                             Image(decorative: "no_image")
                                 .resizable()
-                                .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.1)
+                                .frame(width: Bounds.width * 0.2, height: Bounds.height * 0.1)
                                 .aspectRatio(contentMode: .fill)
                              
                         }
@@ -275,7 +275,7 @@ struct favoriteBookItemView : View{
                     }else{
                         Image(decorative: "no_image")
                             .resizable()
-                            .frame(width: Bounds.width * 0.25, height: Bounds.height * 0.15)
+                            .frame(width: Bounds.width * 0.45, height: Bounds.height * 0.2)
                             .scaledToFit()
                     }
                 }

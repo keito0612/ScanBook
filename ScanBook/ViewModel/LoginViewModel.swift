@@ -37,6 +37,7 @@ class LoginViewModel:  ObservableObject {
                 isLoading = false
                 alertType = .success
                 alertTitle = "ログインが完了しました。"
+                alertMessage = "バックアップをしたデータを取得しました。"
                 showAlert = true
             }else{
                 isLoading = false
@@ -104,9 +105,9 @@ class LoginViewModel:  ObservableObject {
                     newBookData.reading = bookData.reading!
                     newBookData.title = bookData.title
                     if(!bookData.coverImage!.isEmpty){
-                        newBookData.coverImage =  Convert.convertImageUrlToUIImage(bookData.coverImage).jpegData(compressionQuality: 1)
+                        newBookData.coverImage =  Convert.convertImageUrlToUIImage(bookData.coverImage).pngData()
                     }else{
-                        newBookData.coverImage =  UIImage().jpegData(compressionQuality: 1)
+                        newBookData.coverImage =  Data()
                     }
                     newBookData.categoryStatus = Int64(bookData.categoryStatus!)
                     newBookData.images = Convert.convertImageUrlListToUIImageList(bookData.images!).encode()

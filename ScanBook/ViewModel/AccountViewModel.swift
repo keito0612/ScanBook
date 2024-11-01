@@ -27,6 +27,7 @@ class AccountViewModel: ObservableObject{
         let bookDatas :Array<BookData> = getAllData()
         if(!bookDatas.isEmpty){
             do{
+                try await deleteAllData()
                 for bookData in bookDatas {
                     try await FirebaseServise().addBookData(bookData)
                 }
@@ -52,6 +53,13 @@ class AccountViewModel: ObservableObject{
         }
         catch {
             fatalError()
+        }
+    }
+    
+    private func deleteAllData() async  throws{
+        let deleteDocumentItems  = try await FirebaseServise().db.collection("users").document(FirebaseServise().getUserId()).collection("books").getDocuments().documents
+        for document in deleteDocumentItems{
+            try await document.reference.delete()
         }
     }
     

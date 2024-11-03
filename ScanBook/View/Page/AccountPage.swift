@@ -31,7 +31,7 @@ struct AccountPage: View {
                                 DeleteAccountItemView(onTap: {
                                     accountViewModel.alertTitle = "アカウントを削除しますか?"
                                     accountViewModel.alertMessage = "削除したアカウントは、戻りません。"
-                                    accountViewModel.showAlert.toggle()
+                                    accountViewModel.showAlert2.toggle()
                                 })
                             }
                         }
@@ -48,17 +48,23 @@ struct AccountPage: View {
                     .scrollContentBackground(.hidden)
             }.loadingView(message: "バックアップ中", scaleEffect: 3, isPresented:$accountViewModel.isLoading)
             if(accountViewModel.showAlert){
+                CustomAlertView(alertType: accountViewModel.alertType , title:accountViewModel.alertTitle , message: accountViewModel.alertMessage, isShow: $accountViewModel.showAlert, onSubmit:{
+                    router.path.removeLast()
+                })
+            }else if(accountViewModel.showAlert2){
                 CustomAlertView(alertType: .warning, title:accountViewModel.alertTitle , message: accountViewModel.alertMessage,onCansel:{
                 }, onDestructive:{
                     accountViewModel.alertTitle = "最終確認"
                     accountViewModel.alertMessage = "本当にアカウントを削除してもよろしいでしょうか?"
-                    accountViewModel.showAlert2 = true
-                } ,isShow: $accountViewModel.showAlert)
+                    accountViewModel.showAlert3 = true
+                } ,isShow: $accountViewModel.showAlert2)
             }
-            if(accountViewModel.showAlert2){
+            if(accountViewModel.showAlert3){
                 CustomAlertView(alertType: .warning, title:accountViewModel.alertTitle , message: accountViewModel.alertMessage,onDestructive:{
-                    router.path.removeLast()
-                }, isShow: $accountViewModel.showAlert2)
+                    Task{
+                        await accountViewModel.deleteUser()
+                    }
+                }, isShow: $accountViewModel.showAlert3)
             }
         }.navigationBarTitle("アカウント", displayMode: .inline)
             .toolbarBackground(Color.black,for: .navigationBar)
@@ -66,7 +72,7 @@ struct AccountPage: View {
             .toolbarColorScheme(.dark)
             .customBackButton(onBack: {
                 router.path.removeLast()
-            })    }
+            })}
 }
 
 

@@ -41,7 +41,8 @@ struct LoginPage: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarColorScheme(.dark)
             .customBackButton(onBack: {
-            })
+                router.path.remove(at: 1)
+            },isDismiss: false)
     }
 }
 

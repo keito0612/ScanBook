@@ -11,6 +11,7 @@ struct CustomBackButton: ViewModifier {
     
     @Environment(\.dismiss) var dismiss
     let onBack: () -> Void;
+    let isDissmiss: Bool
 
     func body(content: Content) -> some View {
         content
@@ -19,7 +20,9 @@ struct CustomBackButton: ViewModifier {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(
                         action: {
-                            dismiss()
+                            if(isDissmiss){
+                                dismiss()
+                            }
                             onBack()
                         }, label: {
                             Text("戻る").fontWeight(.bold)

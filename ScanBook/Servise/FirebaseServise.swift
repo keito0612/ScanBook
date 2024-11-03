@@ -89,7 +89,10 @@ class FirebaseServise{
             print(error.localizedDescription)
         }
     }
-    func downloadImage(){
+    func deleteUser() async throws{
+        try await db.collection("users").document(getUserId()).delete()
+        let user  = auth.currentUser
+        try await user?.delete()
     }
     func getUserId() -> String{
        return auth.currentUser!.uid

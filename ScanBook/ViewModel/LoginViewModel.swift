@@ -37,7 +37,6 @@ class LoginViewModel:  ObservableObject {
                 isLoading = false
                 alertType = .success
                 alertTitle = "ログインが完了しました。"
-                alertMessage = "バックアップをしたデータを取得しました。"
                 showAlert = true
             }else{
                 isLoading = false

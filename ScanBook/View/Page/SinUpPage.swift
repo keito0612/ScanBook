@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SinUpPage: View {
+    @EnvironmentObject var router:NavigationSettingRouter
     @StateObject var sinUpViewModel:SinUpViewModel = SinUpViewModel()
     var body: some View {
             ZStack {
@@ -29,7 +30,8 @@ struct SinUpPage: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarColorScheme(.dark)
             .customBackButton(onBack: {
-            })
+                router.path.remove(at: 1)
+            },isDismiss: false)
     }
 }
 
@@ -70,7 +72,7 @@ struct IPadSinUpBodyView :View{
 
 #Preview("iPhone 16") {
     NavigationStack{
-        SinUpPage()
+        SinUpPage().environmentObject(NavigationSettingRouter())
     }
 }
 

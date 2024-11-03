@@ -11,8 +11,10 @@ import CoreData
 class AccountViewModel: ObservableObject{
     @Published var showAlert:Bool = false
     @Published var showAlert2:Bool = false
+    @Published var showAlert3:Bool = false
     @Published var alertTitle = ""
     @Published var alertMessage = ""
+    @Published var alertType:AlertType = .success
     @Published var isAuthenticated = false
     @Published var isLoading = false
     
@@ -32,14 +34,41 @@ class AccountViewModel: ObservableObject{
                     try await FirebaseServise().addBookData(bookData)
                 }
                 isLoading = false
+                alertType = .success
+                alertTitle = "バックアップが完了しました。"
+                showAlert = true
             }catch{
+                alertType = .success
+                alertTitle = "バックアップをすることができませんでした。"
+                showAlert = true
                 isLoading = false
-                print("エラーが発生しました。")
+                print(error)
             }
         }else{
             isLoading = false
         }
     }
+    
+    @MainActor
+    func deleteUser() async {
+        isLoading = true
+        do{
+            try await FirebaseServise().deleteUser()
+            isLoading = false
+            showAlert = true
+            alertType = .success
+            alertTitle = "アカウントを削除しました。"
+            alertMessage = ""
+        }catch{
+            isLoading = false
+            showAlert = true
+            alertTitle = "アカウントを削除できませんでした。"
+            alertType = .error
+            alertMessage = ""
+            print(error)
+        }
+    }
+    
     
     private func getAllData() -> [BookData]{
         let persistenceController = PersistenceController.shared

@@ -32,7 +32,6 @@ class ResetPasswordViewModel :ObservableObject{
             alertType = .success
             alertTitle = "パスワード再設定用のメールを送りました。"
             showAlert = true
-            
         }catch{
             isLoading = false
             let authErrorCode = AuthErrorCode(rawValue: error._code)

@@ -21,11 +21,11 @@ struct ResetPasswordPage: View {
                     }
                 }).padding(.top, 32)
                 Spacer()
-            }.padding(.horizontal, 36).padding(.top, 24).loadingView(message: "読み込み中", scaleEffect: 3, isPresented:$resetPasswordViewModel.isLoading )
+            }.padding(.horizontal, 36).padding(.top, 24).loadingView(message: "再設定用のメールを作成しています。", scaleEffect: 3, isPresented:$resetPasswordViewModel.isLoading )
             if(resetPasswordViewModel.showAlert){
                 CustomAlertView(alertType: resetPasswordViewModel.alertType, title: resetPasswordViewModel.alertTitle, message:resetPasswordViewModel.alertMessage, isShow: $resetPasswordViewModel.showAlert,onSubmit:{
                     if(resetPasswordViewModel.alertType == .success){
-                        router.path.removeLast()
+                        router.path.remove(at: 2)
                     }
                 })
             }
@@ -34,7 +34,8 @@ struct ResetPasswordPage: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarColorScheme(.dark)
             .customBackButton(onBack: {
-            })
+                router.path.remove(at: 2)
+            },isDismiss: false)
     }
 }
 

@@ -23,7 +23,9 @@ struct SinUpPage: View {
                     }
                 }.loadingView(message: "アカウントを作成中", scaleEffect: 3, isPresented:$sinUpViewModel.isLoading )
                 if(sinUpViewModel.showAlert){
-                    CustomAlertView(alertType: sinUpViewModel.alertType, title: sinUpViewModel.alertTitle, message: sinUpViewModel.alertMessage, isShow: $sinUpViewModel.showAlert)
+                    CustomAlertView(alertType: sinUpViewModel.alertType, title: sinUpViewModel.alertTitle, message: sinUpViewModel.alertMessage, isShow: $sinUpViewModel.showAlert,onSubmit: {
+                        router.path.remove(at: 1)
+                    })
                 }
             }.navigationTitle("新規登録")
             .toolbarBackground(Color.black,for: .navigationBar)

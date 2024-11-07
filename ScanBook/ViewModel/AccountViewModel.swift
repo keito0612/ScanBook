@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 class AccountViewModel: ObservableObject{
     @Published var showAlert:Bool = false
@@ -17,6 +18,7 @@ class AccountViewModel: ObservableObject{
     @Published var alertType:AlertType = .success
     @Published var isAuthenticated = false
     @Published var isLoading = false
+    @Published var loadingMesssage = ""
     
     init(){
         FirebaseServise().addStateDidChangeListener(completion: { isAuthenticated  in
@@ -25,6 +27,7 @@ class AccountViewModel: ObservableObject{
     }
     @MainActor
     func backUp() async{
+        loadingMesssage = "バックアップ中..."
         isLoading = true
         let bookDatas :Array<BookData> = getAllData()
         if(!bookDatas.isEmpty){
@@ -68,6 +71,69 @@ class AccountViewModel: ObservableObject{
             print(error)
         }
     }
+    
+    @MainActor
+    func getBackUpData(context :NSManagedObjectContext) async {
+        var firestoreBookDataList: Array<FirestoreBookData> = []
+        loadingMesssage = "データを復元中..."
+        isLoading = true
+        do{
+            deleteAllBookDatas(context: context)
+            let documents = try await FirebaseServise().db.collection("users").document(FirebaseServise().getUserId()).collection("books").getDocuments().documents
+            firestoreBookDataList =  documents.compactMap { try? $0.data(as: FirestoreBookData.self)}
+            addBookData(firestoreBookDataList: firestoreBookDataList, context: context)
+            isLoading = false
+            alertTitle = "データを復元しました。"
+            alertMessage = ""
+            alertType = .success
+            showAlert = true
+        }catch{
+            isLoading = false
+            alertTitle = "データの復元に失敗しました。"
+            alertMessage = "もう一度お試しください。"
+            alertType = .error
+            showAlert = true
+            print(error)
+        }
+    }
+    
+    private func addBookData( firestoreBookDataList:Array<FirestoreBookData>,context :NSManagedObjectContext){
+        do{
+            if(!firestoreBookDataList.isEmpty){
+                for bookData in firestoreBookDataList {
+                    let newBookData = BookData(context: context)
+                    newBookData.id = UUID()
+                    newBookData.favorito = bookData.favorito!
+                    newBookData.reading = bookData.reading!
+                    newBookData.title = bookData.title
+                    if(!bookData.coverImage!.isEmpty){
+                        newBookData.coverImage =  Convert.convertImageUrlToUIImage(bookData.coverImage).pngData()
+                    }else{
+                        newBookData.coverImage =  Data()
+                    }
+                    newBookData.categoryStatus = Int64(bookData.categoryStatus!)
+                    newBookData.images = Convert.convertImageUrlListToUIImageList(bookData.images!).encode()
+                    newBookData.date = UtilDate().stringToDateTime(dateString: bookData.date!)
+                    newBookData.pageCount = Int16(0)
+                    try context.save()
+                }
+            }
+        }catch{
+            print(error.localizedDescription)
+        }
+    }
+    
+  private  func deleteAllBookDatas(context:NSManagedObjectContext) {
+      if(!getAllData().isEmpty){
+          getAllData().forEach(context.delete)
+          do {
+              try context.save()
+          } catch {
+              let nsError = error as NSError
+              fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+          }
+      }
+  }
     
     
     private func getAllData() -> [BookData]{

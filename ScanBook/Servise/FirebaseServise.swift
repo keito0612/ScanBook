@@ -68,7 +68,7 @@ class FirebaseServise{
                 guard let uploadImage = image.jpegData(compressionQuality: 0.5) else {
                     break
                 }
-                let scanImageReference = storage.reference(forURL: path).child("scanImage/images/scanImages/\(id)/scanImage\(index).jpg")
+                let scanImageReference = storage.reference(forURL: path).child("users/\(getUserId())/scanImage/images/scanImages/\(id)/scanImage\(index).jpg")
                 _ =  try await scanImageReference.putDataAsync( uploadImage,metadata: nil, onProgress: nil)
                 let downLoadImage = try await scanImageReference.downloadURL().absoluteString
                 downLoadImages.append(downLoadImage)
@@ -78,7 +78,7 @@ class FirebaseServise{
                     return
                 }
                 
-                let converImageReference = storage.reference(forURL: path).child("converImage/images/converImage\(id).jpg")
+                let converImageReference = storage.reference(forURL: path).child("users/\(getUserId())/scanImage/converImage/images/converImage\(id).jpg")
                 _ =  try await converImageReference.putDataAsync( uploadConverImage,metadata: nil, onProgress: nil)
                 downLoadConverImage =  try await converImageReference.downloadURL().absoluteString
                 resultImage(downLoadConverImage, downLoadImages)

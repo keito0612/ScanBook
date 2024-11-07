@@ -33,7 +33,6 @@ class LoginViewModel:  ObservableObject {
         do{
            let userId = try await FirebaseServise().signIn(email: emailText, password: passwordText)
             if(userId != ""){
-                await getBackUpData(context: context)
                 isLoading = false
                 alertType = .success
                 alertTitle = "ログインが完了しました。"
@@ -81,42 +80,5 @@ class LoginViewModel:  ObservableObject {
             return valide
         }
         return valide
-    }
-    
-    private func getBackUpData(context :NSManagedObjectContext) async {
-        var firestoreBookDataList: Array<FirestoreBookData> = []
-        do{
-            let documents = try await FirebaseServise().db.collection("users").document(FirebaseServise().getUserId()).collection("books").getDocuments().documents
-            firestoreBookDataList =  documents.compactMap { try? $0.data(as: FirestoreBookData.self)}
-            addBookData(firestoreBookDataList: firestoreBookDataList, context: context)
-        }catch{
-            print("エラーが発生しました。")
-        }
-    }
-    
-    private func addBookData( firestoreBookDataList:Array<FirestoreBookData>,context :NSManagedObjectContext){
-        do{
-            if(!firestoreBookDataList.isEmpty){
-                for bookData in firestoreBookDataList {
-                    let newBookData = BookData(context: context)
-                    newBookData.id = UUID()
-                    newBookData.favorito = bookData.favorito!
-                    newBookData.reading = bookData.reading!
-                    newBookData.title = bookData.title
-                    if(!bookData.coverImage!.isEmpty){
-                        newBookData.coverImage =  Convert.convertImageUrlToUIImage(bookData.coverImage).pngData()
-                    }else{
-                        newBookData.coverImage =  Data()
-                    }
-                    newBookData.categoryStatus = Int64(bookData.categoryStatus!)
-                    newBookData.images = Convert.convertImageUrlListToUIImageList(bookData.images!).encode()
-                    newBookData.date = UtilDate().stringToDateTime(dateString: bookData.date!)
-                    newBookData.pageCount = Int16(0)
-                    try context.save()
-                }
-            }
-        }catch{
-            print(error.localizedDescription)
-        }
     }
 }

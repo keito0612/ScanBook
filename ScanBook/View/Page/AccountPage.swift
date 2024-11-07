@@ -10,6 +10,7 @@ import SwiftUI
 struct AccountPage: View {
     @EnvironmentObject var router:NavigationSettingRouter
     @StateObject var accountViewModel:AccountViewModel = AccountViewModel()
+    @Environment(\.managedObjectContext)private var context
     var body: some View {
         ZStack{
             Color.black.ignoresSafeArea()
@@ -22,6 +23,12 @@ struct AccountPage: View {
                                     Task{
                                        await accountViewModel.backUp()
                                     }
+                                })
+                                SyncItemView(onTap: {
+                                    accountViewModel.alertTitle = "データを復元してもよろしいでしょうか?"
+                                    accountViewModel.alertMessage = "現在、保存されているデータが全て上書きされます。"
+                                    accountViewModel.alertType = .warning
+                                    accountViewModel.showAlert.toggle()
                                 })
                             }
                             Section(header: Text("アカウント").bold().foregroundStyle(Color.white)) {
@@ -46,10 +53,18 @@ struct AccountPage: View {
                 }.listStyle(.insetGrouped)
                     .background(Color.black)
                     .scrollContentBackground(.hidden)
-            }.loadingView(message: "バックアップ中", scaleEffect: 3, isPresented:$accountViewModel.isLoading)
+            }.loadingView(message: accountViewModel.loadingMesssage, scaleEffect: 3, isPresented:$accountViewModel.isLoading)
             if(accountViewModel.showAlert){
-                CustomAlertView(alertType: accountViewModel.alertType , title:accountViewModel.alertTitle , message: accountViewModel.alertMessage, isShow: $accountViewModel.showAlert, onSubmit:{
-                    router.path.removeLast()
+                CustomAlertView(alertType: accountViewModel.alertType , title:accountViewModel.alertTitle , message: accountViewModel.alertMessage, onDestructive:{
+                    if(accountViewModel.alertType == .warning){
+                        Task{
+                            await accountViewModel.getBackUpData(context: context)
+                        }
+                    }
+                }, isShow: $accountViewModel.showAlert, onSubmit:{
+                    if(accountViewModel.alertType == .success){
+                        router.path.removeLast()
+                    }
                 })
             }else if(accountViewModel.showAlert2){
                 CustomAlertView(alertType: .warning, title:accountViewModel.alertTitle , message: accountViewModel.alertMessage,onCansel:{
@@ -84,6 +99,21 @@ struct BackUpItemView:View {
         }, label: {
             HStack {
                 Text("バックアップ").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
+            }
+        })
+        .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
+        
+    }
+}
+
+struct SyncItemView:View{
+    let onTap:()-> Void
+    var body: some View{
+        Button(action: {
+            onTap()
+        }, label: {
+            HStack {
+                Text("データを復元").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
             }
         })
         .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)

@@ -13,6 +13,7 @@ class AccountViewModel: ObservableObject{
     @Published var showAlert:Bool = false
     @Published var showAlert2:Bool = false
     @Published var showAlert3:Bool = false
+    @Published var showSignOutAlert:Bool = false
     @Published var alertTitle = ""
     @Published var alertMessage = ""
     @Published var alertType:AlertType = .success

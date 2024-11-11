@@ -21,7 +21,7 @@ struct AccountPage: View {
                             Section(header: Text("バックアップ").bold().foregroundStyle(Color.white)) {
                                 BackUpItemView(onTap: {
                                     Task{
-                                       await accountViewModel.backUp()
+                                        await accountViewModel.backUp()
                                     }
                                 })
                                 SyncItemView(onTap: {
@@ -33,7 +33,9 @@ struct AccountPage: View {
                             }
                             Section(header: Text("アカウント").bold().foregroundStyle(Color.white)) {
                                 LogoutItemView(onTap: {
-                                    AccountViewModel().signOut()
+                                    accountViewModel.alertTitle = "ログアウトしますか?"
+                                    accountViewModel.alertMessage = ""
+                                    accountViewModel.showSignOutAlert.toggle()
                                 })
                                 DeleteAccountItemView(onTap: {
                                     accountViewModel.alertTitle = "アカウントを削除しますか?"
@@ -87,7 +89,16 @@ struct AccountPage: View {
             .toolbarColorScheme(.dark)
             .customBackButton(onBack: {
                 router.path.removeLast()
-            })}
+            }) .alert(accountViewModel.alertTitle, isPresented: $accountViewModel.showSignOutAlert){
+                Button("キャンセル") {
+                    accountViewModel.showSignOutAlert.toggle()
+                }
+                Button("OK") {
+                    accountViewModel.signOut()
+                    router.path.removeLast()
+                }
+            }
+    }
 }
 
 

@@ -64,6 +64,7 @@
 		35A17E7B2CC3CB260075A2AB /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A17E7A2CC3CB250075A2AB /* AccountViewModel.swift */; };
 		35A17E7D2CC3DC360075A2AB /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A17E7C2CC3DC360075A2AB /* LoginPage.swift */; };
 		35A17E7F2CC3E2C80075A2AB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A17E7E2CC3E2C80075A2AB /* LoginViewModel.swift */; };
+		35A4ABBA2CE5B6CF00F42A5E /* GoogleServiceTest-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35A4ABB92CE5B6CF00F42A5E /* GoogleServiceTest-Info.plist */; };
 		35C1B2FB2BFE58B9008D7CB1 /* PassCodeSettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */; };
 		35C1B2FD2C08008E008D7CB1 /* PasscodeSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */; };
 		35C1B2FF2C083ED8008D7CB1 /* LocalAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */; };
@@ -169,6 +170,7 @@
 		35A17E7A2CC3CB250075A2AB /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		35A17E7C2CC3DC360075A2AB /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		35A17E7E2CC3E2C80075A2AB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		35A4ABB92CE5B6CF00F42A5E /* GoogleServiceTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleServiceTest-Info.plist"; sourceTree = "<group>"; };
 		35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeSettingPage.swift; sourceTree = "<group>"; };
 		35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSettingModel.swift; sourceTree = "<group>"; };
 		35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthView.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				354255682B4BC8B200559413 /* Info.plist */,
 				354255602B4BC8B200559413 /* Preview Content */,
 				35D15AAD2CBE3C80000AC4E1 /* GoogleService-Info.plist */,
+				35A4ABB92CE5B6CF00F42A5E /* GoogleServiceTest-Info.plist */,
 			);
 			path = ScanBook;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				354255622B4BC8B200559413 /* Preview Assets.xcassets in Resources */,
+				35A4ABBA2CE5B6CF00F42A5E /* GoogleServiceTest-Info.plist in Resources */,
 				35D15AAE2CBE3C80000AC4E1 /* GoogleService-Info.plist in Resources */,
 				3542555F2B4BC8B200559413 /* Assets.xcassets in Resources */,
 			);

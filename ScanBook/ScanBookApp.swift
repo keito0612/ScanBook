@@ -12,8 +12,24 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         GADMobileAds.sharedInstance().start(completionHandler: nil) //Mobile Ads SDK の初期化
-        FirebaseApp.configure()
+        firebaseConfigure()
         return true
+    }
+    private func firebaseConfigure() {
+        #if DEBUG
+          let filePath = Bundle.main.path(forResource: "GoogleServiceTest-Info", ofType: "plist")
+        #else
+          let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")
+        #endif
+        
+        guard let filePath = filePath else {
+            return
+        }
+        
+        guard let options = FirebaseOptions(contentsOfFile: filePath) else {
+            return
+        }
+        FirebaseApp.configure(options: options)
     }
 }
 

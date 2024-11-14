@@ -61,10 +61,13 @@ struct IPadSinUpBodyView :View{
         VStack(spacing: 84){
             Spacer()
             FormTextFieldView(lavel: "メールアドレス", text: $sinUpViewModel.emailText, errorValidation: sinUpViewModel.emailErrorValidetion, errorText: sinUpViewModel.emailErrorText)
-            FormTextFieldView(lavel: "パスワード", text: $sinUpViewModel.emailText, isPassword:true,passwordHidden:$sinUpViewModel.passwordHidden,
+            FormTextFieldView(lavel: "パスワード", text: $sinUpViewModel.passwordText, isPassword:true,passwordHidden:$sinUpViewModel.passwordHidden,
                               errorValidation: sinUpViewModel.passwordErrorValidetion, errorText: sinUpViewModel.passwordErrorText
             )
             FormButtonView(name: "新規登録", onTap: {
+                Task{
+                    await sinUpViewModel.sinUp()
+                }
             }).padding(.top, 16)
             Spacer()
         }.padding(.horizontal, 260)

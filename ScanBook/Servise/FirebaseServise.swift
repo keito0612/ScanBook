@@ -28,17 +28,26 @@ class FirebaseServise{
     }
     
     
-    func addBookData(_ bookData: BookData) async  throws{
-        var converImage: String = ""
-        var images: Array<String> = []
-        let date  = UtilDate().DateTimeToString(date: bookData.date!)
-        try await upLoadImage(id: bookData.id!.description, scanImages: Array<UIImage>.decode(from: bookData.images!), converImage:                           UIImage(data:bookData.coverImage ?? Data()), resultImage: { downLoadConverImage , downLoadImages  in
-            converImage =  downLoadConverImage
-            images = downLoadImages
-        })
-        let bookData :FirestoreBookData = FirestoreBookData( coverImage:converImage, reading: bookData.reading,images:images, title: bookData.title!,pageCount: Int(bookData.pageCount),categoryStatus:Int( bookData.categoryStatus),
-                        favorito:bookData.favorito, date:date)
-        try db.collection("users").document(getUserId()).collection("books").addDocument(from: bookData)
+    func addBookData(_ bookDataList: [BookData]) async  throws{
+        let batch = db.batch()
+        for bookData in bookDataList {
+            var converImage: String = ""
+            var images: Array<String> = []
+            let date  = UtilDate().DateTimeToString(date: bookData.date!)
+            try await upLoadImage(id: bookData.id!.description, scanImages: Array<UIImage>.decode(from: bookData.images!), converImage:                           UIImage(data:bookData.coverImage ?? Data()), resultImage: { downLoadConverImage , downLoadImages  in
+                converImage =  downLoadConverImage
+                images = downLoadImages
+            })
+            var firestoreBookData :FirestoreBookData = FirestoreBookData( coverImage:converImage, reading: bookData.reading,images:images, title: bookData.title!,pageCount: Int(bookData.pageCount),categoryStatus:Int( bookData.categoryStatus),
+                                                                          favorito:bookData.favorito, date:date)
+            let documentRef = db.collection("users")
+                .document(getUserId())
+                .collection("books")
+                .document()
+            firestoreBookData.id = documentRef.documentID
+            try batch.setData(from: firestoreBookData, forDocument: documentRef)
+        }
+        try await batch.commit()
     }
         
     
@@ -64,15 +73,26 @@ class FirebaseServise{
         var downLoadImages:Array<String> = []
         let path = "gs://scanbook-app-3a9c5.appspot.com"
         do {
-            for ( index ,image) in scanImages.enumerated() {
-                guard let uploadImage = image.jpegData(compressionQuality: 0.5) else {
-                    break
+            downLoadImages = try await withThrowingTaskGroup(of: String.self) { group -> [String] in
+                    for (index, image) in scanImages.enumerated() {
+                        group.addTask {
+                            guard let uploadImage = image.jpegData(compressionQuality: 0.5) else {
+                                throw NSError(domain: "ImageCompressionError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to compress image"])
+                            }
+                            
+                            let scanImageReference = self.storage.reference(forURL: path).child("users/\(self.getUserId())/scanImage/images/scanImages/\(id)/scanImage\(index).jpg")
+                            _ = try await scanImageReference.putDataAsync(uploadImage, metadata: nil)
+                            return try await scanImageReference.downloadURL().absoluteString
+                        }
+                    }
+                    
+                    // タスクの実行結果を収集
+                    var results = [String]()
+                    for try await downloadURL in group {
+                        results.append(downloadURL)
+                    }
+                    return results
                 }
-                let scanImageReference = storage.reference(forURL: path).child("users/\(getUserId())/scanImage/images/scanImages/\(id)/scanImage\(index).jpg")
-                _ =  try await scanImageReference.putDataAsync( uploadImage,metadata: nil, onProgress: nil)
-                let downLoadImage = try await scanImageReference.downloadURL().absoluteString
-                downLoadImages.append(downLoadImage)
-            }
             if(converImage != nil){
                 guard let uploadConverImage = converImage!.jpegData(compressionQuality: 0.5) else {
                     return
@@ -87,6 +107,35 @@ class FirebaseServise{
             }
         }catch{
             print(error.localizedDescription)
+        }
+    }
+    
+    func deleteUpLoadImage() async throws{
+        let path = "gs://scanbook-app-3a9c5.appspot.com"
+        let storageRef = storage.reference(forURL: path).child("users/\(getUserId())/scanImage/images/scanImages")
+        let folderList = try await storageRef.listAll()
+        await withTaskGroup(of: Void.self) { taskGroup in
+            for folder in folderList.prefixes {
+                taskGroup.addTask {
+                    do {
+                        let fileList = try await folder.listAll()
+                        // ファイルを並列で削除
+                        await withTaskGroup(of: Void.self) { fileTaskGroup in
+                            for file in fileList.items {
+                                fileTaskGroup.addTask {
+                                    do {
+                                        try await file.delete()
+                                    } catch {
+                                        print("Failed to delete file \(file.name) in folder \(folder.fullPath): \(error.localizedDescription)")
+                                    }
+                                }
+                            }
+                        }
+                    } catch {
+                        print("Failed to list files in folder \(folder.fullPath): \(error.localizedDescription)")
+                    }
+                }
+            }
         }
     }
     func deleteUser() async throws{

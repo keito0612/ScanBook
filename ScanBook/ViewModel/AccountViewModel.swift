@@ -34,15 +34,13 @@ class AccountViewModel: ObservableObject{
         if(!bookDatas.isEmpty){
             do{
                 try await deleteAllData()
-                for bookData in bookDatas {
-                    try await FirebaseServise().addBookData(bookData)
-                }
+                try await FirebaseServise().addBookData(bookDatas)
                 isLoading = false
                 alertType = .success
                 alertTitle = "バックアップが完了しました。"
                 showAlert = true
             }catch{
-                alertType = .success
+                alertType = .error
                 alertTitle = "バックアップをすることができませんでした。"
                 showAlert = true
                 isLoading = false
@@ -153,9 +151,12 @@ class AccountViewModel: ObservableObject{
     }
     
     private func deleteAllData() async  throws{
+        try await FirebaseServise().deleteUpLoadImage()
         let deleteDocumentItems  = try await FirebaseServise().db.collection("users").document(FirebaseServise().getUserId()).collection("books").getDocuments().documents
-        for document in deleteDocumentItems{
-            try await document.reference.delete()
+        try await withThrowingTaskGroup(of: Void.self) { group in
+            for document in deleteDocumentItems{
+                try await document.reference.delete()
+            }
         }
     }
     

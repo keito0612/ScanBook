@@ -10,6 +10,7 @@ import CoreData
 class LibraryModel :ObservableObject{
     @Published var searchText = ""
     @Published var isAddPresented: Bool = false
+    @Published var isSettingPresented:Bool = false
     @Published var isEditPresented: Bool = false
     @Published var isPreviewPresented: Bool = false
     @Published var snackText:String = ""

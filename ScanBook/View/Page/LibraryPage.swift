@@ -51,24 +51,41 @@ struct LibraryPage: View {
                         Spacer()
                         FloatingActionButton(onTap: {
                           libraryModel.isAddPresented.toggle()
-                        }).padding(.trailing , 16).padding(.bottom , libraryModel.showSnack ? 150 : 80)
+                        }).padding(.trailing , 16).padding(.bottom , libraryModel.showSnack ? 140 : 74)
                     }
+                }.alertMessage(isPresented: $libraryModel.showSnack,type: .snackbar) {
+                    HStack {
+                        Text(libraryModel.snackText).bold()
+                            .foregroundColor(.white).padding(.vertical)
+                          Spacer()
+                    }.padding(.horizontal).padding(.top).padding(.bottom, 60)
+                        .background(Color(white: 0.3, opacity: 1.0))
+                }
+                VStack {
+                    Spacer()
+                    BannerView().frame(height:0).padding(.bottom, bannerPadding).background(Color.black)
                 }
             }.navigationTitle("ライブラリ")
                 .toolbarBackground(Color.black,for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
                 .toolbarColorScheme(.dark)
+                .toolbar {
+                    /// ナビゲーションバー左
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button(action: {
+                            libraryModel.isSettingPresented.toggle()
+                        }) {
+                            Image(systemName: "gearshape")
+                        }
+                    }
+                }
         }.fullScreenCover(isPresented: $libraryModel.isAddPresented) {
             let addModel = AddModel(bookData: libraryModel.selectedBookDataItem?.bookData)
             AddPage(isPresented: $libraryModel.isAddPresented, bookDataItem: $libraryModel.selectedBookDataItem, addModel:addModel )
-        }.alertMessage(isPresented: $libraryModel.showSnack,type: .snackbar) {
-            HStack {
-                Text(libraryModel.snackText).bold()
-                    .foregroundColor(.white).padding(.vertical)
-                  Spacer()
-            }.padding(.horizontal).padding(.top).padding(.bottom, 120)
-                .background(Color(white: 0.3, opacity: 1.0))
+        }.fullScreenCover(isPresented: $libraryModel.isSettingPresented){
+            SettingRootView()
         }
+        
     }
     
     var spacerFrameHeight : CGFloat{
@@ -77,6 +94,13 @@ struct LibraryPage: View {
         }else{
             return 100
         }
+    }
+    
+    var bannerPadding :CGFloat{
+        if horizontalSizeClass == .regular && verticalSizeClass == .regular {
+            return  74
+        }
+        return 60
     }
     
     private func search(text: String) {

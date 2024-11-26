@@ -26,7 +26,9 @@ https://www.figma.com/design/4PmpcjugN09nSU6O1c1XLn/ScanBook%E7%94%BB%E9%9D%A2%E
 
 • 言語：Swift　5.9.2
 
-• データベース：coredata
+• データベース：coredata,Firebase(firestore, FirebaseStorage)
+
+• 認証：FirebaseAuthentication
 
 ## 機能一覧
 • 削除機能、追加機能、編集機能
@@ -48,6 +50,9 @@ https://www.figma.com/design/4PmpcjugN09nSU6O1c1XLn/ScanBook%E7%94%BB%E9%9D%A2%E
 • Icloud
 
 • スキャナー機能
+
+• バックアップ機能
+
 
 
 

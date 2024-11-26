@@ -44,50 +44,12 @@ struct ContentView: View {
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
     var body: some View {
-        ZStack {
-            TabView (selection: $selection){
-                ZStack{
-                    HomePage()
-                    VStack{
-                        Spacer()
-                        BannerView().frame(height:0).padding(.bottom, bannerPadding)
-                    }
-                }.tabItem{
-                    Image(systemName: "house")
-                    Text("ホーム")
-                }.tag(0)
-                ZStack{
-                    LibraryPage()
-                    VStack{
-                        Spacer()
-                        BannerView().frame(height:0).padding(.bottom, bannerPadding)
-                    }
-                }
-                .tabItem {
-                    Image(systemName: "books.vertical")
-                    Text("ライブラリ")
-                }.tag(1)
-                ZStack{
-                    SettingRootView()
-                    VStack{
-                        Spacer()
-                        BannerView().frame(height:0).padding(.bottom, bannerPadding)
-                    }
-                }
-                .tabItem {
-                    Image(systemName: "person.crop.circle")
-                    Text("設定")
-                }.tag(2)
-            }.toolbarBackground(Color.black, for: .tabBar) .toolbarBackground(.visible, for: .tabBar) .toolbarColorScheme(.dark, for: .tabBar).accentColor(.white).background(Color.black)
-        }
-        var bannerPadding :CGFloat{
-            if horizontalSizeClass == .regular && verticalSizeClass == .regular {
-                return  90
-            }
-            return 60
-        }
+        VStack {
+            LibraryPage()
+        }.toolbarBackground(Color.black, for: .tabBar) .toolbarBackground(.visible, for: .tabBar) .toolbarColorScheme(.dark, for: .tabBar).accentColor(.white).background(Color.black)
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

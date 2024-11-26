@@ -70,6 +70,8 @@ struct SettingPage: View {
         }.navigationTitle("設定").toolbarBackground(Color.black,for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarColorScheme(.dark)
+            .navigationBarTitleDisplayMode(.inline)
+            .customBackButton(onBack: {})
     }
 }
 

@@ -30,6 +30,7 @@
 		3542558B2B4BDA6A00559413 /* AddPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542558A2B4BDA6A00559413 /* AddPage.swift */; };
 		3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3542558E2B4BDEBB00559413 /* LibraryPage.swift */; };
 		354255912B4C0BBE00559413 /* TextFieldView .swift in Sources */ = {isa = PBXBuildFile; fileRef = 354255902B4C0BBE00559413 /* TextFieldView .swift */; };
+		355429F02CF6F26000D21545 /* AppearanceModePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355429EF2CF6F26000D21545 /* AppearanceModePage.swift */; };
 		35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F1E2B79198300B21AB4 /* ScannerView.swift */; };
 		35545F212B7E449D00B21AB4 /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F202B7E449D00B21AB4 /* view.swift */; };
 		35545F232B7E44C000B21AB4 /* CustomBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35545F222B7E44C000B21AB4 /* CustomBackButtonView.swift */; };
@@ -48,7 +49,7 @@
 		356866182C23BF98007879EB /* ICloudSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356866172C23BF98007879EB /* ICloudSettingModel.swift */; };
 		356866202C2D1C0D007879EB /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3568661F2C2D1C0C007879EB /* BannerView.swift */; };
 		356866222C2D1ED0007879EB /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356866212C2D1ED0007879EB /* BannerViewController.swift */; };
-		357380FD2CF5BB300096A8D8 /* AppearanceModeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357380FC2CF5BB300096A8D8 /* AppearanceModeSetting.swift */; };
+		357380FD2CF5BB300096A8D8 /* DartModeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357380FC2CF5BB300096A8D8 /* DartModeSetting.swift */; };
 		35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */; };
 		35882AD82B9A1FA000079C48 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 35882AD72B9A1FA000079C48 /* CombineCocoa */; };
 		35882ADA2B9A21AC00079C48 /* imageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD92B9A21AC00079C48 /* imageViewer.swift */; };
@@ -139,6 +140,7 @@
 		354255902B4C0BBE00559413 /* TextFieldView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldView .swift"; sourceTree = "<group>"; };
 		354A8D032C1DA125006422A9 /* ScanBookRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScanBookRelease.entitlements; sourceTree = "<group>"; };
 		354A8D042C1EE89A006422A9 /* ScanBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScanBook.entitlements; sourceTree = "<group>"; };
+		355429EF2CF6F26000D21545 /* AppearanceModePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceModePage.swift; sourceTree = "<group>"; };
 		35545F1E2B79198300B21AB4 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		35545F202B7E449D00B21AB4 /* view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = view.swift; sourceTree = "<group>"; };
 		35545F222B7E44C000B21AB4 /* CustomBackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonView.swift; sourceTree = "<group>"; };
@@ -156,7 +158,7 @@
 		356866172C23BF98007879EB /* ICloudSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudSettingModel.swift; sourceTree = "<group>"; };
 		3568661F2C2D1C0C007879EB /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		356866212C2D1ED0007879EB /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
-		357380FC2CF5BB300096A8D8 /* AppearanceModeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceModeSetting.swift; sourceTree = "<group>"; };
+		357380FC2CF5BB300096A8D8 /* DartModeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartModeSetting.swift; sourceTree = "<group>"; };
 		35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewerView.swift; sourceTree = "<group>"; };
 		35882AD92B9A21AC00079C48 /* imageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageViewer.swift; sourceTree = "<group>"; };
 		35882ADB2B9C976300079C48 /* PreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
@@ -322,7 +324,7 @@
 				3542558C2B4BDA7400559413 /* View */,
 				3542555A2B4BC8B100559413 /* ScanBookApp.swift */,
 				3542555C2B4BC8B100559413 /* ContentView.swift */,
-				357380FC2CF5BB300096A8D8 /* AppearanceModeSetting.swift */,
+				357380FC2CF5BB300096A8D8 /* DartModeSetting.swift */,
 				3542555E2B4BC8B200559413 /* Assets.xcassets */,
 				354255682B4BC8B200559413 /* Info.plist */,
 				354255602B4BC8B200559413 /* Preview Content */,
@@ -398,6 +400,7 @@
 				35A17E782CC392E70075A2AB /* AccountPage.swift */,
 				35A17E7C2CC3DC360075A2AB /* LoginPage.swift */,
 				35D6FF212CC4FE6C00EAA509 /* ResetPasswordPage.swift */,
+				355429EF2CF6F26000D21545 /* AppearanceModePage.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -738,7 +741,7 @@
 				35586F312C143D76006852F4 /* PassCodeSettingScreen2View.swift in Sources */,
 				356866182C23BF98007879EB /* ICloudSettingModel.swift in Sources */,
 				35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */,
-				357380FD2CF5BB300096A8D8 /* AppearanceModeSetting.swift in Sources */,
+				357380FD2CF5BB300096A8D8 /* DartModeSetting.swift in Sources */,
 				35315F8F2B6E271E0045014B /* PersistenceController.swift in Sources */,
 				35F4CC252C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel in Sources */,
 				356866162C23BDDF007879EB /* ICloudSettingPage.swift in Sources */,
@@ -783,6 +786,7 @@
 				3542555B2B4BC8B100559413 /* ScanBookApp.swift in Sources */,
 				356866222C2D1ED0007879EB /* BannerViewController.swift in Sources */,
 				35A17E342CC2459C0075A2AB /* SinUpPage.swift in Sources */,
+				355429F02CF6F26000D21545 /* AppearanceModePage.swift in Sources */,
 				35C1B2FF2C083ED8008D7CB1 /* LocalAuthView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

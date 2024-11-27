@@ -14,6 +14,7 @@ class NavigationSettingRouter: ObservableObject {
         case passCodeSetting
         case passCodeSettingScreen
         case passCodeSettingScreen2
+        case appearance
         case iCloudSetting
         case account
         case login
@@ -29,6 +30,8 @@ class NavigationSettingRouter: ObservableObject {
                 PassCodeSettingScreenView()
             case .passCodeSettingScreen2:
                 PassCodeSettingScreen2View()
+            case .appearance:
+                AppearanceModePage()
             case .iCloudSetting:
                 ICloudSettingPage()
             case .account:

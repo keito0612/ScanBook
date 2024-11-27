@@ -53,6 +53,24 @@ extension View {
     }
 }
 
+
+extension View {
+    @ViewBuilder
+    func applyAppearenceSetting(_ setting: DarkModeSetting) -> some View {
+        switch setting {
+        case .normal:
+            self
+                .preferredColorScheme(.none)
+        case .darkMode:
+            self
+                .preferredColorScheme(.dark)
+        case .lightMode:
+            self
+                .preferredColorScheme(.light)
+        }
+    }
+}
+
 extension Image {
     init(path: String) {
         self.init(uiImage: UIImage(named: path)!)

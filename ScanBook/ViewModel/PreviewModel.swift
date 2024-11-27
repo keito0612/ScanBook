@@ -32,6 +32,7 @@ class PreviewModel : ObservableObject {
         }
     }
     
+    
     private func editReading(context : NSManagedObjectContext,reading:Bool) {
         do{
             self.bookData!.reading = reading

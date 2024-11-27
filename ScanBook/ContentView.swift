@@ -36,6 +36,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext)private var viewContext
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @AppStorage(wrappedValue: 0, "appearanceMode") var appearanceMode
     @State var selection = 0
     init(){
         let appearance = UITabBarAppearance()

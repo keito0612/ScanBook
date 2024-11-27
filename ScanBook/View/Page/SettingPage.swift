@@ -32,6 +32,9 @@ struct SettingPage: View {
                         ICloudItemView(onTap: {
                             router.path.append(.iCloudSetting)
                         })
+                        AppearanceModeItemView(model: settingModel, onTap:{
+                            router.path.append(.appearance)
+                        })
                         AllDeleteItemView(onTap: {
                             settingModel.alertTitle = "すべてのデータを削除しますか?"
                             settingModel.alertMessage = "削除したデータは復元できません。 （設定類のデータは削除されません）"
@@ -125,6 +128,29 @@ struct AccountItemView:View {
         
     }
 }
+
+struct AppearanceModeItemView:View {
+    @ObservedObject var model:SettingModel
+    let onTap:() -> Void
+    var body: some View {
+        Button(action: {
+            onTap()
+        }, label: {
+            HStack {
+                Text("外観モード").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
+                Text(DarkModeSetting(rawValue: model.appearanceMode)!.text()).foregroundColor(DarkModeSetting(rawValue: model.appearanceMode)!.foregroundColor()).bold()
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.white)
+            }
+        })
+        .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
+        
+    }
+}
+
+
+
+
 
 struct AllDeleteItemView:View {
     let onTap:() -> Void

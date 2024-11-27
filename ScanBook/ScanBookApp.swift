@@ -35,19 +35,21 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct ScanBookApp: App {
+    @AppStorage(wrappedValue: 0, "appearanceMode") var appearanceMode
     let password = UserDefaults.standard.bool(forKey: "isPassCodeLock")
     let persistenceController = PersistenceController.shared
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             if(password){
-                PassCodeLockScreenView()
+                PassCodeLockScreenView().applyAppearenceSetting(DarkModeSetting(rawValue: self.appearanceMode) ?? .normal)
             }else{
                 ZStack{
                     ContentView()
                         .environmentObject(PassCheck())
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
                         .transition(.opacity)
+                        .applyAppearenceSetting(DarkModeSetting(rawValue: self.appearanceMode) ?? .normal)
                 }
             }
         }

@@ -13,7 +13,7 @@ class SettingModel: ObservableObject  {
     @Published var showAlert:Bool = false
     @Published var showAlert2:Bool = false
     @Published var showAlert3:Bool = false
-    
+    @AppStorage("appearanceMode") var appearanceMode:Int = 0
     var alertTitle:String = ""
     var alertMessage:String = ""
     

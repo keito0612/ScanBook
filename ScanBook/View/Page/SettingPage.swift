@@ -26,6 +26,9 @@ struct SettingPage: View {
                             onTap: {
                                 router.path.append(.passCodeSetting)
                             })
+                        CategoryListItemView(onTap: {
+                            router.path.append(.categoryList)
+                        })
                         AccountItemView(onTap: {
                             router.path.append(.account)
                         })
@@ -117,6 +120,23 @@ struct AccountItemView:View {
         }, label: {
             HStack {
                 Text("アカウント").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.white)
+            }
+        })
+        .listRowBackground(Color(white: 0.2, opacity: 1.0)).listRowSeparatorTint(.white)
+        
+    }
+}
+
+struct CategoryListItemView:View {
+    let onTap:() -> Void
+    var body: some View {
+        Button(action: {
+            onTap()
+        }, label: {
+            HStack {
+                Text("カテゴリ一覧").foregroundStyle(Color.white).bold().frame(maxWidth: .infinity,alignment: .leading)
                 Image(systemName: "chevron.right")
                     .foregroundColor(.white)
             }

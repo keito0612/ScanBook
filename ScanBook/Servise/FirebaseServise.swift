@@ -38,7 +38,7 @@ class FirebaseServise{
                 converImage =  downLoadConverImage
                 images = downLoadImages
             })
-            var firestoreBookData :FirestoreBookData = FirestoreBookData( coverImage:converImage, reading: bookData.reading,images:images, title: bookData.title!,pageCount: Int(bookData.pageCount),categoryStatus:Int( bookData.categoryStatus),
+            var firestoreBookData :FirestoreBookData = FirestoreBookData( coverImage:converImage, reading: bookData.reading,images:images, title: bookData.title!,pageCount: Int(bookData.pageCount),categoryStatus:bookData.categoryStatus,
                                                                           favorito:bookData.favorito, date:date)
             let documentRef = db.collection("users")
                 .document(getUserId())

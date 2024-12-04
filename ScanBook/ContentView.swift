@@ -36,6 +36,30 @@ struct ContentView: View {
     @Environment(\.managedObjectContext)private var viewContext
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @FetchRequest(
+       entity: Category.entity(),
+       sortDescriptors: [NSSortDescriptor(keyPath: \Category.id, ascending: false)],
+       animation: .default
+     ) var categorys: FetchedResults<Category>
+    
+    
+    func loadData() {
+        let categoryDatas: [String] = ["書類","漫画","小説"]
+        if self.categorys.isEmpty {
+            for categoryData in categoryDatas {
+                let category = Category(context: self.viewContext)
+                category.id = UUID()
+                category.name = categoryData
+                do {
+                    try viewContext.save()
+                } catch {
+                    let nsError = error as NSError
+                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                }
+            }
+        }
+    }
+    
     @State var selection = 0
     init(){
         let appearance = UITabBarAppearance()
@@ -45,7 +69,7 @@ struct ContentView: View {
     }
     var body: some View {
         VStack {
-            LibraryPage()
+            LibraryPage().onAppear(perform: loadData)
         }.toolbarBackground(Color.black, for: .tabBar) .toolbarBackground(.visible, for: .tabBar) .toolbarColorScheme(.dark, for: .tabBar).accentColor(.white).background(Color.black)
     }
 }

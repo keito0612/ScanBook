@@ -19,6 +19,7 @@ class NavigationSettingRouter: ObservableObject {
         case login
         case sinUp
         case resetPassword
+        case categoryList
         
         @ViewBuilder
         func destination() -> some View {
@@ -39,6 +40,8 @@ class NavigationSettingRouter: ObservableObject {
                 SinUpPage()
             case .resetPassword:
                 ResetPasswordPage()
+            case .categoryList:
+                CategoryListPage()
             }
         }
     }

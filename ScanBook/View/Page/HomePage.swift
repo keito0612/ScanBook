@@ -183,7 +183,7 @@ struct ReadingBookItemView : View{
                             .scaledToFill()
                             .padding(.all, readingPaddingSize)
                     }else{
-                        if(bookData.categoryStatus == 2){
+                        if(bookData.categoryStatus == "書類"){
                             Image(systemName: "folder")
                                 .foregroundStyle(.white)
                                 .font(.system(size: Bounds.width * 0.142, weight: .medium))
@@ -198,7 +198,7 @@ struct ReadingBookItemView : View{
                     }
                     VStack(alignment:.leading) {
                         Group{
-                            Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
+                            Text("カテゴリー：\(bookData.categoryStatus)")
                                 .font(.system(size: Bounds.width * 0.04))
                                 .padding(.bottom,1)
                             Text(bookData.title ?? "" )
@@ -265,7 +265,7 @@ struct favoriteBookItemView : View{
                         .frame(width: favoriteImageWidthSize, height: favoriteImageHightSize).padding(.vertical, favoriteImagePadding )
                        
                 }else{
-                    if(bookData.categoryStatus == 2){
+                    if(bookData.categoryStatus == "書類"){
                         Image(systemName: "folder")
                             .resizable()
                             .scaledToFit()
@@ -280,7 +280,7 @@ struct favoriteBookItemView : View{
                     }
                 }
                 Group{
-                    Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))")
+                    Text("カテゴリー：\(bookData.categoryStatus)")
                         .font(.system(size: Bounds.width * 0.04))
                         .frame(maxWidth:.infinity, alignment: .leading)
                         .padding(.bottom,4)

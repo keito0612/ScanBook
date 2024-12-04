@@ -110,7 +110,7 @@ class AccountViewModel: ObservableObject{
                     }else{
                         newBookData.coverImage =  Data()
                     }
-                    newBookData.categoryStatus = Int64(bookData.categoryStatus!)
+                    newBookData.categoryStatus = bookData.categoryStatus ?? ""
                     newBookData.images = Convert.convertImageUrlListToUIImageList(bookData.images!).encode()
                     newBookData.date = UtilDate().stringToDateTime(dateString: bookData.date!)
                     newBookData.pageCount = Int16(0)

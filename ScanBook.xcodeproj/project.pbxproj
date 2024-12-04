@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350B8F8F2CFE06AC004044D5 /* CategoryListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B8F8E2CFE06AC004044D5 /* CategoryListPage.swift */; };
+		350B8F912CFEE837004044D5 /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B8F902CFEE837004044D5 /* CategoryListViewModel.swift */; };
 		350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350ED2652BBAA1970051A11E /* HomeModel.swift */; };
 		350ED2692BBBDF1A0051A11E /* AlertMessage in Frameworks */ = {isa = PBXBuildFile; productRef = 350ED2682BBBDF1A0051A11E /* AlertMessage */; };
 		352A7F192BE631A4005E06BD /* SwiftUIRippleEffect in Frameworks */ = {isa = PBXBuildFile; productRef = 352A7F182BE631A4005E06BD /* SwiftUIRippleEffect */; };
@@ -66,6 +68,10 @@
 		35A17E7D2CC3DC360075A2AB /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A17E7C2CC3DC360075A2AB /* LoginPage.swift */; };
 		35A17E7F2CC3E2C80075A2AB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A17E7E2CC3E2C80075A2AB /* LoginViewModel.swift */; };
 		35A4ABBA2CE5B6CF00F42A5E /* GoogleServiceTest-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35A4ABB92CE5B6CF00F42A5E /* GoogleServiceTest-Info.plist */; };
+		35B105112CF870A900879AA2 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B105102CF870A900879AA2 /* Category+CoreDataProperties.swift */; };
+		35B105152CF870B900879AA2 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B105142CF870B900879AA2 /* Category+CoreDataClass.swift */; };
+		35B105172CF8991700879AA2 /* CustomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B105162CF8991700879AA2 /* CustomMenuView.swift */; };
+		35B1051A2CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 35B105192CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel */; };
 		35C1B2FB2BFE58B9008D7CB1 /* PassCodeSettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */; };
 		35C1B2FD2C08008E008D7CB1 /* PasscodeSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */; };
 		35C1B2FF2C083ED8008D7CB1 /* LocalAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */; };
@@ -85,7 +91,6 @@
 		35D6FF242CC501AF00EAA509 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6FF232CC501AF00EAA509 /* ResetPasswordViewModel.swift */; };
 		35DF4C9B2C569CD10082FEB0 /* BinaryCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 35DF4C9A2C569CD10082FEB0 /* BinaryCodable */; };
 		35E13DC42BFB235E00F97C53 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E13DC32BFB235E00F97C53 /* LoadingView.swift */; };
-		35F4CC252C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 35F4CC242C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel */; };
 		6518CC3C501BE066D88472DE /* Pods_ScanBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE14BED3429EA1A36EA48D8D /* Pods_ScanBook.framework */; };
 		D141000B151317C5A4699F28 /* Pods_ScanBook_ScanBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BDFC196451B094C85646FA6 /* Pods_ScanBook_ScanBookUITests.framework */; };
 		DDAE3CF28493AC8294D1780F /* Pods_ScanBookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D272A8D76F1538BBA9CCE1FA /* Pods_ScanBookTests.framework */; };
@@ -112,6 +117,8 @@
 		10E687F04E9D60679F0EEB1A /* Pods-ScanBookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanBookTests.debug.xcconfig"; path = "Target Support Files/Pods-ScanBookTests/Pods-ScanBookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		239C806C3CEC72DA74703264 /* Pods-ScanBook-ScanBookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanBook-ScanBookUITests.debug.xcconfig"; path = "Target Support Files/Pods-ScanBook-ScanBookUITests/Pods-ScanBook-ScanBookUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		260587FE06031AA60CBFED81 /* Pods-ScanBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanBookTests.release.xcconfig"; path = "Target Support Files/Pods-ScanBookTests/Pods-ScanBookTests.release.xcconfig"; sourceTree = "<group>"; };
+		350B8F8E2CFE06AC004044D5 /* CategoryListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListPage.swift; sourceTree = "<group>"; };
+		350B8F902CFEE837004044D5 /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		350ED2652BBAA1970051A11E /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		35315F782B5556F90045014B /* AddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModel.swift; sourceTree = "<group>"; };
 		35315F7D2B6142A20045014B /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
@@ -173,6 +180,11 @@
 		35A17E7C2CC3DC360075A2AB /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		35A17E7E2CC3E2C80075A2AB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		35A4ABB92CE5B6CF00F42A5E /* GoogleServiceTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleServiceTest-Info.plist"; sourceTree = "<group>"; };
+		35B105102CF870A900879AA2 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		35B105142CF870B900879AA2 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		35B105162CF8991700879AA2 /* CustomMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuView.swift; sourceTree = "<group>"; };
+		35B105182CF8A29800879AA2 /* ScanBook 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScanBook 3.xcdatamodel"; sourceTree = "<group>"; };
+		35B105192CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = ScanBookVer2toVer2.xcmappingmodel; sourceTree = "<group>"; };
 		35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeSettingPage.swift; sourceTree = "<group>"; };
 		35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSettingModel.swift; sourceTree = "<group>"; };
 		35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthView.swift; sourceTree = "<group>"; };
@@ -188,7 +200,6 @@
 		35D6FF232CC501AF00EAA509 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		35E13DC32BFB235E00F97C53 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		35F4CC232C99DEC40063D310 /* ScanBook 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScanBook 2.xcdatamodel"; sourceTree = "<group>"; };
-		35F4CC242C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = ScanBookModelVer1toVer2.xcmappingmodel; sourceTree = "<group>"; };
 		4B4B102ABE614F4412FE6A4C /* Pods-ScanBook-ScanBookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanBook-ScanBookUITests.release.xcconfig"; path = "Target Support Files/Pods-ScanBook-ScanBookUITests/Pods-ScanBook-ScanBookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9BDFC196451B094C85646FA6 /* Pods_ScanBook_ScanBookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScanBook_ScanBookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C77C806E3AA40F70950AC1 /* Pods-ScanBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanBook.release.xcconfig"; path = "Target Support Files/Pods-ScanBook/Pods-ScanBook.release.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +268,7 @@
 				35A17E3D2CC2AD920075A2AB /* SinUpViewModel.swift */,
 				35A17E7E2CC3E2C80075A2AB /* LoginViewModel.swift */,
 				35D6FF232CC501AF00EAA509 /* ResetPasswordViewModel.swift */,
+				350B8F902CFEE837004044D5 /* CategoryListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -280,6 +292,8 @@
 				35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */,
 				35C1B3052C10253F008D7CB1 /* PassCheck.swift */,
 				35A17E3A2CC251980075A2AB /* FirestoreBookData.swift */,
+				35B105102CF870A900879AA2 /* Category+CoreDataProperties.swift */,
+				35B105142CF870B900879AA2 /* Category+CoreDataClass.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -309,8 +323,8 @@
 		354255592B4BC8B100559413 /* ScanBook */ = {
 			isa = PBXGroup;
 			children = (
+				35B105192CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel */,
 				35A17E352CC2489D0075A2AB /* Handler */,
-				35F4CC242C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel */,
 				354A8D042C1EE89A006422A9 /* ScanBook.entitlements */,
 				354A8D032C1DA125006422A9 /* ScanBookRelease.entitlements */,
 				351DA06D2BE7CBA400C1DCC0 /* Controller */,
@@ -380,6 +394,7 @@
 				35586F342C1A80D4006852F4 /* SettingRootView.swift */,
 				3568661F2C2D1C0C007879EB /* BannerView.swift */,
 				35D323412CD118580088D093 /* Loading2View.swift */,
+				35B105162CF8991700879AA2 /* CustomMenuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -398,6 +413,7 @@
 				35A17E782CC392E70075A2AB /* AccountPage.swift */,
 				35A17E7C2CC3DC360075A2AB /* LoginPage.swift */,
 				35D6FF212CC4FE6C00EAA509 /* ResetPasswordPage.swift */,
+				350B8F8E2CFE06AC004044D5 /* CategoryListPage.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -734,13 +750,13 @@
 				35C1B2FD2C08008E008D7CB1 /* PasscodeSettingModel.swift in Sources */,
 				35A17E7B2CC3CB260075A2AB /* AccountViewModel.swift in Sources */,
 				35C1B3062C10253F008D7CB1 /* PassCheck.swift in Sources */,
+				35B105152CF870B900879AA2 /* Category+CoreDataClass.swift in Sources */,
 				35A17E3B2CC251980075A2AB /* FirestoreBookData.swift in Sources */,
 				35586F312C143D76006852F4 /* PassCodeSettingScreen2View.swift in Sources */,
 				356866182C23BF98007879EB /* ICloudSettingModel.swift in Sources */,
 				35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */,
 				357380FD2CF5BB300096A8D8 /* AppearanceModeSetting.swift in Sources */,
 				35315F8F2B6E271E0045014B /* PersistenceController.swift in Sources */,
-				35F4CC252C99E01E0063D310 /* ScanBookModelVer1toVer2.xcmappingmodel in Sources */,
 				356866162C23BDDF007879EB /* ICloudSettingPage.swift in Sources */,
 				35315F7E2B6142A20045014B /* DropDownView.swift in Sources */,
 				350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */,
@@ -749,8 +765,11 @@
 				35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */,
 				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
 				35D6FF242CC501AF00EAA509 /* ResetPasswordViewModel.swift in Sources */,
+				350B8F8F2CFE06AC004044D5 /* CategoryListPage.swift in Sources */,
 				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,
+				35B1051A2CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel in Sources */,
 				35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */,
+				350B8F912CFEE837004044D5 /* CategoryListViewModel.swift in Sources */,
 				35315F952B720D150045014B /* SearchBarView.swift in Sources */,
 				359B0DFC2BB5159B00F2A7E4 /* HomePage.swift in Sources */,
 				356866142C22B135007879EB /* CheckIcloudServise.swift in Sources */,
@@ -758,6 +777,7 @@
 				35A17E792CC392E70075A2AB /* AccountPage.swift in Sources */,
 				35A17E7D2CC3DC360075A2AB /* LoginPage.swift in Sources */,
 				35315F842B6DE1B80045014B /* LibraryModel.swift in Sources */,
+				35B105172CF8991700879AA2 /* CustomMenuView.swift in Sources */,
 				35315F792B5556F90045014B /* AddModel.swift in Sources */,
 				35C1B3042C0EED4F008D7CB1 /* PassCodeSettingScreenView.swift in Sources */,
 				354255672B4BC8B200559413 /* ScanBook.xcdatamodeld in Sources */,
@@ -784,6 +804,7 @@
 				356866222C2D1ED0007879EB /* BannerViewController.swift in Sources */,
 				35A17E342CC2459C0075A2AB /* SinUpPage.swift in Sources */,
 				35C1B2FF2C083ED8008D7CB1 /* LocalAuthView.swift in Sources */,
+				35B105112CF870A900879AA2 /* Category+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1240,10 +1261,11 @@
 		354255652B4BC8B200559413 /* ScanBook.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				35B105182CF8A29800879AA2 /* ScanBook 3.xcdatamodel */,
 				35F4CC232C99DEC40063D310 /* ScanBook 2.xcdatamodel */,
 				354255662B4BC8B200559413 /* ScanBook.xcdatamodel */,
 			);
-			currentVersion = 35F4CC232C99DEC40063D310 /* ScanBook 2.xcdatamodel */;
+			currentVersion = 35B105182CF8A29800879AA2 /* ScanBook 3.xcdatamodel */;
 			path = ScanBook.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

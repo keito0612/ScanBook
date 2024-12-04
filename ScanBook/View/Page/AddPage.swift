@@ -12,6 +12,11 @@ struct AddPage: View {
     @Binding var bookDataItem : BookDataItem?
     @StateObject var addModel: AddModel
     @Environment(\.managedObjectContext)private var context
+    @FetchRequest(
+       entity: Category.entity(),
+       sortDescriptors: [NSSortDescriptor(keyPath: \Category.id, ascending: false)],
+       animation: .default
+     ) var categorys: FetchedResults<Category>
     var body: some View {
         NavigationStack{
             ZStack {
@@ -24,18 +29,14 @@ struct AddPage: View {
                         
                         Divider().frame(height: 2).background(Color.white)
                         //カテゴリー
-                        DropDownView(value:$addModel.category , lavel: "カテゴリー", dropItemList: addModel.categoryItems, errorValidation: $addModel.categoryValidetion, errorText: addModel.errorCategoryText, onChange: {(value) in
-                            if(value == "漫画"){
-                                addModel.categoryStatus = 0
-                            }else if(value == "小説"){
-                                addModel.categoryStatus = 1
-                            }else{
-                                addModel.categoryStatus = 2
-                            }
-                        })
+                        CustomMenu(isMenuOpen: $addModel.openMenu, value: $addModel.categoryStatus, errorValidation: $addModel.categoryValidetion, title: "カテゴリー", errorText: addModel.errorCategoryText, menuItems:addModel.categoryItems , onChange:{ value in
+                            addModel.categoryStatus = value
+                        }, plusOnTap: {
+                            addModel.showAddCategoryAlert.toggle()
+                        }).zIndex(1)
                         
                         Divider().frame(height: 2).background(Color.white)
-                        if(addModel.category != "書類"){
+                        if(addModel.categoryStatus != "書類"){
                             BookCoverView(model: addModel)
                             Divider().frame(height: 2).background(Color.white)
                         }
@@ -46,7 +47,7 @@ struct AddPage: View {
                         }else{
                             EditButton(model: addModel , bookDataItem: $bookDataItem)
                         }
-                    }.padding(.large).navigationBarTitle(bookDataItem == nil ? "追加": "編集" , displayMode: .inline)
+                    }.padding(.large).navigationBarTitle(bookDataItem == nil ? "作成": "編集" , displayMode: .inline)
                         .navigationDestination(isPresented: $addModel.isPresented ) {
                             PreviewPage(images: addModel.imageArray, bookData: nil).environment(\.managedObjectContext,context)
                         }
@@ -73,7 +74,29 @@ struct AddPage: View {
                 ScannerView(scannedImages: $addModel.imageArray, scannedImage: $addModel.bookCovarImage, multiCapture: false, isScanning: $addModel.showingCovarImage,  completion: {
                 })
             }
-        }
+            .alert("カテゴリーを追加", isPresented: $addModel.showAddCategoryAlert) {
+                TextField( "新しいカテゴリ名", text: $addModel.categoryAlertText)
+                
+                HStack {
+                    Button {
+                        addModel.categoryAlertText = ""
+                        addModel.showAddCategoryAlert = false
+                    } label: {
+                        Text("キャンセル")
+                    }
+                    Button {
+                        addModel.addCategory(name: addModel.categoryAlertText)
+                        addModel.categoryItems =   addModel.getCategory()
+                        addModel.categoryAlertText = ""
+                        addModel.showAddCategoryAlert = false
+                    } label: {
+                        Text("追加")
+                    }
+                }
+            }
+        }.onAppear(perform: {
+            addModel.categoryItems =   addModel.getCategory()
+        })
     }
 }
 
@@ -119,17 +142,17 @@ struct BookPageAdd :View{
     @ObservedObject var model:AddModel
     var body: some View{
         VStack{
-            Text( model.category == "書類" ?  "書類の追加"  : "ページの追加")
+            Text( model.categoryStatus == "書類" ?  "書類の追加"  : "ページの追加")
                 .bold()
                 .font(.system(size: Bounds.height * 0.02))
                 .foregroundColor(Color.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(model.category == "書類" ? "現在の枚数": "現在のページ数").bold().padding(.top).font(.system(size: Bounds.width * 0.04)).foregroundColor(Color.white)
+            Text(model.categoryStatus == "書類" ? "現在の枚数": "現在のページ数").bold().padding(.top).font(.system(size: Bounds.width * 0.04)).foregroundColor(Color.white)
             Text(String(model.pageCount)).bold().font(.system(size:  Bounds.width * 0.14)).foregroundColor(Color.white)
             Button(action: {
                 model.showingScan.toggle()
             }) {
-                Text(model.category == "書類" ? "書類を追加する": "ページを追加する").font(.system(size: Bounds.width * 0.04)).bold().foregroundColor(Color.white).frame(height: Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
+                Text(model.categoryStatus == "書類" ? "書類を追加する": "ページを追加する").font(.system(size: Bounds.width * 0.04)).bold().foregroundColor(Color.white).frame(height: Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
                     .overlay(
                         RoundedRectangle(cornerRadius: Bounds.width * 0.1)
                             .stroke(Color.white, lineWidth: 4)
@@ -172,7 +195,7 @@ struct AddButton:View{
             }
             model.add(context: context)
         }) {
-            Text("追加").font(.system(size: Bounds.width * 0.04)).bold().foregroundColor(Color.white).frame(height: Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
+            Text("作成").font(.system(size: Bounds.width * 0.04)).bold().foregroundColor(Color.white).frame(height: Bounds.height * 0.07).frame(maxWidth: .infinity).background(Color.black)
                 .overlay(
                     RoundedRectangle(cornerRadius: Bounds.width * 0.07)
                         .stroke(Color.white, lineWidth: 4)

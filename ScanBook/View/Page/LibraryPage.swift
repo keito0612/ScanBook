@@ -166,7 +166,7 @@ struct BookItemView:View{
                             .frame(width: Bounds.width * 0.15, height: Bounds.height * 0.09).padding().padding(.top, 40)
                             .scaledToFit()
                     }else{
-                        if(bookData.categoryStatus == 2){
+                        if(bookData.categoryStatus == "書類"){
                             Image(systemName: "folder")
                                 .foregroundStyle(.white)
                                 .font(.system(size: Bounds.height * 0.09, weight: .medium))
@@ -179,7 +179,7 @@ struct BookItemView:View{
                                 .aspectRatio(contentMode: .fill)
                         }
                     }
-                    Text("カテゴリー：\(model.getCategoryStatusText(bookData.categoryStatus))").font(.system(size: Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
+                    Text("カテゴリー：\(bookData.categoryStatus)").font(.system(size: Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top,4)
                     Text(bookData.title ??  "").font(.system(size:Bounds.width * 0.03)).foregroundStyle(Color.white).fontWeight(.bold)

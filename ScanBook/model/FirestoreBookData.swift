@@ -14,7 +14,7 @@ struct FirestoreBookData:Codable{
     var images:Array<String>?
     var title: String?
     var pageCount:Int?
-    var categoryStatus: Int?
+    var categoryStatus: String?
     var favorito: Bool?
     var date: String?
 }

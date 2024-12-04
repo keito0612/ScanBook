@@ -31,8 +31,8 @@ class AddModel : ObservableObject{
         self.bookData = bookData
         if(self.bookData != nil){
             titleText = self.bookData!.title!
-            categoryStatus = Int(self.bookData!.categoryStatus)
-            category = categoryItems[categoryStatus!]
+            categoryStatus = self.bookData!.categoryStatus
+            category = categoryStatus
             if(category != "書類" ){
                 bookCovarImage = UIImage(data: self.bookData!.coverImage!)!;
             }
@@ -46,10 +46,12 @@ class AddModel : ObservableObject{
     @Published var titleText: String = ""
     @Published var titleErrorValidation:Bool = false
     @Published var titleErrorText: String = "※タイトルは必須項目です。"
+    @Published var openMenu:Bool = false
     //カテゴリ
     @Published var category:String = ""
-    var categoryStatus: Int?
-    let categoryItems:[String] = ["漫画","小説","書類"];
+    @Published var categoryAlertText:String = ""
+    var categoryStatus: String = ""
+    var categoryItems:[Category] = [];
     let errorCategoryText = "※カテゴリーは必須項目です。"
     //本/漫画の表紙
     @Published var bookCovarImage: UIImage = UIImage()
@@ -70,6 +72,7 @@ class AddModel : ObservableObject{
     @Published var isPresented :Bool = false
     //アラート表示フラグ
     @Published var showAlert: Bool = false
+    @Published var showAddCategoryAlert: Bool = false
     //アラートタイトル
     @Published var alertTitle: String = ""
     //アラートメッセージ
@@ -82,6 +85,35 @@ class AddModel : ObservableObject{
     let bookData: BookData?
     
     
+    public func getCategory() -> [Category]{
+        let persistenceController = PersistenceController.shared
+        let context = persistenceController.container.viewContext
+        
+        let request = NSFetchRequest<Category>(entityName: "Category")
+        
+        do {
+            let categorys = try context.fetch(request)
+            return categorys
+        }
+        catch {
+            fatalError()
+        }
+    }
+    
+    func addCategory(name: String) {
+        let persistenceController = PersistenceController.shared
+        let context = persistenceController.container.viewContext
+          let newCategory = Category(context: context)
+          newCategory.id = UUID()
+          newCategory.name = name
+          newCategory.date = Date()
+          do {
+              try context.save()
+          } catch {
+              print("エラー: \(error.localizedDescription)")
+          }
+      }
+    
     public func add(context :NSManagedObjectContext){
         guard let imagesData = imageArray.encode() else { return }
         isLoading = true
@@ -92,7 +124,7 @@ class AddModel : ObservableObject{
             newBookData.reading = false
             newBookData.title = titleText
             newBookData.coverImage = bookCovarImage.jpegData(compressionQuality: 1)
-            newBookData.categoryStatus = Int64(categoryStatus!)
+            newBookData.categoryStatus = categoryStatus
             newBookData.images = imagesData
             newBookData.date = Date()
             newBookData.pageCount = Int16(0)
@@ -100,7 +132,7 @@ class AddModel : ObservableObject{
             isLoading = false
             showAlert = true
             alertType = .success
-            alertTitle = "追加しました。"
+            alertTitle = "作成しました。"
         }catch{
             print(error.localizedDescription)
             isLoading = false
@@ -114,7 +146,7 @@ class AddModel : ObservableObject{
         isLoading = true
         do{
             bookData!.title = titleText
-            bookData!.categoryStatus = Int64(categoryStatus!)
+            bookData!.categoryStatus = categoryStatus
             bookData!.coverImage = bookCovarImage.jpegData(compressionQuality: 1)
             bookData!.images = imagesData
             bookData!.date = Date()
@@ -145,7 +177,7 @@ class AddModel : ObservableObject{
             return valide
         }
         //カテゴリー
-        if(categoryStatus == nil){
+        if(categoryStatus.isEmpty){
             categoryValidetion = true
             valide = true
             return valide

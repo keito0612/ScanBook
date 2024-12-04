@@ -80,6 +80,7 @@ struct PersistenceController {
             UIImage(named: "preview_image")!,
             UIImage(named: "preview_image")!,
         ]
+        let categorys:[String] = ["ノート", "漫画","書類","小説"]
         for i in 0..<10  {
             let viewContext = result.container.viewContext
             let BookData = BookData(context: viewContext)
@@ -90,12 +91,24 @@ struct PersistenceController {
             if(i == 1 ){
                 BookData.coverImage =  UIImage(named: "preview_image")?.jpegData(compressionQuality: 1)
             }
-            BookData.categoryStatus = 2
+            BookData.categoryStatus = "書類"
             BookData.favorito = true
             BookData.date = Date()
             BookData.reading = true
             BookData.pageCount = 0
             BookData.title = "タイトル"
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+        for categoryData  in categorys {
+            let viewContext = result.container.viewContext
+            let category = Category(context: viewContext)
+            category.id = UUID()
+            category.name = categoryData
             do {
                 try viewContext.save()
             } catch {

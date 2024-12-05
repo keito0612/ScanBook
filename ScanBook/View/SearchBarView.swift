@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SearchBarView: View {
     @Binding var searchText: String
-        let onSubmit: ()-> Void
+    let onSubmit: ()-> Void
+    let onChange:(_ value:String)-> Void
         var body: some View {
             HStack {
                 Image(systemName: "magnifyingglass")
@@ -23,6 +24,9 @@ struct SearchBarView: View {
                 .background(Color.black)
                     .onSubmit() {
                         onSubmit()
+                    }
+                    .onChange(of:searchText){ newValue in
+                        onChange(newValue)
                     }
                     .background(Color.black)
                 if !searchText.isEmpty {
@@ -48,6 +52,8 @@ struct SearchBarView_Previews: PreviewProvider {
     @State static var text = "検索"
     static var previews: some View {
         SearchBarView(searchText: $text, onSubmit: {
+            
+        }, onChange: { value in
             
         })
     }

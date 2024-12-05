@@ -574,7 +574,7 @@
 			};
 			buildConfigurationList = 354255522B4BC8B100559413 /* Build configuration list for PBXProject "ScanBook" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,

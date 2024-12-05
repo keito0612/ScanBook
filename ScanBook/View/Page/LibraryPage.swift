@@ -26,22 +26,29 @@ struct LibraryPage: View {
                 ScrollView {
                     VStack{
                         Spacer().frame(height: Bounds.height * 0.13)
-                        LazyVGrid(
-                            columns: Array(repeating: .init(.flexible()), count: 2),
-                            alignment: .center,
-                            spacing: 30
-                        ) {
-                            ForEach(bookDatas, id: \.self) { bookData in
-                                BookItemView(bookData: bookData, model: libraryModel)
-                                
-                            }
-                        }.padding(.horizontal)
-                        Spacer().frame(height: spacerFrameHeight)
+                        if(!libraryModel.searchText.isEmpty && !bookDatas.isEmpty || libraryModel.searchText.isEmpty && !bookDatas.isEmpty || libraryModel.searchText.isEmpty && bookDatas.isEmpty
+                        ){
+                            LazyVGrid(
+                                columns: Array(repeating: .init(.flexible()), count: 2),
+                                alignment: .center,
+                                spacing: 30
+                            ) {
+                                ForEach(bookDatas, id: \.self) { bookData in
+                                    BookItemView(bookData: bookData, model: libraryModel)
+                                    
+                                }
+                            }.padding(.horizontal)
+                            Spacer().frame(height: spacerFrameHeight)
+                        }else{
+                            NoSearchItem(text: libraryModel.searchText)
+                        }
                     }
                 }
                 VStack{
                     SearchBarView(searchText: $libraryModel.searchText, onSubmit: {
                         search(text: libraryModel.searchText)
+                    }, onChange: { value  in
+                        search(text: value)
                     }).padding(.vertical, 20)
                 Spacer()
                 }
@@ -108,7 +115,7 @@ struct LibraryPage: View {
             bookDatas.nsPredicate = nil
         } else {
             let titlePredicate: NSPredicate = NSPredicate(format: "title  contains[c] %@", text)
-            let categoryStatusPredicate: NSPredicate = NSPredicate(format: "categoryStatus contains %@", libraryModel.getCategoryStatusNumber(text))
+            let categoryStatusPredicate: NSPredicate = NSPredicate(format: "categoryStatus contains %@", text)
             bookDatas.nsPredicate =  NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate,categoryStatusPredicate])
         }
     }
@@ -204,6 +211,18 @@ struct BookItemView:View{
                 }
             }
         }
+    }
+}
+
+
+struct NoSearchItem :View {
+    let text:String
+    var body: some View {
+        VStack{
+            Image(systemName: "magnifyingglass").foregroundColor(.white).font(.system(size: Bounds.width * 0.2)).padding(.bottom, 12)
+            Text("”\(text)”の検索結果なし").foregroundColor(.white).bold().font(.title2)
+            Text("スペルをチャックするか、新規検索をしてみてください。").foregroundColor(.white)
+        }.frame(width:  Bounds.width * 0.7 ,height: Bounds.height * 0.5)
     }
 }
 

@@ -17,6 +17,9 @@ struct LibraryPage: View {
     @FetchRequest(entity:BookData.entity(),sortDescriptors: [NSSortDescriptor(keyPath: \BookData.date, ascending: false)],
            animation: .default)
     private var bookDatas: FetchedResults<BookData>
+    @FetchRequest(entity:BookData.entity(),sortDescriptors: [NSSortDescriptor(keyPath: \BookData.date, ascending: false)],
+                  predicate: NSPredicate(format:"favorito = %@", NSNumber(value: true)), animation: .default)
+    private var favoriteBookDatas: FetchedResults<BookData>
     var body: some View {
         NavigationStack{
             ZStack {
@@ -25,7 +28,7 @@ struct LibraryPage: View {
                 
                 ScrollView {
                     VStack{
-                        Spacer().frame(height: Bounds.height * 0.13)
+                        Spacer().frame(height: Bounds.height * 0.18)
                         if(!libraryModel.searchText.isEmpty && !bookDatas.isEmpty || libraryModel.searchText.isEmpty && !bookDatas.isEmpty || libraryModel.searchText.isEmpty && bookDatas.isEmpty
                         ){
                             LazyVGrid(
@@ -33,7 +36,7 @@ struct LibraryPage: View {
                                 alignment: .center,
                                 spacing: 30
                             ) {
-                                ForEach(bookDatas, id: \.self) { bookData in
+                                ForEach( libraryModel.selectedTab == 0 ?   bookDatas : favoriteBookDatas , id: \.self) { bookData in
                                     BookItemView(bookData: bookData, model: libraryModel)
                                     
                                 }
@@ -45,6 +48,7 @@ struct LibraryPage: View {
                     }
                 }
                 VStack{
+                    TopTabView(list: ["通常","お気に入り"], selectedTab: $libraryModel.selectedTab)
                     SearchBarView(searchText: $libraryModel.searchText, onSubmit: {
                         search(text: libraryModel.searchText)
                     }, onChange: { value  in
@@ -58,14 +62,14 @@ struct LibraryPage: View {
                         Spacer()
                         FloatingActionButton(onTap: {
                           libraryModel.isAddPresented.toggle()
-                        }).padding(.trailing , 16).padding(.bottom , libraryModel.showSnack ? 140 : 74)
+                        }).padding(.trailing , 16).padding(.bottom , libraryModel.showSnack ? 164 : 80)
                     }
                 }.alertMessage(isPresented: $libraryModel.showSnack,type: .snackbar) {
                     HStack {
                         Text(libraryModel.snackText).bold()
                             .foregroundColor(.white).padding(.vertical)
                           Spacer()
-                    }.padding(.horizontal).padding(.top).padding(.bottom, 60)
+                    }.padding(.horizontal).padding(.top).padding(.bottom, Bounds.height * 0.065)
                         .background(Color(white: 0.3, opacity: 1.0))
                 }
                 VStack {

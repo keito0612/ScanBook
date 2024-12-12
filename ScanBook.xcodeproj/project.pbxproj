@@ -50,6 +50,7 @@
 		356866182C23BF98007879EB /* ICloudSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356866172C23BF98007879EB /* ICloudSettingModel.swift */; };
 		356866202C2D1C0D007879EB /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3568661F2C2D1C0C007879EB /* BannerView.swift */; };
 		356866222C2D1ED0007879EB /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356866212C2D1ED0007879EB /* BannerViewController.swift */; };
+		35737C142D0ADDF3008691A0 /* TopTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35737C132D0ADDF3008691A0 /* TopTabView.swift */; };
 		357380FD2CF5BB300096A8D8 /* AppearanceModeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357380FC2CF5BB300096A8D8 /* AppearanceModeSetting.swift */; };
 		35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */; };
 		35882AD82B9A1FA000079C48 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 35882AD72B9A1FA000079C48 /* CombineCocoa */; };
@@ -163,6 +164,7 @@
 		356866172C23BF98007879EB /* ICloudSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudSettingModel.swift; sourceTree = "<group>"; };
 		3568661F2C2D1C0C007879EB /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		356866212C2D1ED0007879EB /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
+		35737C132D0ADDF3008691A0 /* TopTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabView.swift; sourceTree = "<group>"; };
 		357380FC2CF5BB300096A8D8 /* AppearanceModeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceModeSetting.swift; sourceTree = "<group>"; };
 		35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewerView.swift; sourceTree = "<group>"; };
 		35882AD92B9A21AC00079C48 /* imageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageViewer.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				3568661F2C2D1C0C007879EB /* BannerView.swift */,
 				35D323412CD118580088D093 /* Loading2View.swift */,
 				35B105162CF8991700879AA2 /* CustomMenuView.swift */,
+				35737C132D0ADDF3008691A0 /* TopTabView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -772,6 +775,7 @@
 				350B8F912CFEE837004044D5 /* CategoryListViewModel.swift in Sources */,
 				35315F952B720D150045014B /* SearchBarView.swift in Sources */,
 				359B0DFC2BB5159B00F2A7E4 /* HomePage.swift in Sources */,
+				35737C142D0ADDF3008691A0 /* TopTabView.swift in Sources */,
 				356866142C22B135007879EB /* CheckIcloudServise.swift in Sources */,
 				35315F822B6DE1350045014B /* PreviewPage.swift in Sources */,
 				35A17E792CC392E70075A2AB /* AccountPage.swift in Sources */,

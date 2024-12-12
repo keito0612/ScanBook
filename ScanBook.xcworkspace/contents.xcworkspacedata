@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:BookData+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BookData+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:Image+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:ScanBook.xcodeproj">
    </FileRef>
    <FileRef

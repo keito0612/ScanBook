@@ -70,4 +70,11 @@ class Convert{
     static func convertDataArrayToUIImage(dataArray: [Data]) -> [UIImage]? {
         return dataArray.compactMap { UIImage(data: $0) }
     }
+    
+    static func convertImageArray(_ images: NSSet?) -> [Image] {
+          let set = images as? Set<Image> ?? []
+          return set.sorted {
+              $0.id < $1.id
+          }
+      }
 }

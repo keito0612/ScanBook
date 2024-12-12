@@ -14,79 +14,25 @@ struct PersistenceController {
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        let imageArray:[UIImage] = [
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-            UIImage(named: "preview_image")!,
-        ]
+        let imageArray: [(image: UIImage, memo: String)] = (1...30).compactMap { index in
+            if let image = UIImage(named: "preview_image") {
+                return (image: image, memo: "")
+            }
+            return nil
+        }
         let categorys:[String] = ["ノート", "漫画","書類","小説"]
         for i in 0..<10  {
             let viewContext = result.container.viewContext
             let BookData = BookData(context: viewContext)
             BookData.id = UUID()
             BookData.coverImage = Data.init()
-            BookData.images = imageArray.encode()
+            for image in imageArray {
+                let image = Image(context: viewContext)
+                image.id = Int64(UUID().uuidString)!
+                image.memo = image.memo
+                image.image = image.image
+                BookData.addToImages(image)
+            }
             
             if(i == 1 ){
                 BookData.coverImage =  UIImage(named: "preview_image")?.jpegData(compressionQuality: 1)

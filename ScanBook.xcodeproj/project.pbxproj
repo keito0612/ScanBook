@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		350B8F8F2CFE06AC004044D5 /* CategoryListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B8F8E2CFE06AC004044D5 /* CategoryListPage.swift */; };
 		350B8F912CFEE837004044D5 /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B8F902CFEE837004044D5 /* CategoryListViewModel.swift */; };
+		350B8F952D01E104004044D5 /* ScanBookVer2toVer2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 350B8F942D01E104004044D5 /* ScanBookVer2toVer2.xcmappingmodel */; };
+		350B8F972D01EEF3004044D5 /* BookData+CoreDataProperties 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350B8F962D01EEF3004044D5 /* BookData+CoreDataProperties 3.swift */; };
 		350ED2662BBAA1970051A11E /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350ED2652BBAA1970051A11E /* HomeModel.swift */; };
 		350ED2692BBBDF1A0051A11E /* AlertMessage in Frameworks */ = {isa = PBXBuildFile; productRef = 350ED2682BBBDF1A0051A11E /* AlertMessage */; };
 		352A7F192BE631A4005E06BD /* SwiftUIRippleEffect in Frameworks */ = {isa = PBXBuildFile; productRef = 352A7F182BE631A4005E06BD /* SwiftUIRippleEffect */; };
@@ -17,7 +19,6 @@
 		35315F802B6974810045014B /* SettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F7F2B6974810045014B /* SettingPage.swift */; };
 		35315F822B6DE1350045014B /* PreviewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F812B6DE1350045014B /* PreviewPage.swift */; };
 		35315F842B6DE1B80045014B /* LibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F832B6DE1B80045014B /* LibraryModel.swift */; };
-		35315F8D2B6E26A90045014B /* BookData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F8C2B6E26A90045014B /* BookData+CoreDataProperties.swift */; };
 		35315F8F2B6E271E0045014B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F8E2B6E271E0045014B /* PersistenceController.swift */; };
 		35315F922B6E27900045014B /* BookData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F902B6E27900045014B /* BookData+CoreDataClass.swift */; };
 		35315F952B720D150045014B /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35315F942B720D150045014B /* SearchBarView.swift */; };
@@ -51,6 +52,8 @@
 		356866202C2D1C0D007879EB /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3568661F2C2D1C0C007879EB /* BannerView.swift */; };
 		356866222C2D1ED0007879EB /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356866212C2D1ED0007879EB /* BannerViewController.swift */; };
 		357380FD2CF5BB300096A8D8 /* AppearanceModeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357380FC2CF5BB300096A8D8 /* AppearanceModeSetting.swift */; };
+		357A5E982D06F00200D44639 /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A5E972D06F00200D44639 /* Image+CoreDataProperties.swift */; };
+		357A5E992D06F00200D44639 /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357A5E962D06F00200D44639 /* Image+CoreDataClass.swift */; };
 		35882AD52B9A1F1500079C48 /* UIImageViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */; };
 		35882AD82B9A1FA000079C48 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 35882AD72B9A1FA000079C48 /* CombineCocoa */; };
 		35882ADA2B9A21AC00079C48 /* imageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35882AD92B9A21AC00079C48 /* imageViewer.swift */; };
@@ -71,7 +74,6 @@
 		35B105112CF870A900879AA2 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B105102CF870A900879AA2 /* Category+CoreDataProperties.swift */; };
 		35B105152CF870B900879AA2 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B105142CF870B900879AA2 /* Category+CoreDataClass.swift */; };
 		35B105172CF8991700879AA2 /* CustomMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B105162CF8991700879AA2 /* CustomMenuView.swift */; };
-		35B1051A2CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 35B105192CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel */; };
 		35C1B2FB2BFE58B9008D7CB1 /* PassCodeSettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */; };
 		35C1B2FD2C08008E008D7CB1 /* PasscodeSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */; };
 		35C1B2FF2C083ED8008D7CB1 /* LocalAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */; };
@@ -119,13 +121,14 @@
 		260587FE06031AA60CBFED81 /* Pods-ScanBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScanBookTests.release.xcconfig"; path = "Target Support Files/Pods-ScanBookTests/Pods-ScanBookTests.release.xcconfig"; sourceTree = "<group>"; };
 		350B8F8E2CFE06AC004044D5 /* CategoryListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListPage.swift; sourceTree = "<group>"; };
 		350B8F902CFEE837004044D5 /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
+		350B8F942D01E104004044D5 /* ScanBookVer2toVer2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = ScanBookVer2toVer2.xcmappingmodel; sourceTree = "<group>"; };
+		350B8F962D01EEF3004044D5 /* BookData+CoreDataProperties 3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookData+CoreDataProperties 3.swift"; sourceTree = "<group>"; };
 		350ED2652BBAA1970051A11E /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		35315F782B5556F90045014B /* AddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModel.swift; sourceTree = "<group>"; };
 		35315F7D2B6142A20045014B /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		35315F7F2B6974810045014B /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
 		35315F812B6DE1350045014B /* PreviewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPage.swift; sourceTree = "<group>"; };
 		35315F832B6DE1B80045014B /* LibraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryModel.swift; sourceTree = "<group>"; };
-		35315F8C2B6E26A90045014B /* BookData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		35315F8E2B6E271E0045014B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		35315F902B6E27900045014B /* BookData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		35315F942B720D150045014B /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 		3568661F2C2D1C0C007879EB /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		356866212C2D1ED0007879EB /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		357380FC2CF5BB300096A8D8 /* AppearanceModeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceModeSetting.swift; sourceTree = "<group>"; };
+		357A5E962D06F00200D44639 /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataClass.swift"; path = "../Image+CoreDataClass.swift"; sourceTree = "<group>"; };
+		357A5E972D06F00200D44639 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataProperties.swift"; path = "../Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		35882AD42B9A1F1500079C48 /* UIImageViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewerView.swift; sourceTree = "<group>"; };
 		35882AD92B9A21AC00079C48 /* imageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageViewer.swift; sourceTree = "<group>"; };
 		35882ADB2B9C976300079C48 /* PreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModel.swift; sourceTree = "<group>"; };
@@ -184,7 +189,6 @@
 		35B105142CF870B900879AA2 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		35B105162CF8991700879AA2 /* CustomMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuView.swift; sourceTree = "<group>"; };
 		35B105182CF8A29800879AA2 /* ScanBook 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ScanBook 3.xcdatamodel"; sourceTree = "<group>"; };
-		35B105192CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = ScanBookVer2toVer2.xcmappingmodel; sourceTree = "<group>"; };
 		35C1B2FA2BFE58B9008D7CB1 /* PassCodeSettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassCodeSettingPage.swift; sourceTree = "<group>"; };
 		35C1B2FC2C08008E008D7CB1 /* PasscodeSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSettingModel.swift; sourceTree = "<group>"; };
 		35C1B2FE2C083ED8008D7CB1 /* LocalAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthView.swift; sourceTree = "<group>"; };
@@ -288,12 +292,14 @@
 			children = (
 				354255652B4BC8B200559413 /* ScanBook.xcdatamodeld */,
 				35315F902B6E27900045014B /* BookData+CoreDataClass.swift */,
-				35315F8C2B6E26A90045014B /* BookData+CoreDataProperties.swift */,
 				35D46DE92BF33BFF00A605F5 /* BookDataItem.swift */,
 				35C1B3052C10253F008D7CB1 /* PassCheck.swift */,
 				35A17E3A2CC251980075A2AB /* FirestoreBookData.swift */,
 				35B105102CF870A900879AA2 /* Category+CoreDataProperties.swift */,
 				35B105142CF870B900879AA2 /* Category+CoreDataClass.swift */,
+				350B8F962D01EEF3004044D5 /* BookData+CoreDataProperties 3.swift */,
+				357A5E962D06F00200D44639 /* Image+CoreDataClass.swift */,
+				357A5E972D06F00200D44639 /* Image+CoreDataProperties.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -323,7 +329,7 @@
 		354255592B4BC8B100559413 /* ScanBook */ = {
 			isa = PBXGroup;
 			children = (
-				35B105192CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel */,
+				350B8F942D01E104004044D5 /* ScanBookVer2toVer2.xcmappingmodel */,
 				35A17E352CC2489D0075A2AB /* Handler */,
 				354A8D042C1EE89A006422A9 /* ScanBook.entitlements */,
 				354A8D032C1DA125006422A9 /* ScanBookRelease.entitlements */,
@@ -763,14 +769,17 @@
 				35C1B3012C0B5803008D7CB1 /* LocalAuthServise.swift in Sources */,
 				35C1B2FB2BFE58B9008D7CB1 /* PassCodeSettingPage.swift in Sources */,
 				35D46DEA2BF33BFF00A605F5 /* BookDataItem.swift in Sources */,
+				350B8F952D01E104004044D5 /* ScanBookVer2toVer2.xcmappingmodel in Sources */,
 				35545F1F2B79198300B21AB4 /* ScannerView.swift in Sources */,
 				35D6FF242CC501AF00EAA509 /* ResetPasswordViewModel.swift in Sources */,
 				350B8F8F2CFE06AC004044D5 /* CategoryListPage.swift in Sources */,
 				3542558F2B4BDEBB00559413 /* LibraryPage.swift in Sources */,
-				35B1051A2CF8A47B00879AA2 /* ScanBookVer2toVer2.xcmappingmodel in Sources */,
 				35545F322B849FFE00B21AB4 /* UtilDate.swift in Sources */,
 				350B8F912CFEE837004044D5 /* CategoryListViewModel.swift in Sources */,
+				350B8F972D01EEF3004044D5 /* BookData+CoreDataProperties 3.swift in Sources */,
 				35315F952B720D150045014B /* SearchBarView.swift in Sources */,
+				357A5E982D06F00200D44639 /* Image+CoreDataProperties.swift in Sources */,
+				357A5E992D06F00200D44639 /* Image+CoreDataClass.swift in Sources */,
 				359B0DFC2BB5159B00F2A7E4 /* HomePage.swift in Sources */,
 				356866142C22B135007879EB /* CheckIcloudServise.swift in Sources */,
 				35315F822B6DE1350045014B /* PreviewPage.swift in Sources */,
@@ -794,7 +803,6 @@
 				356866202C2D1C0D007879EB /* BannerView.swift in Sources */,
 				35315F802B6974810045014B /* SettingPage.swift in Sources */,
 				359CD2DD2BA57AA700BC7005 /* CustomAlertView.swift in Sources */,
-				35315F8D2B6E26A90045014B /* BookData+CoreDataProperties.swift in Sources */,
 				35882ADC2B9C976300079C48 /* PreviewModel.swift in Sources */,
 				35A17E402CC2CEEF0075A2AB /* FormButtonView.swift in Sources */,
 				3542558B2B4BDA6A00559413 /* AddPage.swift in Sources */,
@@ -981,7 +989,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1020,7 +1028,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -31,12 +31,18 @@ class AddModel : ObservableObject{
         self.bookData = bookData
         if(self.bookData != nil){
             titleText = self.bookData!.title!
-            categoryStatus = self.bookData!.categoryStatus
+            categoryStatus = self.bookData!.categoryStatus!
             category = categoryStatus
             if(category != "書類" ){
                 bookCovarImage = UIImage(data: self.bookData!.coverImage!)!;
             }
-            imageArray = Array<UIImage>.decode(from:bookData!.images!)
+            let images = Convert.convertImageArray(self.bookData!.images)
+            if(!images.isEmpty){
+                for image in Convert.convertImageArray(self.bookData!.images) {
+                    let imageData :(image:UIImage, memo:String) = (image:UIImage(data: image.image!)!, memo:image.memo!)
+                    imageArray.append(imageData)
+                }
+            }
             if(imageArray.count != 0){
                 pageCount = imageArray.count
             }
@@ -63,7 +69,7 @@ class AddModel : ObservableObject{
     @Published var shootingTypeText:String = ""
     @Published var shootingTypeItems:[String] = ["文字認識","スキャン"]
     //写真
-    @Published var imageArray:[UIImage] = []
+    @Published var imageArray:[(image:UIImage, memo:String)] = []
     //ページ数
     @Published var pageCount:Int = 0;
     @Published var pageErrorText: String = "※ページを追加してください。"
@@ -115,7 +121,6 @@ class AddModel : ObservableObject{
       }
     
     public func add(context :NSManagedObjectContext){
-        guard let imagesData = imageArray.encode() else { return }
         isLoading = true
         do{
             let newBookData = BookData(context: context)
@@ -125,9 +130,12 @@ class AddModel : ObservableObject{
             newBookData.title = titleText
             newBookData.coverImage = bookCovarImage.jpegData(compressionQuality: 1)
             newBookData.categoryStatus = categoryStatus
-            newBookData.images = imagesData
             newBookData.date = Date()
             newBookData.pageCount = Int16(0)
+            for image in imageArray{
+                let imageData : Data = image.image.pngData()!
+                addImageToBook(bookData: newBookData, memo: image.memo, imageData: imageData, context: context)
+            }
             try context.save()
             isLoading = false
             showAlert = true
@@ -141,15 +149,33 @@ class AddModel : ObservableObject{
             alertTitle = "エラーが発生しました。"
         }
     }
+    
+    
+    private func addImageToBook(bookData: BookData, memo: String, imageData: Data, context:NSManagedObjectContext) {
+        let newImage = Image(context: context)
+        newImage.id = Int64(UUID().uuidString)!
+        newImage.memo = memo
+        newImage.image = imageData
+        bookData.addToImages(newImage)
+    }
+    
+    func editImageToBook(context:NSManagedObjectContext){
+        bookData?.removeFromImages(bookData!.images!)
+        for image in imageArray{
+            let imageData :Data  =  image.image.pngData()!
+            addImageToBook(bookData:bookData!, memo: image.memo, imageData: imageData , context: context)
+        }
+    }
+    
+    
     public func edit(context : NSManagedObjectContext){
-        guard let imagesData = imageArray.encode() else { return }
         isLoading = true
         do{
             bookData!.title = titleText
             bookData!.categoryStatus = categoryStatus
             bookData!.coverImage = bookCovarImage.jpegData(compressionQuality: 1)
-            bookData!.images = imagesData
             bookData!.date = Date()
+            editImageToBook(context: context)
             try context.save()
             isLoading = false
             showAlert = true

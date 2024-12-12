@@ -66,12 +66,15 @@ struct AddPage: View {
                     }
                 })
             }.sheet(isPresented: $addModel.showingScan) {
-                ScannerView(scannedImages: $addModel.imageArray, scannedImage: $addModel.bookCovarImage, multiCapture: true, isScanning: $addModel.showingScan,  completion: {
+                ScannerView(scannedImage: $addModel.bookCovarImage, multiCapture: true, isScanning: $addModel.showingScan,  completion: { images in
+                    for image  in images{
+                        addModel.imageArray.append((image, ""))
+                    }
                     addModel.pageCount =  addModel.imageArray.count
                 })
             }
             .sheet(isPresented:$addModel.showingCovarImage ){
-                ScannerView(scannedImages: $addModel.imageArray, scannedImage: $addModel.bookCovarImage, multiCapture: false, isScanning: $addModel.showingCovarImage,  completion: {
+                ScannerView(scannedImage: $addModel.bookCovarImage, multiCapture: false, isScanning: $addModel.showingCovarImage,  completion: { _ in
                 })
             }
             .alert("カテゴリーを追加", isPresented: $addModel.showAddCategoryAlert) {

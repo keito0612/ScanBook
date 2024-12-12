@@ -10,13 +10,12 @@ import VisionKit
 
 struct ScannerView: UIViewControllerRepresentable {
     
-    @Binding var scannedImages: [UIImage]
+    var scannedImages: [UIImage] = []
     @Binding var scannedImage: UIImage
     @Binding var isScanning: Bool
     let multiCapture: Bool
-    var completion: () -> Void
-    init( scannedImages: Binding<[UIImage]>,scannedImage: Binding<UIImage> , multiCapture: Bool, isScanning:Binding<Bool>,completion: @escaping () -> Void) {
-        self._scannedImages = scannedImages
+    var completion: ([UIImage]) -> Void
+    init(scannedImage: Binding<UIImage> , multiCapture: Bool, isScanning:Binding<Bool>,completion: @escaping ([UIImage]) -> Void) {
         self._scannedImage = scannedImage
         self.multiCapture = multiCapture
         self._isScanning = isScanning
@@ -55,14 +54,14 @@ extension  ScannerView {
                 for i in 0..<scan.pageCount {
                     parent.scannedImages.append(scan.imageOfPage(at: i))
                 }
-                self.parent.completion()
+                self.parent.completion(parent.scannedImages)
                 controller.dismiss(animated: true)
             }else{
                 for i in 0..<scan.pageCount {
                     parent.scannedImage =  scan.imageOfPage(at: i)
                 }
                 controller.dismiss(animated: true)
-                self.parent.completion()
+                self.parent.completion([])
             }
         }
     }

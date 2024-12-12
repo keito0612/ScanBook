@@ -32,9 +32,13 @@ class FirebaseServise{
         let batch = db.batch()
         for bookData in bookDataList {
             var converImage: String = ""
+            var uiImages : [UIImage] = []
             var images: Array<String> = []
             let date  = UtilDate().DateTimeToString(date: bookData.date!)
-            try await upLoadImage(id: bookData.id!.description, scanImages: Array<UIImage>.decode(from: bookData.images!), converImage:                           UIImage(data:bookData.coverImage ?? Data()), resultImage: { downLoadConverImage , downLoadImages  in
+            for image in Convert.convertImageArray(bookData.images) {
+                uiImages.append(UIImage(data: image.image!)!)
+            }
+            try await upLoadImage(id: bookData.id!.description, scanImages: uiImages, converImage:                           UIImage(data:bookData.coverImage ?? Data()), resultImage: { downLoadConverImage , downLoadImages  in
                 converImage =  downLoadConverImage
                 images = downLoadImages
             })
